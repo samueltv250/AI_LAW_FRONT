@@ -1,11 +1,11 @@
-# ChatGPT
+# LawGPT
 
-ChatGPT clone with added features
+LawGPT clone with added features
 
 # Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FPrasadBroo%2FChatGPT&install-command=npm%20install&output-directory=dist)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/PrasadBroo/ChatGPT)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FPrasadBroo%2FLawGPT&install-command=npm%20install&output-directory=dist)
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/PrasadBroo/LawGPT)
 
 # Demo
 
@@ -17,7 +17,7 @@ ChatGPT clone with added features
 - Send chat with/without history 🧐
 - Choose model from a variety of GPT-3/GPT-4 models 😃
 - Stores your chats in local storage 👀
-- Same user interface as the original ChatGPT 📺
+- Same user interface as the original LawGPT 📺
 - Custom chat titles 💬
 - Export/Import your chats 🔼🔽
 
@@ -25,7 +25,7 @@ ChatGPT clone with added features
 
 - [ ] Add DALL-E1 & DALL-E2 Image Generation Models
 - [ ] Add Code Highlight
-- [ ] [Add ChatGPT Pre Made Prompts](https://github.com/f/awesome-chatgpt-prompts)
+- [ ] [Add LawGPT Pre Made Prompts](https://github.com/f/awesome-LawGPT-prompts)
 ## Requirements
 
 - Node JS
@@ -37,13 +37,13 @@ ChatGPT clone with added features
 1. Clone the repository
 
 ```
-git clone https://github.com/PrasadBroo/ChatGPT.git
+git clone https://github.com/PrasadBroo/LawGPT.git
 ```
 
 2. Install client dependencies
 
 ```
-cd ChatGPT
+cd LawGPT
 npm install
 ```
 
@@ -65,4 +65,4 @@ All contributions are welcome. Feel free to open an issue or create a pull reque
 
 ## Liscence
 
-[MIT](https://github.com/PrasadBroo/ChatGPT/blob/main/LICENSE)
+[MIT](https://github.com/PrasadBroo/LawGPT/blob/main/LICENSE)

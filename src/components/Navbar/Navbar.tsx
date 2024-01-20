@@ -73,7 +73,7 @@ export default function Navbar({
             <ChatHistory />
           </div>
           <div className="account  font-bold  z-20 bg-[#202123] border-t border-gray-500 shadow  ">
-            <div className="px-2 py-2 flex items-center text-2xl text-yellow-400 border-y border-yellow-400">
+            {/* <div className="px-2 py-2 flex items-center text-2xl text-yellow-400 border-y border-yellow-400">
               <span className=" flex items-center text-xl ">
                 <IonIcon icon={cafeOutline} />
               </span>
@@ -85,7 +85,7 @@ export default function Navbar({
               >
                 Buy me a coffee
               </a>
-            </div>
+            </div> */}
             <div className="[&>.options]:focus-within:visible">
               <button
                 type="button"
@@ -99,7 +99,7 @@ export default function Navbar({
                 </span>
               </button>
               <div className="options absolute bottom-12 rounded-md left-0 right-0 bg-gray-800 font-normal invisible transition  m-2 z-30 text-gray-300 ">
-                <button
+                {/* <button
                   className=" p-2   hover:bg-gray-700 w-full text-left flex items-center"
                   onClick={() => setSystemMessageModalVisible(true)}
                 >
@@ -107,7 +107,7 @@ export default function Navbar({
                     <IonIcon icon={chatboxEllipsesOutline} />
                   </span>
                   <span>Custom instructions</span>
-                </button>
+                </button> */}
                 <button
                   className=" p-2   hover:bg-gray-700 w-full text-left flex items-center"
                   onClick={() => setModalVisible(true)}

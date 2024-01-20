@@ -1,5 +1,5 @@
 {
-  "name": "chatgpt",
+  "name": "LawGPT",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ionic/react": "^7.3.3",
+    "@types/react-router-dom": "^5.3.3",
     "axios": "^1.5.0",
     "classnames": "^2.3.2",
     "framer-motion": "^10.16.4",
@@ -17,6 +18,7 @@
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.3",
     "react-spinners": "^0.13.8",
     "shortid": "^2.2.16",
     "use-debounce": "^9.0.4",

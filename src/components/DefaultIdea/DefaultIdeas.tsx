@@ -10,7 +10,7 @@ const defaultIdeas = [
     moreContext:
       "Give me a code snippet to create a database schema for a social media app",
   },
-  { idea: "Tell me a joke", moreContext: "Tell me a joke" },
+  { idea: "Existe pena de muerte", moreContext: "Existe pena de muerte en panama?" },
   {
     idea: "Design redux store",
     moreContext: " Design a redux store for a social media app",

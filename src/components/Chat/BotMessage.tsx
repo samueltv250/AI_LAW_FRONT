@@ -7,6 +7,8 @@ import useClipboard from "../../hooks/useClipboard";
 import useBot from "../../hooks/useBot";
 import { ChatMessageType } from "../../store/store";
 import { motion } from "framer-motion";
+import React, { useState } from 'react';
+import { SourcesModal } from './SourcesModal';
 
 const variants = {
   hidden: { y: 20, opacity: 0 },
@@ -20,8 +22,9 @@ type Props = {
 
 export default function BotMessage({ index, chat }: Props) {
   const { copy, copied } = useClipboard();
+  const [showSources, setShowSources] = useState(false);
 
-  const { result, error, isStreamCompleted, cursorRef } = useBot({
+  const { result, error, isStreamCompleted, cursorRef, sources } = useBot({
     index,
     chat,
   });
@@ -63,20 +66,33 @@ export default function BotMessage({ index, chat }: Props) {
             </pre>
           )}
         </div>
-        <div className="mt-2 md:mt-0  text-right self-start">
-          {!copied ? (
-            <button
-              className="edit md:ml-8 text-gray-500 dark:text-gray-200 text-xl"
-              onClick={() => copy(result)}
-            >
-              <IonIcon icon={clipboardOutline} />
-            </button>
-          ) : (
-            <span className="dark:text-gray-200 text-gray-500 text-xl">
-              <IonIcon icon={checkmarkOutline} />
-            </span>
-          )}
-        </div>
+
+          <div className="mt-2 md:mt-0  text-right self-start">
+    {!copied ? (
+      <button
+        className="edit md:ml-8 text-gray-500 dark:text-gray-200 text-xl"
+        onClick={() => copy(result)}
+      >
+        <IonIcon icon={clipboardOutline} />
+      </button>
+    ) : (
+      <span className="dark:text-gray-200 text-gray-500 text-xl">
+        <IonIcon icon={checkmarkOutline} />
+      </span>
+    )}
+
+
+    {result && (
+      <button onClick={() => setShowSources(true)}>Show Sources</button>
+    )}
+
+    
+    {showSources && (
+      <SourcesModal sources={sources} onClose={() => setShowSources(false)} />
+    )}
+
+
+  </div>
       </motion.div>
     </div>
   );

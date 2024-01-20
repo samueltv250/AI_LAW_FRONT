@@ -15,13 +15,24 @@ const modalsList = [
   "gpt-4-0613",
   "gpt-4-0314",
   "gpt-4-1106-preview",
-  "dall-e-3",
-  "dall-e-2",
 ];
+export interface IData {
+  answer: string;
+  sources: Array<{
+    content: string;
+    final_title: string;
+    title: string;
+    url: string;
+    id_text: string;
+    similarity: number;
+    main_doc_title: string;
+  }>;
+}
 export interface ChatMessageType {
   role: "user" | "assistant" | "system";
   content: string;
   id: string;
+  sources : IData['sources'];
 }
 export interface SystemMessageType {
   message: string;
@@ -322,7 +333,7 @@ const useSettings = createWithEqualityFn<SettingsType>()(
 const useTheme = create<ThemeType>()(
   persist(
     (set) => ({
-      theme: "light",
+      theme: "dark",
       setTheme: (theme) => {
         set(
           produce((state) => {

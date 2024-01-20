@@ -1,18 +1,20 @@
 import { useEffect, useRef, useState } from "react";
-import useChat, { ChatMessageType, useSettings } from "../store/store";
+import useChat, { IData, ChatMessageType, useSettings } from "../store/store";
 import { fetchResults } from "../services/chatService";
 import { useDebouncedCallback } from "use-debounce";
 
 type Props = {
   index: number;
   chat: ChatMessageType;
-};
+}; 
+
 
 export default function useBot({ index, chat }: Props) {
   const resultRef = useRef(chat.content);
   const cursorRef = useRef<HTMLDivElement>(null);
   const [result, setResult] = useState(chat.content);
   const [error, setError] = useState("");
+  const [sources, setSources] = useState(chat.sources);
   const [isStreamCompleted, setIsStreamCompleted] = useState(false);
   const query = useChat((state) => state.chats[index - 1].content);
   const [chats, addChat] = useChat((state) => [state.chats, state.addChat]);
@@ -35,15 +37,23 @@ export default function useBot({ index, chat }: Props) {
   useEffect(() => {
     function addMessage() {
       addChat(
-        { role: "assistant", content: resultRef.current, id: chat.id },
+        { role: "assistant", content: resultRef.current, id: chat.id , sources: chat.sources},
         index
       );
       setIsStreamCompleted(true);
     }
 
-    function handleOnData(data: string) {
-      resultRef.current += data;
-      setResult((prev) => prev + data);
+    // function handleOnData(data: string) {
+    //   resultRef.current += data;
+    //   setResult((prev) => prev + data);
+    //   scrollToBottom();
+    // }
+
+    function handleOnData(data: IData) {
+      console.log(data.sources); // Add this line
+      resultRef.current = data.answer;
+      setResult(data.answer);
+      setSources(data.sources);
       scrollToBottom();
     }
 
@@ -115,5 +125,5 @@ export default function useBot({ index, chat }: Props) {
     useForAllChats,
   ]);
 
-  return { query, result, error, isStreamCompleted, cursorRef };
+  return { query, result, error, isStreamCompleted, cursorRef, sources};
 }
