@@ -82,7 +82,7 @@ export default function BotMessage({ index, chat }: Props) {
     )}
 
 
-    {result && (
+    { result  && sources &&sources.length > 0 && (
       <button onClick={() => setShowSources(true)}>Show Sources</button>
     )}
 

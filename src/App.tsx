@@ -16,6 +16,25 @@ import Login from "./Login"; // Import Login
 import Register from "./Register"; // Import Register
 
 
+const validateToken = async (token: string) => {
+  try {
+    const response = await fetch('http://127.0.0.1:5040/validate', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return response;
+  } catch (error) {
+    console.error('There was a problem with the fetch operation: ', error);
+    throw error;
+  }
+};
+
 setupIonicReact();
 function App() {
   const [active, setActive] = useState(false);
@@ -25,12 +44,33 @@ function App() {
   const [theme] = useTheme((state) => [state.theme]);
   const [currentScreen, setCurrentScreen] = useState("login"); // Add this state
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-
+  const [avatar, name, setUser] = useAuth((state) => [
+    state.user.avatar,
+    state.user.name,
+    state.setUser,
+  ]);
   useEffect(() => {
     const token = localStorage.getItem('token');
+  
     if (token) {
-      setIsLoggedIn(true);
+      // Send a request to the server to validate the token
+      validateToken(token) // You need to implement this function
+        .then(() => {
+          setIsLoggedIn(true);
+
+        }).then(() => {
+          setUser({
+            avatar,
+            name: localStorage.getItem('full_name') || '',
+            email: localStorage.getItem('email') || '',
+          });
+        })
+        .catch(error => {
+          // If the server responds with an error, the token is not valid
+          setIsLoggedIn(false);
+        });
     }
+  
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css'; // Import a CSS file
+import  {  useAuth } from "./store/store";
 
 interface LoginProps {
   onLogin: () => void;
@@ -9,7 +10,11 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-
+  const [avatar, name, setUser] = useAuth((state) => [
+    state.user.avatar,
+    state.user.name,
+    state.setUser,
+  ]);
   const handleLogin = async () => {
     const response = await fetch('http://127.0.0.1:5040/login', {
       method: 'POST',
@@ -22,7 +27,20 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
     if (response.ok) {
       const data = await response.json();
       const token = data.access_token;
+      const user = data.user;
+      const first_name =  user.first_name;
+      const last_name = user.last_name;
+   
+
       localStorage.setItem('token', token);
+      localStorage.setItem('first_name', first_name);
+      localStorage.setItem('last_name', last_name);
+      localStorage.setItem('full_name', `${first_name} ${last_name}`);
+      setUser({
+        avatar,
+        name: localStorage.getItem('full_name') || '',
+        email: localStorage.getItem('email') || '',
+      });
       onLogin();
     } else {
       console.error('Login failed');

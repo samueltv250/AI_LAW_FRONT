@@ -233,7 +233,7 @@ const useAuth = create<AuthType>()(
       token: localStorage.getItem("token") || "",
       apikey: localStorage.getItem("apikey") || "",
       user: {
-        name: "Your name?",
+        name: localStorage.getItem("full_name") || "your name",
         email: "",
         avatar: "/imgs/default-avatar.jpg",
       },

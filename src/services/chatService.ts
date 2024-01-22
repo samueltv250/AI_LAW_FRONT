@@ -19,7 +19,8 @@ export async function fetchResults(
 
       },
       body: JSON.stringify({
-        question: messages
+        question: messages,
+        modal: modal
       }),
     });
 

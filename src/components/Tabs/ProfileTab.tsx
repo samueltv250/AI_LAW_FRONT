@@ -13,9 +13,10 @@ const varinats = {
 };
 
 export default function ProfileTab({ visible }: { visible: boolean }) {
-  const [avatar, name, setUser] = useAuth((state) => [
+  const [avatar, name, email, setUser] = useAuth((state) => [
     state.user.avatar,
     state.user.name,
+    state.user.email,
     state.setUser,
   ]);
   const [editName, setEditName] = useState(false);
@@ -30,7 +31,7 @@ export default function ProfileTab({ visible }: { visible: boolean }) {
         setUser({
           avatar: base64String as string,
           name,
-          email: `${name}@${name}.com`,
+          email,
         });
       };
     }
@@ -41,7 +42,7 @@ export default function ProfileTab({ visible }: { visible: boolean }) {
     setUser({
       avatar,
       name: myname,
-      email: `${myname}@${myname}.com`,
+      email: email,
     });
     setEditName(false);
   }
@@ -85,14 +86,15 @@ export default function ProfileTab({ visible }: { visible: boolean }) {
         {!editName && (
           <div className="flex items-center justify-center text-xl">
             <span className="mr-2 ">{myname}</span>
-            <button
+            {/* <span className="mr-2 ">{email}</span> */}
+            {/* <button
               type="button"
               title="Edit name"
               className="flex items-center"
               onClick={() => setEditName(true)}
             >
               <IonIcon icon={createOutline} className=" dark:text-gray-100" />
-            </button>
+            </button> */}
           </div>
         )}
         {editName && (

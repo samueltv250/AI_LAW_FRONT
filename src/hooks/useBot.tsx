@@ -11,6 +11,7 @@ type Props = {
 
 export default function useBot({ index, chat }: Props) {
   const resultRef = useRef(chat.content);
+  const sourcesRef = useRef(chat.sources);
   const cursorRef = useRef<HTMLDivElement>(null);
   const [result, setResult] = useState(chat.content);
   const [error, setError] = useState("");
@@ -37,7 +38,7 @@ export default function useBot({ index, chat }: Props) {
   useEffect(() => {
     function addMessage() {
       addChat(
-        { role: "assistant", content: resultRef.current, id: chat.id , sources: chat.sources},
+        { role: "assistant", content: resultRef.current, id: chat.id , sources: sourcesRef.current},
         index
       );
       setIsStreamCompleted(true);
@@ -52,6 +53,7 @@ export default function useBot({ index, chat }: Props) {
     function handleOnData(data: IData) {
       console.log(data.sources); // Add this line
       resultRef.current = data.answer;
+      sourcesRef.current = data.sources;
       setResult(data.answer);
       setSources(data.sources);
       scrollToBottom();
@@ -91,12 +93,12 @@ export default function useBot({ index, chat }: Props) {
             ];
         if (useForAllChats && systemMessage) {
           prevChats = [
-            { role: "system", content: systemMessage },
+            { role: "system", content: systemMessage},
             ...prevChats,
           ];
         }
         await fetchResults(
-          prevChats,
+          prevChats.map((chat) => ({ ...chat, sources: [] })),
           selectedModal,
           signal,
           handleOnData,

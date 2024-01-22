@@ -9,9 +9,11 @@ export default function GptIntro() {
     state.setModal,
   ]);
   const isGptThreeSelected = selectedModel.startsWith("gpt-3");
+  const isGptFourSelected = selectedModel.startsWith("gpt-4");
+  const isGptDraftSelected = selectedModel.startsWith("gpt-d");
   return (
     <>
-      <div className="modals md:w-1/5 md:min-w-[300px] mx-2 relative flex items-center rounded-md justify-between mt-5 md:mx-auto  bg-gray-200 dark:bg-[#202123] gap-2">
+      <div className="modals md:w-1/5 md:min-w-[500px] mx-2 relative flex items-center rounded-md justify-between mt-5 md:mx-auto  bg-gray-200 dark:bg-[#202123] gap-2">
         <button
           title="GPT-3 Turbo"
           className={classNames(
@@ -38,30 +40,61 @@ export default function GptIntro() {
         <button
           title="GPT - 4"
           className={classNames(
-            "gpt4 uppercase rounded p-2 transition  dark:text-white flex-1 flex  items-center justify-center",
+            "gptd uppercase rounded p-2 transition  dark:text-white flex-1 flex  items-center justify-center",
             {
               "bg-white dark:bg-dark-primary border-2 dark:border-white border-gray-700":
-                !isGptThreeSelected,
-              "opacity-50": isGptThreeSelected,
+                isGptFourSelected,
+              "opacity-50": !isGptFourSelected,
             }
           )}
           onClick={() => setModel("gpt-4")}
         >
           <span
             className={classNames("mr-2 transition", {
-              "text-teal-400": !isGptThreeSelected,
+              "text-teal-400": isGptFourSelected,
             })}
           >
             <IonIcon icon={sparkles} />
           </span>
           <span className="mr-2">gpt - 4</span>
         </button>
+
+        <button
+          title="Drafter"
+          className={classNames(
+            "gpt4 uppercase rounded p-2 transition  dark:text-white flex-1 flex  items-center justify-center",
+            {
+              "bg-white dark:bg-dark-primary border-2 dark:border-white border-gray-700":
+                isGptDraftSelected,
+              "opacity-50": !isGptDraftSelected,
+            }
+          )}
+          onClick={() => setModel("gpt-drafter")}
+        >
+          <span
+            className={classNames("mr-2 transition", {
+              "text-teal-400": isGptDraftSelected,
+            })}
+          >
+            <i className="fa-light fa-bolt "></i>
+          </span>
+          <span className="mr-2">drafter</span>
+        </button>
       </div>
       <div className=" h-96 flex items-start justify-center">
         <h1 className=" text-4xl font-bold mt-5 text-center text-gray-300">
           LawGPT
         </h1>
+
       </div>
+
+      {isGptDraftSelected && (
+      <div className=" h-96 flex items-start justify-center">
+
+      <p className="text-xl mt-5">Draft legal documents</p>
+      </div>
+                )}
+
     </>
   );
 }

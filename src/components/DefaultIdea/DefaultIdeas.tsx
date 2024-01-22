@@ -2,18 +2,18 @@ import DefaultIdea from "./DefaultIdea";
 
 const defaultIdeas = [
   {
-    idea: "Design database schema",
-    moreContext: "Design a database schema for a social media app",
+    idea: "Encarcelamiento maximo?",
+    moreContext: "Cual es la mayor cantidad de tiempo que puede encarcelar a un panameño?",
   },
   {
-    idea: "Give me code snippet",
+    idea: "Cual es la edad minima para votar?",
     moreContext:
-      "Give me a code snippet to create a database schema for a social media app",
+      "Cual es la edad minima para votar en panama? Puedo votar si tengo 16 años?",
   },
-  { idea: "Existe pena de muerte", moreContext: "Existe pena de muerte en panama?" },
+  { idea: "Existe pena de muerte?", moreContext: "Existe pena de muerte en panama?" },
   {
-    idea: "Design redux store",
-    moreContext: " Design a redux store for a social media app",
+    idea: "Proceso de naturalizacion?",
+    moreContext: "Como es el proceso de naturalizacion si soy un extranjero?",
   },
 ];
 
