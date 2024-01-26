@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react'; // Assuming you're using Semantic UI
 
-export function SourcesModal({ sources, onClose }) {
+export function SourcesModal({ sources, onClose }: { sources: any[], onClose: () => void }) {
   // Log the sources to the console for debugging
   console.log('Sources:', sources);
 

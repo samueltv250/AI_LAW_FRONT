@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navbar from "./components/Navbar/Navbar";
 import DefaultIdeas from "./components/DefaultIdea/DefaultIdeas";
 import UserQuery from "./components/UserInput/UserQuery";
@@ -14,11 +14,12 @@ import Modal from "./components/modals/Modal";
 import Apikey from "./components/modals/Apikey";
 import Login from "./Login"; // Import Login
 import Register from "./Register"; // Import Register
+import { useSettings } from "./store/store";
 
 
 const validateToken = async (token: string) => {
   try {
-    const response = await fetch('http://127.0.0.1:5040/validate', {
+    const response = await fetch('/validate', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -44,6 +45,12 @@ function App() {
   const [theme] = useTheme((state) => [state.theme]);
   const [currentScreen, setCurrentScreen] = useState("login"); // Add this state
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [selectedModel, setModel] = useSettings((state) => [
+    state.settings.selectedModal,
+    state.setModal,
+  ]);
+  const isGptDraftSelected = selectedModel.startsWith("gpt-d");
+
   const [avatar, name, setUser] = useAuth((state) => [
     state.user.avatar,
     state.user.name,
@@ -83,7 +90,9 @@ function App() {
       if (currentScreen === "login") {
         return <Login onLogin={() => setIsLoggedIn(true)} onRegister={() => setCurrentScreen("register")} />;
       } else if (currentScreen === "register") {
-        return <Register onLogin={() => setCurrentScreen("login")} />;
+        return <Register onLogin={() => setCurrentScreen("login")} onRegister={function (): void {
+          throw new Error("Function not implemented.");
+        } } />;
       }
     }
     else {
@@ -115,7 +124,7 @@ function App() {
               )}
             >
               <div className="max-w-2xl md:max-w-[calc(100% - 260px)] mx-auto">
-                {!isChatsVisible && (
+                {!isChatsVisible && !isGptDraftSelected && (
                   <>
                     <DefaultIdeas />
                   </>

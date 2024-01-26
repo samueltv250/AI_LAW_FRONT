@@ -32,8 +32,8 @@ export default function UserQuery() {
   async function handleOnSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (query) {
-      addChat({ role: "user", content: query, id: shortid.generate() });
-      addChat({ role: "assistant", content: "", id: shortid.generate() });
+      addChat({ role: "user", content: query, id: shortid.generate() , sources: []});
+      addChat({ role: "assistant", content: "", id: shortid.generate() , sources: []});
       setQuery("");
       if (textareaRef.current) textareaRef.current.style.height = "30px";
     }

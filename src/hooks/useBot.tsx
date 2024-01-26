@@ -84,7 +84,7 @@ export default function useBot({ index, chat }: Props) {
         let prevChats = sendHistory
           ? chatsRef.current
               .slice(0, index)
-              .map((chat) => ({ role: chat.role, content: chat.content }))
+              .map((chat) => ({ role: chat.role, content: chat.content , sources: chat.sources}))
           : [
               {
                 role: chatsRef.current[index - 1].role,
@@ -99,6 +99,7 @@ export default function useBot({ index, chat }: Props) {
         }
         await fetchResults(
           prevChats.map((chat) => ({ ...chat, sources: [] })),
+          chat.id,
           selectedModal,
           signal,
           handleOnData,

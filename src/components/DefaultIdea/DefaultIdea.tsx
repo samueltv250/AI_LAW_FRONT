@@ -28,8 +28,9 @@ export default function DefaultIdea({
               role: "user",
               content: i.moreContext,
               id: shortid.generate(),
+              sources: []
             });
-            addChat({ role: "assistant", content: "", id: shortid.generate() });
+            addChat({ role: "assistant", content: "", id: shortid.generate(), sources: []});
           }}
         >
           <div className=" self-stretch w-11/12">
