@@ -27,6 +27,7 @@ export interface IData {
     similarity: number;
     main_doc_title: string;
   }>;
+  tokens: string;
 }
 export interface ChatMessageType {
   role: "user" | "assistant" | "system";
@@ -103,13 +104,14 @@ export interface UserType {
   name: string;
   email: string;
   avatar: string;
+  tokens: string;
 }
 
 export interface AuthType {
   token: string;
   apikey: string;
   setToken: (token: string) => void;
-  setUser: (user: { name: string; email: string; avatar: string }) => void;
+  setUser: (user: { name: string; email: string; avatar: string, tokens: string}) => void;
   setApiKey: (apikey: string) => void;
   user: UserType;
 }
@@ -236,6 +238,7 @@ const useAuth = create<AuthType>()(
         name: localStorage.getItem("full_name") || "your name",
         email: "",
         avatar: "/imgs/default-avatar.jpg",
+        tokens: ""
       },
       setToken: (token) => {
         set(

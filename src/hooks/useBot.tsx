@@ -56,6 +56,7 @@ export default function useBot({ index, chat }: Props) {
       sourcesRef.current = data.sources;
       setResult(data.answer);
       setSources(data.sources);
+      localStorage.setItem('tokens', JSON.stringify(data.tokens));
       scrollToBottom();
     }
 

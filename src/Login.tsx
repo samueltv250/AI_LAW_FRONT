@@ -30,16 +30,21 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
       const user = data.user;
       const first_name =  user.first_name;
       const last_name = user.last_name;
+      const tokens = user.tokens;
    
 
       localStorage.setItem('token', token);
       localStorage.setItem('first_name', first_name);
       localStorage.setItem('last_name', last_name);
       localStorage.setItem('full_name', `${first_name} ${last_name}`);
+      localStorage.setItem('email', email);
+      localStorage.setItem('tokens', tokens);
       setUser({
         avatar,
         name: localStorage.getItem('full_name') || '',
         email: localStorage.getItem('email') || '',
+        tokens: localStorage.getItem('tokens') || '',
+
       });
       onLogin();
     } else {

@@ -2,7 +2,7 @@ import { IonIcon } from "@ionic/react";
 import Avatar from "../Avatar/Avatar";
 import { createOutline, pencilOutline, checkmark } from "ionicons/icons";
 import { useAuth } from "../../store/store";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import classNames from "classnames";
 
@@ -19,8 +19,21 @@ export default function ProfileTab({ visible }: { visible: boolean }) {
     state.user.email,
     state.setUser,
   ]);
+  const [tokens, setTokens] = useState(localStorage.getItem("tokens") || "0");
   const [editName, setEditName] = useState(false);
   const [myname, setMyName] = useState(name);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setTokens(localStorage.getItem("tokens") || "0");
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   function handlePicChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.files) {
@@ -31,6 +44,7 @@ export default function ProfileTab({ visible }: { visible: boolean }) {
         setUser({
           avatar: base64String as string,
           name,
+          tokens: tokens,
           email,
         });
       };
@@ -42,6 +56,7 @@ export default function ProfileTab({ visible }: { visible: boolean }) {
     setUser({
       avatar,
       name: myname,
+      tokens: tokens,
       email: email,
     });
     setEditName(false);
@@ -83,40 +98,16 @@ export default function ProfileTab({ visible }: { visible: boolean }) {
         </Avatar>
       </div>
       <div className="my-4 ">
-        {!editName && (
+       
           <div className="flex items-center justify-center text-xl">
             <span className="mr-2 ">{myname}</span>
-            {/* <span className="mr-2 ">{email}</span> */}
-            {/* <button
-              type="button"
-              title="Edit name"
-              className="flex items-center"
-              onClick={() => setEditName(true)}
-            >
-              <IonIcon icon={createOutline} className=" dark:text-gray-100" />
-            </button> */}
           </div>
-        )}
-        {editName && (
-          <div className="flex items-center justify-center">
-            <input
-              type="text"
-              id="name"
-              value={myname}
-              onChange={(e) => setMyName(e.target.value)}
-              className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block  py-2.5 px-1.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder={myname}
-              required
-            />
-            <button
-              type="button"
-              className="flex items-center ml-2 text-xl"
-              onClick={handleUpdateName}
-            >
-              <IonIcon icon={checkmark} />
-            </button>
+          <div className="flex items-center justify-center text-xl">
+            <span className="mr-2 ">{email}</span>
           </div>
-        )}
+          <div className="flex items-center justify-center text-xl">
+          <span className="mr-2 ">Tokens: {parseFloat(JSON.parse(tokens))}</span>          </div>
+    
       </div>
     </motion.div>
   );

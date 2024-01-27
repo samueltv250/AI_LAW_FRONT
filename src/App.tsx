@@ -70,6 +70,7 @@ function App() {
             avatar,
             name: localStorage.getItem('full_name') || '',
             email: localStorage.getItem('email') || '',
+            tokens: localStorage.getItem('tokens') || '',
           });
         })
         .catch(error => {

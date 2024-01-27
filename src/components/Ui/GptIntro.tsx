@@ -14,14 +14,14 @@ export default function GptIntro(this: any) {
   }
   
   const isGptThreeSelected = selectedModel.startsWith("gpt-3");
-  const isGeminiSelected = selectedModel.startsWith("gemini");
+  // const isGeminiSelected = selectedModel.startsWith("gemini");
   const isGptFourSelected = selectedModel.startsWith("gpt-4");
   const isGptDraftSelected = selectedModel.startsWith("gpt-d");
 
   return (
     <>
       <div className="modals md:w-1/5 md:min-w-[500px] mx-2 relative flex items-center rounded-md justify-between mt-5 md:mx-auto  bg-gray-200 dark:bg-[#202123] gap-2">
-        <button
+        {/* <button
           title="GEMINI"
           className={classNames(
             "gpt3 uppercase  rounded-md  font-bold p-2 transition  flex-1 flex items-center  dark:text-white justify-center",
@@ -42,7 +42,7 @@ export default function GptIntro(this: any) {
             <i className="fa-solid fa-bolt "></i>
           </span>
           <span className="mr-2">gemini</span>
-        </button>
+        </button> */}
 
         <button
           title="GPT-3 Turbo"
@@ -132,7 +132,7 @@ export default function GptIntro(this: any) {
   </select>
 </div>
 
-<p className="text-xl mt-5">Draft legal documents</p>
+<p className="text-xl mt-5">Iniciemos con una descripcion de lo que necesitas en tu documento</p>
 
 </div>
                 )}

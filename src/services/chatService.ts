@@ -1,6 +1,6 @@
 import { ChatMessageType } from "../store/store";
 import { IData} from "../store/store";
-const apiUrl = "/getAnswer";
+const apiUrl = "";
 
 export async function fetchResults(
   messages: Omit<ChatMessageType, "id">[],
@@ -12,8 +12,8 @@ export async function fetchResults(
 ) {
   try {
     const selectedItem = localStorage.getItem('selectedItem');
-
-    const response = await fetch(apiUrl, {
+    
+    const response = await fetch('/getAnswer', {
       method: `POST`,
       signal: signal,
       headers: {
@@ -36,7 +36,8 @@ export async function fetchResults(
     const data = await response.json();
     onData({
       answer: data.answer,
-      sources: data.sources
+      sources: data.sources,
+      tokens: data.tokens
     });
     onCompletion();
 
