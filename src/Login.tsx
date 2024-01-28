@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css'; // Import a CSS file
 import  {  useAuth } from "./store/store";
-
+import Avatar from "./components/Avatar/Avatar";
 interface LoginProps {
   onLogin: () => void;
   onRegister: () => void;
@@ -16,7 +16,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
     state.setUser,
   ]);
   const handleLogin = async () => {
-    const response = await fetch('/login', {
+    const response = await fetch('http://127.0.0.1:5040/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -39,6 +39,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
       localStorage.setItem('full_name', `${first_name} ${last_name}`);
       localStorage.setItem('email', email);
       localStorage.setItem('tokens', tokens);
+      localStorage.setItem('selectedItem', "Demanda");
       setUser({
         avatar,
         name: localStorage.getItem('full_name') || '',
@@ -48,13 +49,21 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
       });
       onLogin();
     } else {
-      console.error('Login failed');
+      window.alert('Login failed');
     }
   };
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
+      <div className="avatar-container">
+
+              <Avatar
+          className="avatar  h-20 w-20 ring-2 rounded-full object-cover ring-gray-300 p-1 dark:ring-gray-500"
+          src={avatar}
+        >
+        </Avatar>
+        </div>
+      <h2 className="centered-title">Login</h2>
       <div>
         <div className="input-group">
           <label>Email:</label>

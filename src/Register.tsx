@@ -17,11 +17,11 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      console.error('Passwords do not match');
+      window.alert('Passwords do not match');
       return;
     }
 
-    const response = await fetch('/register', {
+    const response = await fetch('http://127.0.0.1:5040/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -31,17 +31,17 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
 
     if (response.ok) {
       const data = await response.json();
-      console.log('Registration successful:', data.message);
+      window.alert('Registration successful: ' + data.message);
       onRegister();
     } else {
-      console.error('Registration failed');
+      window.alert('Registration failed');
     }
   };
 
   return (
     <div className="register-container">
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
+      <h2 className="centered-title">Register</h2>
+
         <div className="input-group">
           <label>First Name:</label>
           <input 
@@ -87,8 +87,7 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
             required 
           />
         </div>
-        <button type="submit" className="submit-btn">Register</button>
-      </form>
+        <button onClick={handleRegister} className="submit-btn">Register</button>
       <button onClick={onLogin} className="login-btn">Go to Login</button>
     </div>
   );

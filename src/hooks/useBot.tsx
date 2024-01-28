@@ -100,7 +100,7 @@ export default function useBot({ index, chat }: Props) {
         }
         await fetchResults(
           prevChats.map((chat) => ({ ...chat, sources: [] })),
-          chat.id,
+          chatsRef.current[0].id,
           selectedModal,
           signal,
           handleOnData,

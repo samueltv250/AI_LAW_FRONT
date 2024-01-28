@@ -166,7 +166,7 @@ const useChat = create<ChatType>((set, get) => ({
       title: title ? title : get().chats[0].content,
       isTitleEdited: Boolean(title),
     };
-
+   
     localStorage.setItem(chat_id, JSON.stringify(data));
     if (get().chatHistory.includes(chat_id)) return;
     localStorage.setItem(
@@ -174,18 +174,22 @@ const useChat = create<ChatType>((set, get) => ({
       JSON.stringify([...get().chatHistory, chat_id])
     );
     set(
+      
       produce((state: ChatType) => {
         state.chatHistory.push(chat_id);
       })
     );
   },
   viewSelectedChat: (chatId) => {
+
     set(
       produce((state: ChatType) => {
         if (!localStorage.getItem(chatId)) return;
         state.chats =
-          JSON.parse(localStorage.getItem(chatId) ?? "")?.chats ?? [];
+          JSON.parse(localStorage.getItem(chatId) ?? "")?.chats ?? [];  
+         
       })
+      
     );
   },
   resetChatAt: (index) => {
@@ -269,6 +273,7 @@ const useAuth = create<AuthType>()(
   )
 );
 
+
 const useSettings = createWithEqualityFn<SettingsType>()(
   persist(
     (set) => ({
@@ -332,7 +337,6 @@ const useSettings = createWithEqualityFn<SettingsType>()(
   ),
   shallow
 );
-
 const useTheme = create<ThemeType>()(
   persist(
     (set) => ({

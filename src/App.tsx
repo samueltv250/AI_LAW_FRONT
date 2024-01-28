@@ -19,7 +19,7 @@ import { useSettings } from "./store/store";
 
 const validateToken = async (token: string) => {
   try {
-    const response = await fetch('/validate', {
+    const response = await fetch('http://127.0.0.1:5040/validate', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

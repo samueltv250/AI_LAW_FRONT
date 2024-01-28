@@ -13,7 +13,7 @@ export async function fetchResults(
   try {
     const selectedItem = localStorage.getItem('selectedItem');
     
-    const response = await fetch('/getAnswer', {
+    const response = await fetch('http://127.0.0.1:5040/getAnswer', {
       method: `POST`,
       signal: signal,
       headers: {
@@ -25,7 +25,7 @@ export async function fetchResults(
         question: messages,
         modal: modal,
         id: id,
-        // selectedItem : selectedItem
+        selectedItem : selectedItem
       }),
     });
 
