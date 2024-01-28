@@ -166,7 +166,7 @@ const useChat = create<ChatType>((set, get) => ({
       title: title ? title : get().chats[0].content,
       isTitleEdited: Boolean(title),
     };
-   
+    localStorage.setItem("selectedModal"+chat_id, localStorage.getItem("selectedModal") ?? "");
     localStorage.setItem(chat_id, JSON.stringify(data));
     if (get().chatHistory.includes(chat_id)) return;
     localStorage.setItem(
@@ -309,11 +309,14 @@ const useSettings = createWithEqualityFn<SettingsType>()(
         );
       },
       setModal: (value) => {
+        localStorage.setItem("selectedModal", value);
         set(
           produce((state: SettingsType) => {
             state.settings.selectedModal = value;
+            
           })
         );
+        
       },
       setModalVisible: (value) => {
         set(

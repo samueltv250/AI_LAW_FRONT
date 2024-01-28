@@ -6,7 +6,7 @@ import {
   checkmarkOutline,
   closeOutline,
 } from "ionicons/icons";
-
+import { useSettings } from "../../store/store";
 import useChat, { isChatSelected } from "../../store/store";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
@@ -19,11 +19,21 @@ export default function ChatRef({
 }: {
   chat: { id: string; title: string };
 }) {
+  function handleModalChange(chat: any) {
+    setModel(localStorage.getItem("selectedModal"+chat.id));
+    viewSelectedChat(chat.id);
+    
+    
+  }
   const viewSelectedChat = useChat((state) => state.viewSelectedChat);
   const isSelected = useChat(isChatSelected(chat.id));
   const [deleteChat, editChatsTitle] = useChat((state) => [
     state.handleDeleteChats,
     state.editChatsTitle,
+  ]);
+  const [selectedModel, setModel] = useSettings((state: { settings: { selectedModal: any; }; setModal: any; }) => [
+    state.settings.selectedModal,
+    state.setModal,
   ]);
   const [editTitle, setEditTitle] = useState(chat.title);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
@@ -57,7 +67,8 @@ export default function ChatRef({
       {!isTitleEditeble && (
         <button
           className="  py-2  w-3/4 flex  items-center flex-grow  transition p-2"
-          onClick={() => viewSelectedChat(chat.id)}
+          
+          onClick={() => handleModalChange(chat)}
           title={chat.title}
         >
           <span className="mr-2  flex">
