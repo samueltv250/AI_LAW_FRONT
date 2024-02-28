@@ -6,13 +6,14 @@ import { IonIcon } from "@ionic/react";
 import { closeOutline } from "ionicons/icons";
 import { useSettings } from "../../store/store";
 import ProfileTab from "../Tabs/ProfileTab";
+import MembershipTab from "../Tabs/MembershipTab";
 
 const varinats = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: { opacity: 1, scale: 1 },
   exit: { opacity: 0, scale: 0.8, transition: { duration: 0.15 } },
 };
-const tabs = ["settings", "profile"];
+const tabs = ["settings", "profile", "membership"];
 export default function Settings() {
   const [selectedTab, setSelectedTab] = useState(
     "settings"
@@ -55,6 +56,7 @@ export default function Settings() {
       <div className="w-full h-[1px] bg-gray-500"></div>
       <SettingsTab visible={selectedTab === "settings"} />
       <ProfileTab visible={selectedTab === "profile"} />
+      <MembershipTab visible={selectedTab === "membership"} />
     </motion.div>
   );
 }

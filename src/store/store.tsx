@@ -281,7 +281,7 @@ const useSettings = createWithEqualityFn<SettingsType>()(
         sendChatHistory: false,
         systemMessage: "",
         useSystemMessageForAllChats: false,
-        selectedModal: "gpt-3.5-turbo",
+        selectedModal: "gpt-4",
       },
       modalsList: modalsList,
       isSystemMessageModalVisible: false,

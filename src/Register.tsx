@@ -21,7 +21,7 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
       return;
     }
 
-    const response = await fetch('http://127.0.0.1:5040/register', {
+    const response = await fetch('/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

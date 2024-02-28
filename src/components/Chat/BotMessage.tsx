@@ -9,7 +9,7 @@ import { ChatMessageType } from "../../store/store";
 import { motion } from "framer-motion";
 import React, { useState } from 'react';
 import { SourcesModal } from './SourcesModal';
-
+import ReactMarkdown from "react-markdown";
 const variants = {
   hidden: { y: 20, opacity: 0 },
   visible: { y: 0, opacity: 1 },
@@ -49,13 +49,23 @@ export default function BotMessage({ index, chat }: Props) {
               <SyncLoader color="gray" size={8} speedMultiplier={0.5} />
             </div>
           ) : (
+            
             <pre
               className={classNames(
                 "  animate-preulse overflow-x-hidden whitespace-pre-wrap",
                 { "text-red-500": error, "dark:text-gray-300": !error }
               )}
             >
-              {result}
+              (
+            <ReactMarkdown
+              className={classNames(
+                "  animate-preulse overflow-x-hidden whitespace-pre-wrap",
+                { "text-red-500": error, "dark:text-gray-300": !error }
+              )}
+              children={result}
+            />
+          )
+
 
               {!isStreamCompleted && !chat.content && (
                 <div

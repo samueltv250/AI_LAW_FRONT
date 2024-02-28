@@ -7,6 +7,7 @@ import Modal from "../modals/Modal";
 import ConfirmDelete from "../ConfirmDelete/ConfirmDelete";
 import classNames from "classnames";
 import { handleExportChats, handleImportChats } from "../../utils/importexport";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 const varinats = {
   hidden: { opacity: 0 },
@@ -79,7 +80,10 @@ export default function SettingsTab({ visible }: { visible: boolean }) {
     {}
   );
 
+
+
   return (
+
     <motion.div
       variants={varinats}
       initial="hidden"
@@ -104,6 +108,8 @@ export default function SettingsTab({ visible }: { visible: boolean }) {
 
   
       </div>
+
+
       <Modal visible={confirmDeleteChats}>
         <ConfirmDelete
           onDelete={() => {
@@ -119,5 +125,8 @@ export default function SettingsTab({ visible }: { visible: boolean }) {
         </ConfirmDelete>
       </Modal>
     </motion.div>
+
+
+
   );
 }

@@ -21,6 +21,8 @@
 .input-group label {
   display: block;
   margin-bottom: 5px;
+  color: black; /* Modify this line to set input text color to black */
+
 }
 
 .input-group input {

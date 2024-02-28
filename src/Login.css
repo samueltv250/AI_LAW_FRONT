@@ -32,6 +32,8 @@
   .input-group input {
     width: 100%;
     padding: 5px;
+    color: black; /* Modify this line to set input text color to black */
+
   }
   
   .submit-btn, .register-btn {

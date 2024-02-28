@@ -12,11 +12,12 @@ export default function GptIntro(this: any) {
   const handleSelectChange = (event: { target: { value: string; }; }) => {
     localStorage.setItem('selectedItem', event.target.value);
   }
-  
-  const isGptThreeSelected = selectedModel.startsWith("gpt-3");
+  localStorage.setItem("selectedModal", selectedModel);
+  // const isGptThreeSelected = selectedModel.startsWith("gpt-3");
   // const isGeminiSelected = selectedModel.startsWith("gemini");
   const isGptFourSelected = selectedModel.startsWith("gpt-4");
   const isGptDraftSelected = selectedModel.startsWith("gpt-d");
+  
 
   return (
     <>
@@ -42,7 +43,7 @@ export default function GptIntro(this: any) {
             <i className="fa-solid fa-bolt "></i>
           </span>
           <span className="mr-2">gemini</span>
-        </button> */}
+        </button>
 
         <button
           title="GPT-3 Turbo"
@@ -65,7 +66,7 @@ export default function GptIntro(this: any) {
             <i className="fa-solid fa-bolt "></i>
           </span>
           <span className="mr-2">gpt - 3.5</span>
-        </button>
+        </button> */}
 
         <button
           title="GPT - 4"
