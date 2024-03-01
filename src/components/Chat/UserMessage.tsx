@@ -4,6 +4,7 @@ import { createOutline } from "ionicons/icons";
 import classNames from "classnames";
 import { useEffect, useRef, useState } from "react";
 import useChat, { ChatMessageType } from "../../store/store";
+import ReactMarkdown from 'react-markdown';
 
 type Props = {
   chat: ChatMessageType;
@@ -45,7 +46,9 @@ export default function UserMessage({ chat, chatIndex }: Props) {
                 " dark:text-gray-200 overflow-x-auto"
               )}
             >
-              {chat.content}
+                <ReactMarkdown>
+                  {chat.content}
+                </ReactMarkdown>
             </p>
           ) : (
             <textarea

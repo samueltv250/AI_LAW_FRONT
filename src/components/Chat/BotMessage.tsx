@@ -56,7 +56,7 @@ export default function BotMessage({ index, chat }: Props) {
                 { "text-red-500": error, "dark:text-gray-300": !error }
               )}
             >
-              (
+              
             <ReactMarkdown
               className={classNames(
                 "  animate-preulse overflow-x-hidden whitespace-pre-wrap",
@@ -64,7 +64,7 @@ export default function BotMessage({ index, chat }: Props) {
               )}
               children={result}
             />
-          )
+          
 
 
               {!isStreamCompleted && !chat.content && (
