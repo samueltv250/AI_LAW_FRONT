@@ -65,12 +65,12 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
             return actions.order.capture().then(async (details) => {
                 const userEmail = localStorage.getItem('email');
                 if (userEmail) {
-                    const response = await fetch('/activate_subscription', {
+                    const response = await fetch('/activate_subscription_api', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({ username: userEmail }),
+                        body: JSON.stringify({ username: userEmail, subscriptionId: details.id}),
                     });
 
                     if (response.ok) {
