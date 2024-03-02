@@ -49,7 +49,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                 createSubscription={(data, actions) => {
                   const userEmail = localStorage.getItem('email');
                   return actions.subscription.create({
-                    plan_id: 'P-01B713726B9539812MXRLAWY',
+                    plan_id: 'P-28C31061VV380154PMXRJZZQ',
                     custom_id: userEmail || undefined,
                     subscriber: {
                       email_address: userEmail,
