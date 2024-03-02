@@ -30,8 +30,13 @@ export async function fetchResults(
     });
 
     if (response.status !== 200) {
-      throw new Error("Error fetching results");
+      response.json().then(body => {
+        throw new Error(`Error: ${body.message || 'Error fetching results'}`);
+      }).catch(() => {
+        throw new Error('Error processing error message');
+      });
     }
+    
 
     const data = await response.json();
     onData({

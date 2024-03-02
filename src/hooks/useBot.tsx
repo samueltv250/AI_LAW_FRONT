@@ -61,12 +61,14 @@ export default function useBot({ index, chat }: Props) {
     }
 
     function handleOnError(error: Error | string) {
-      if (typeof error === "string") setError(error);
-      else setError(error.message);
+      let errorMessage = typeof error === "string" ? error : error.message;
+      alert(errorMessage); // This will show the error message in an error window.
+      setError(errorMessage);
       resultRef.current = "Sorry, looks like I'm having a bad day.";
       setResult("Sorry, looks like I'm having a bad day.");
       addMessage();
     }
+    
 
     function handleOnCompletion() {
       addMessage();

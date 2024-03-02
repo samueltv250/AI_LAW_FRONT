@@ -6,6 +6,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 export default function MembershipTab({ visible }: { visible: boolean }) {
   const cancelSubscription = async () => {
     const userEmail = localStorage.getItem('email');
+    
     if (userEmail) {
       const response = await fetch('/cancel_subscription', {
         method: 'POST',
@@ -16,6 +17,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
       });
 
       if (response.ok) {
+        localStorage.setItem('tokens', '0');
         alert('Subscription canceled successfully!');
       } else {
         alert('Failed to cancel subscription. Please contact support.');
@@ -35,16 +37,19 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
       >
         <div className="p-2">
           <div className="subscription-details mb-4">
-            <h2 className="text-lg font-bold mb-2">Subscribe for 1000 Tokens</h2>
-            <p className="mb-4">Get 1000 tokens every month for just $300/month.</p>
-
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+            <h2 className="text-lg font-bold mb-2">Subscribe for 100 Tokens / 100$ the first month</h2>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+            <p className="mb-4">100 tokens every month after for just $30/month</p>
+            </div>
             <div className="paypal-button-container">
               <PayPalButtons
                 style={{ layout: "vertical" }}
                 createSubscription={(data, actions) => {
                   const userEmail = localStorage.getItem('email');
                   return actions.subscription.create({
-                    plan_id: 'P-28C31061VV380154PMXRJZZQ',
+                    plan_id: 'P-01B713726B9539812MXRLAWY',
                     custom_id: userEmail || undefined,
                     subscriber: {
                       email_address: userEmail,
@@ -52,6 +57,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                   });
                 }}
                 onApprove={(data, actions) => {
+                  localStorage.setItem('tokens', '100');
                   if (!actions.subscription) {
                       console.error('Subscription actions are undefined');
                       alert('An error occurred during the subscription process. Please contact support.');
