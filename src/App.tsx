@@ -192,13 +192,19 @@ function App() {
       return (
         <main className={classNames("w-full transition-all duration-500", {"md:ml-[260px]": active})}>
           <div className="">
+
+          {!searchActive && (
+
             <button
               type="button"
               className="shadow fixed p-2 h-8 w-8 text-sm top-4 left-4 border-2 hidden md:inline-flex dark:text-white text-gray-700 dark:border border-gray-400 rounded-md items-center justify-center"
               onClick={() => setActive(!active)}
             >
               <i className="fa-regular fa-window-maximize rotate-90"></i>
-            </button>
+            </button>)}
+
+
+
           </div>
           {isChatsVisible ? <Header /> : <GptIntro />}
           {isChatsVisible &&      <Chats 
@@ -251,7 +257,10 @@ function App() {
               {!isChatsVisible && isLoggedIn && (
     <IonIcon
     icon={searchActive ? closeOutline : searchOutline}
-    onClick={() => setSearchActive(!searchActive)}
+    onClick={() =>{
+      setSearchActive(!searchActive);
+      setActive(false);
+    }}
     className="fixed top-4 right-4 z-10 text-lg cursor-pointer text-gray-700 dark:text-white"
   />
                 )}
