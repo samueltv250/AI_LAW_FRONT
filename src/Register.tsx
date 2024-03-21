@@ -34,7 +34,9 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
       window.alert('Registration successful: ' + data.message);
       onRegister();
     } else {
-      window.alert('Registration failed');
+      const error = await response.json(); // Assuming the server responds with JSON containing an error message
+      window.alert(`Registration failed: ${error.message || 'Unknown error'}`);
+  
     }
   };
 

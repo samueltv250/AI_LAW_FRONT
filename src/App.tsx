@@ -65,7 +65,7 @@ function App() {
 
 
 
-  const fetchSearchResults = async (query: any, filters: any) => {
+  const fetchSearchResults = async (query: any, filters: any, mode: string) => {
     try {
       const response = await fetch('/get_hits', {
         method: 'POST',
@@ -75,7 +75,8 @@ function App() {
         },
         body: JSON.stringify({
           query: query,
-          filters: filters
+          filters: filters,
+          mode: mode,  // Include the mode in the request body
         }),
       });
       if (!response.ok) {

@@ -49,7 +49,9 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
       });
       onLogin();
     } else {
-      window.alert('Login failed');
+      const errorData = await response.json(); // Assuming the error message is in JSON format
+      window.alert(`Login failed: ${errorData.message || 'Unknown error'}`); // Show the error message or a default one
+  
     }
   };
 

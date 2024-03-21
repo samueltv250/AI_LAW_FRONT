@@ -6,13 +6,17 @@ function SearchBar({ onSearch, results, onResultClick }: { onSearch: Function, r
   const [query, setQuery] = useState('');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [selectedMode, setSelectedMode] = useState<string>('');
+
+  const [modeDropdownOpen, setModeDropdownOpen] = useState(false);
+
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true); // Start loading
     try {
-      await onSearch(query, selectedFilters);
+      await onSearch(query, selectedFilters, selectedMode);
     } catch (error) {
       console.error('Error during search:', error);
     }
@@ -26,7 +30,12 @@ function SearchBar({ onSearch, results, onResultClick }: { onSearch: Function, r
         : [...prevFilters, filter]
     );
   };
-
+  const toggleModeDropdown = () => {
+    setModeDropdownOpen(!modeDropdownOpen);
+  };
+  const handleModeChange = (mode: string) => {
+    setSelectedMode(mode);
+  };
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -68,8 +77,48 @@ function SearchBar({ onSearch, results, onResultClick }: { onSearch: Function, r
             Filter <IonIcon icon={chevronUpOutline} />
           </button>
           {dropdownOpen && (
-            <ul className="absolute right-0 z-20 w-40 top-full mt-1 bg-white border border-gray-700 rounded-md shadow-lg">
-              {['ley', 'fallo', 'decreto'].map((filter) => (
+            <ul className="absolute right-0 z-20 w-40 bottom-full mb-1 bg-white border border-gray-700 rounded-md shadow-lg max-h-40 overflow-y-auto">
+            {[
+    "DECRETO LEY",
+    "DECRETO",
+    "LEY",
+    "RESOLUCION",
+    "ACUERDO",
+    "OPINION",
+    "RESOLICUCION",
+    "CIRCULAR",
+    "RESUELTO",
+    "CONTRATO DE COMPRAVENTA",
+    "FALLO",
+    "ADENDA",
+    "ACTA",
+    "NOTA",
+    "REQUISITOS",
+    "CONTRATO",
+    "REGLAMENTO",
+    "REUNION",
+    "SENTENCIAS",
+    "ESTATUTO",
+    "TEXTO",
+    "CONVOCATORIA",
+    "AVISO",
+    "CONVENIO",
+    "ORDEN",
+    "EDICTO",
+    "PROTOCOLO",
+    "PACTO",
+    "CODIGO",
+    "ANEXO",
+    "COMUNICADO",
+    "LICITACION",
+    "MANUAL",
+    "MEMORANDUM",
+    "GLOSARIO",
+    "SENTENCIA",
+    "MEMORANDO",
+    "CRITERIO",
+    "DISCURSO",
+    "INFORME",].map((filter) => (
                 <li
                   key={filter}
                   onClick={() => handleFilterChange(filter)}
@@ -83,6 +132,33 @@ function SearchBar({ onSearch, results, onResultClick }: { onSearch: Function, r
             </ul>
           )}
         </div>
+        <div className="relative">
+          <button
+            type="button"
+            className="px-3 border-l dark:border-gray-600 border-gray-200"
+            onClick={toggleModeDropdown}
+            disabled={isLoading}
+          >
+            Mode <IonIcon icon={chevronUpOutline} />
+          </button>
+          {modeDropdownOpen && (
+            <ul className="absolute right-0 z-20 w-40 bottom-full mb-1 bg-white border border-gray-700 rounded-md shadow-lg">
+              {/* Mode Options */}
+              {["Word", "Meaning"].map((mode) => (
+                <li
+                  key={mode}
+                  onClick={() => handleModeChange(mode)}
+                  className={`cursor-pointer p-2 hover:bg-gray-100 ${
+                    selectedMode === mode ? 'bg-gray-700 text-white' : 'text-gray-700'
+                  }`}
+                >
+                  {mode}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
         <button
           type="submit"
           className="p-2 border-l dark:border-gray-600 border-gray-200 rounded-r-md flex items-center"
