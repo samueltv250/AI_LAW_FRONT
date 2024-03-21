@@ -8,7 +8,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
     const userEmail = localStorage.getItem('email');
     
     if (userEmail) {
-      const response = await fetch('http://127.0.0.1:5080/cancel_subscription', {
+      const response = await fetch('/cancel_subscription', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                           return Promise.reject(new Error('User email is not available'));
                       }
               
-                      const response = await fetch('http://127.0.0.1:5080/activate_subscription_api', {
+                      const response = await fetch('/activate_subscription_api', {
                           method: 'POST',
                           headers: {
                               'Content-Type': 'application/json',

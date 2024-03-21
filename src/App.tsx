@@ -22,7 +22,7 @@ import { useSettings } from "./store/store";
 
 const validateToken = async (token: string) => {
   try {
-    const response = await fetch('http://127.0.0.1:5080/validate', {
+    const response = await fetch('/validate', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -67,7 +67,7 @@ function App() {
 
   const fetchSearchResults = async (query: any, filters: any) => {
     try {
-      const response = await fetch('http://127.0.0.1:5080/get_hits', {
+      const response = await fetch('/get_hits', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ function App() {
   const fetchDocumentContent = async (docId: any) => {
     try {
 
-      const response = await fetch('http://127.0.0.1:5080/get_document', {
+      const response = await fetch('/get_document', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -247,7 +247,7 @@ function App() {
 
   return (
     <div className="App font-montserrat md:flex">
-              {!isChatsVisible && (
+              {!isChatsVisible && isLoggedIn && (
     <IonIcon
     icon={searchActive ? closeOutline : searchOutline}
     onClick={() => setSearchActive(!searchActive)}
@@ -256,8 +256,8 @@ function App() {
                 )}
     
 
-
-      <Navbar active={active} setActive={setActive} />
+    {!searchActive && (
+      <Navbar active={active} setActive={setActive} />)}
       {renderPage()}
     </div>
   );

@@ -13,7 +13,7 @@ export async function fetchResults(
   try {
     const selectedItem = localStorage.getItem('selectedItem');
     
-    const response = await fetch('http://127.0.0.1:5080/getAnswer', {
+    const response = await fetch('/getAnswer', {
       method: `POST`,
       signal: signal,
       headers: {
