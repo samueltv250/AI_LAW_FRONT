@@ -43,8 +43,8 @@ function SearchBar({ onSearch, results, onResultClick }: { onSearch: Function, r
   return (
     <div className="relative">
       {results.length > 0 && (
-        <ul className="absolute w-full left-0 top-0 transform translate-y-[-100%] bg-white border border-gray-700 rounded-md shadow-md z-20">
-          {results.map(result => (
+  <ul className="absolute w-full left-0 top-0 transform translate-y-[-100%] bg-white border border-gray-700 rounded-md shadow-md z-20 max-h-[50vh] overflow-y-auto">
+  {results.map(result => (
             <li 
               key={result.doc_id} 
               onClick={() => onResultClick(result.doc_id)}

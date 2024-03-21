@@ -1,11 +1,13 @@
 import React from 'react';
+import he from 'he'; // You need to install 'he' library for decoding HTML entities
 
 interface DocumentViewerProps {
   content: string;
   onClose: () => void;
 }
-
 function DocumentViewer({ content, onClose }: DocumentViewerProps) {
+  const decodeHtmlEntities = (text: string) => he.decode(text);
+
   return (
     <div style={{
       position: 'fixed',
@@ -42,10 +44,9 @@ function DocumentViewer({ content, onClose }: DocumentViewerProps) {
         }}>
           &times;
         </button>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <div dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(content) }} />
       </div>
     </div>
   );
 }
-
 export default DocumentViewer;
