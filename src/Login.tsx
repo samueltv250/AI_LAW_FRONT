@@ -16,7 +16,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
     state.setUser,
   ]);
   const handleLogin = async () => {
-    const response = await fetch('/login', {
+    const response = await fetch('http://127.0.0.1:5080/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

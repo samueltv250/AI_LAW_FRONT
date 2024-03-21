@@ -10,6 +10,8 @@ import { motion } from "framer-motion";
 import React, { useState } from 'react';
 import { SourcesModal } from './SourcesModal';
 import ReactMarkdown from "react-markdown";
+
+import DocumentViewer from "../DocumentViewer/DocumentViewer";
 const variants = {
   hidden: { y: 20, opacity: 0 },
   visible: { y: 0, opacity: 1 },
@@ -20,9 +22,11 @@ type Props = {
   chat: ChatMessageType;
 };
 
-export default function BotMessage({ index, chat }: Props) {
+export default function BotMessage({ index, chat, fetchDocumentContent, setShowDocument, showDocument }: { index: number, chat: ChatMessageType, fetchDocumentContent: Function, setShowDocument: Function, showDocument: boolean }) {
   const { copy, copied } = useClipboard();
   const [showSources, setShowSources] = useState(false);
+
+  const [documentContent, setDocumentContent] = useState('');
 
   const { result, error, isStreamCompleted, cursorRef, sources } = useBot({
     index,
@@ -96,11 +100,17 @@ export default function BotMessage({ index, chat }: Props) {
       <button onClick={() => setShowSources(true)}>Show Sources</button>
     )}
 
-    
-    {showSources && (
-      <SourcesModal sources={sources} onClose={() => setShowSources(false)} />
-    )}
-
+{showSources && (
+  <SourcesModal
+    sources={sources}
+    onClose={() => setShowSources(false)}
+    fetchDocumentContent={fetchDocumentContent as (docId: any) => void}
+    setShowDocument={setShowDocument as (show: boolean) => void} // Specify the correct type for setShowDocument prop
+  />
+)}
+{showDocument && (
+  <DocumentViewer content={documentContent} onClose={() => setShowDocument(false)} />
+)}
 
   </div>
       </motion.div>

@@ -8,7 +8,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
     const userEmail = localStorage.getItem('email');
     
     if (userEmail) {
-      const response = await fetch('/cancel_subscription', {
+      const response = await fetch('http://127.0.0.1:5080/cancel_subscription', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,10 +38,10 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
         <div className="p-2">
           <div className="subscription-details mb-4">
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-            <h2 className="text-lg font-bold mb-2">Subscribe for 100 Tokens / 100$ the first month</h2>
+            <h2 className="text-lg font-bold mb-2">Initial subscription setup fee is 2000$</h2>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-            <p className="mb-4">100 tokens every month after for just $30/month</p>
+            <p className="mb-4">$500/month for 100 tokens with the option to buy more tokens</p>
             </div>
             <div className="paypal-button-container">
               <PayPalButtons
@@ -49,7 +49,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                 createSubscription={(data, actions) => {
                   const userEmail = localStorage.getItem('email');
                   return actions.subscription.create({
-                    plan_id: 'P-28C31061VV380154PMXRJZZQ',
+                    plan_id: 'P-4GC9972364662004NMXTYHQA',
                     custom_id: userEmail || undefined,
                     subscriber: {
                       email_address: userEmail,
@@ -71,7 +71,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                           return Promise.reject(new Error('User email is not available'));
                       }
               
-                      const response = await fetch('/activate_subscription_api', {
+                      const response = await fetch('http://127.0.0.1:5080/activate_subscription_api', {
                           method: 'POST',
                           headers: {
                               'Content-Type': 'application/json',
@@ -81,25 +81,38 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
               
                       if (!response.ok) {
                           alert('Failed to activate subscription. Please contact support.');
-                          return Promise.reject(new Error('Failed to activate subscription'));
+                          return Promise.reject(new Error('Failed to activate subscription' + response.statusText));
                       }
               
                       alert('Subscription activated successfully!');
                       return Promise.resolve();
                   }).catch((error) => {
                       console.error('Error during subscription get:', error);
-                      alert('An error occurred during the subscription process. Please contact support.');
+                      alert('An error occurred during the subscription process. Please contact support. ' + error.message);
                       return Promise.reject(error);
                   });
               }}
               
                 
               
-                onError={(err) => {
-                  // Error handling
-                  console.error('PayPal Button Error:', err);
-                  alert('An error occurred with the PayPal button.');
-                }}
+              onError={(err) => {
+                // Log the error details for debugging
+                console.error('PayPal Button Error:', err);
+            
+                // Provide a more detailed error message
+                let errorMessage = 'An error occurred with the PayPal button.';
+                if (err.message) {
+                  errorMessage += ' Error message: ' + err.message;
+                }
+                if (err.name) {
+                  errorMessage += ' Error name: ' + err.name;
+                }
+                if (err.stack) {
+                  errorMessage += ' Stack trace: ' + err.stack;
+                }
+            
+                alert(errorMessage);
+              }}
               />
               <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
                 <button onClick={cancelSubscription} style={{
