@@ -13,8 +13,7 @@ export default function GptIntro(this: any) {
     localStorage.setItem('selectedItem', event.target.value);
   }
   localStorage.setItem("selectedModal", selectedModel);
-  // const isGptThreeSelected = selectedModel.startsWith("gpt-3");
-  // const isGeminiSelected = selectedModel.startsWith("gemini");
+  // const isGptThreeSelected = selectedModel.startsWith("claude-opus");
   const isGptFourSelected = selectedModel.startsWith("gpt-4");
   const isGptDraftSelected = selectedModel.startsWith("gpt-d");
   
@@ -23,30 +22,7 @@ export default function GptIntro(this: any) {
     <>
       <div className="modals md:w-1/5 md:min-w-[500px] mx-2 relative flex items-center rounded-md justify-between mt-5 md:mx-auto  bg-gray-200 dark:bg-[#202123] gap-2">
         {/* <button
-          title="GEMINI"
-          className={classNames(
-            "gpt3 uppercase  rounded-md  font-bold p-2 transition  flex-1 flex items-center  dark:text-white justify-center",
-            {
-              "bg-white dark:bg-dark-primary border-2 dark:border-white border-gray-700":
-              isGeminiSelected,
-              "opacity-50": !isGeminiSelected,
-            }
-          )}
-          type="button"
-          onClick={() => setModel("gemini")}
-        >
-          <span
-            className={classNames(" mr-2 transition", {
-              "text-teal-400": isGeminiSelected,
-            })}
-          >
-            <i className="fa-solid fa-bolt "></i>
-          </span>
-          <span className="mr-2">gemini</span>
-        </button>
-
-        <button
-          title="GPT-3 Turbo"
+          title="CLAUDE-OPUS"
           className={classNames(
             "gpt3 uppercase  rounded-md  font-bold p-2 transition  flex-1 flex items-center  dark:text-white justify-center",
             {
@@ -56,7 +32,7 @@ export default function GptIntro(this: any) {
             }
           )}
           type="button"
-          onClick={() => setModel("gpt-3.5-turbo")}
+          onClick={() => setModel("claude-opus")}
         >
           <span
             className={classNames(" mr-2 transition", {
@@ -65,7 +41,7 @@ export default function GptIntro(this: any) {
           >
             <i className="fa-solid fa-bolt "></i>
           </span>
-          <span className="mr-2">gpt - 3.5</span>
+          <span className="mr-2">CLAUDE - OPUS</span>
         </button> */}
 
         <button
@@ -87,7 +63,7 @@ export default function GptIntro(this: any) {
           >
             <IonIcon icon={sparkles} />
           </span>
-          <span className="mr-2">gpt - 4</span>
+          <span className="mr-2">GPT - 4</span>
         </button>
 
         <button

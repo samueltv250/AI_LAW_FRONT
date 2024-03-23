@@ -37,15 +37,16 @@ export function SourcesModal({ sources, onClose, fetchDocumentContent, setShowDo
         boxShadow: '0px 4px 8px 0px rgba(0,0,0,0.2)',
       }}>
         <button onClick={onClose} style={{
-          position: 'absolute', 
+          position: 'fixed', // Change from 'absolute' to 'fixed'
           right: '20px', 
           top: '20px', 
           fontSize: '24px', 
           fontWeight: 'bold',
-          color: '#333',
+          color: '#ff0000',
           border: 'none',
           background: 'transparent',
           cursor: 'pointer',
+          zIndex: 10000 // Ensure the button is above other elements
         }}>X</button>
   
         <h2>Sources</h2>
@@ -64,11 +65,13 @@ export function SourcesModal({ sources, onClose, fetchDocumentContent, setShowDo
               <Card.Meta>
                 {source.id_text !== "google" ? (
                   <button onClick={() => handleFetchDocument(source.doc_id)} style={{
+                    color: 'blue',
                     cursor: 'pointer',
                   }}>View Document</button>
                 ) : (
                   <a href={source.url} target="_blank" rel="noopener noreferrer" style={{
                     color: 'blue',
+                    cursor: 'pointer',
                   }}>Go to source</a>
                 )}
               </Card.Meta>

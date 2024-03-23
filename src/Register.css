@@ -3,17 +3,15 @@
   padding: 20px;
   box-shadow: 0 0 10px rgba(254, 245, 245, 0.1);
   border-radius: 5px;
-  color: rgba(255, 255, 255, 0.692); /* Add this line */
-
-  /* Add these properties */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  color: rgba(255, 255, 255, 0.692);
+  /* Removed position-related properties */
 }
+
 .centered-title {
   text-align: center;
+  color: rgba(255, 255, 255, 0.692);/* Changed text color to black */
 }
+
 .input-group {
   margin-bottom: 10px;
 }
@@ -21,8 +19,7 @@
 .input-group label {
   display: block;
   margin-bottom: 5px;
-  color: black; /* Modify this line to set input text color to black */
-
+  color: rgba(255, 255, 255, 0.692); /* Changed text color to black */
 }
 
 .input-group input {
@@ -33,15 +30,79 @@
 .submit-btn, .login-btn {
   width: 100%;
   padding: 10px;
-  background-color: #4CAF50; /* Change to a green color */
+  background-color: #4CAF50; /* Changed to a green color */
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
-  transition: background-color 0.3s ease; /* Add transition for hover effect */
+  transition: background-color 0.3s ease;
 }
 
 .submit-btn:hover, .login-btn:hover {
-  background-color: #45a049; /* Darken the background color on hover */
+  background-color: #45a049; /* Darkened the background color on hover */
 }
+
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.content-container {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.info-container {
+
+  width: 50%;
+
+  padding: 20px;
+  background: #f2f2f2;
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.7);
+  overflow-y: auto;
+}
+
+.register-section, .info-section {
+  flex: 1;
+  margin: 10px;
+}
+
+.language-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.language-tabs button {
+  border: none;
+  background-color: #d2c7b8;
+  margin: 0 5px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.language-tabs button.active {
+  background-color: #d2c7b8;
+}
+
+.service-info {
+  text-align: justify;
+}
+
+/* Add additional styling as needed */

@@ -12,6 +12,7 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
+  const [language, setLanguage] = useState<'EN' | 'ES'>('ES');
 
   const handleRegister = async (event: FormEvent) => {
     event.preventDefault();
@@ -39,11 +40,23 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
   
     }
   };
+  const serviceInfoES = (
+    <div>
+      <p>Acceda a las bases de datos más completas de leyes de Panamá, organizadas por un agente de IA especialmente diseñado. Nuestro servicio ofrece un motor de búsqueda avanzado que permite buscar por palabra clave o significado en cada ley, decreto, fallo o documento legal publicado en Panamá. Será dirigido a una versión curada y actualizada diariamente por el agente de IA PanamaAIQ. Pregunte sobre leyes y reciba respuestas con fuentes para total transparencia, ideal para empresas que requieren numerosas consultas legales diarias o desean comprender mejor el panorama legal panameño.</p>
+    </div>
+  );
 
+  const serviceInfoEN = (
+    <div>
+      <p>Gain access to the most complete databases of Panama's laws, organized by a specially designed AI agent. Our service provides an advanced search engine that allows you to conduct keyword or meaning-based searches on every law, decree, ruling, or legal document published in Panama. You'll be directed to a curated version that is updated daily by the PanamaAIQ AI agent. Ask questions about laws and get answers with sources for full transparency, ideal for companies requiring numerous daily legal consultations or wanting to better understand Panama's legal landscape.</p>
+    </div>
+  );
   return (
-    <div className="register-container">
-      <h2 className="centered-title">Register</h2>
-
+    <div className="register-page">
+      
+    <div className="content-container">
+      <div className="register-container">
+        <h2 className="centered-title">Register</h2>
         <div className="input-group">
           <label>First Name:</label>
           <input 
@@ -90,8 +103,24 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
           />
         </div>
         <button onClick={handleRegister} className="submit-btn">Register</button>
-      <button onClick={onLogin} className="login-btn">Go to Login</button>
+        <button onClick={onLogin} className="login-btn">Go to Login</button>
+
+        
+      </div>
+      <div className="info-container">
+        <div className="language-tabs">
+          <button onClick={() => setLanguage('ES')}>ES</button>
+          <button onClick={() => setLanguage('EN')}>EN</button>
+        </div>
+        <div className="service-info">
+          {language === 'ES' ? serviceInfoES : serviceInfoEN}
+        </div>
+      </div>
+ 
+
     </div>
+  </div>
+  
   );
 };
 

@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar/Navbar";
 import DefaultIdeas from "./components/DefaultIdea/DefaultIdeas";
 import UserQuery from "./components/UserInput/UserQuery";
 import GptIntro from "./components/Ui/GptIntro";
-import { IonIcon, setupIonicReact } from "@ionic/react";
+import { IonIcon, IonSpinner, setupIonicReact } from "@ionic/react";
 import { menuOutline, addOutline } from "ionicons/icons";
 import Header from "./components/Header/Header";
 import useChat, { chatsLength, useAuth, useTheme } from "./store/store";
@@ -19,6 +19,7 @@ import Login from "./Login"; // Import Login
 import Register from "./Register"; // Import Register
 import { useSettings } from "./store/store";
 
+import './App.css'; // Adjust the path based on your file structure
 
 const validateToken = async (token: string) => {
   try {
@@ -54,6 +55,7 @@ function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [documentContent, setDocumentContent] = useState('');
   const [showDocument, setShowDocument] = useState(false);
+  const [isLoadingDocument, setIsLoadingDocument] = useState(false); // New loading state
 
   const [selectedModel, setModel] = useSettings((state) => [
     state.settings.selectedModal,
@@ -109,6 +111,8 @@ function App() {
     );
   };
   const fetchDocumentContent = async (docId: any) => {
+    setIsLoadingDocument(true); // Start loading
+
     try {
 
       const response = await fetch('/get_document', {
@@ -127,8 +131,11 @@ function App() {
       const data = await response.text();
       setDocumentContent(data);
       setShowDocument(true);
+      setIsLoadingDocument(false); // Stop loading
+
     } catch (error) {
       console.error('Error fetching document content:', error);
+      setIsLoadingDocument(false); // Stop loading
     }
   };
 
@@ -173,6 +180,8 @@ function App() {
     }
   }, [theme]);
   const renderPage = () => {
+
+
     if (showDocument) {
       return <DocumentViewer content={documentContent} onClose={() => setShowDocument(false)} />;
     }
@@ -206,7 +215,10 @@ function App() {
 
 
           </div>
-          {isChatsVisible ? <Header /> : <GptIntro />}
+
+
+          
+          {searchActive || isChatsVisible ? <Header /> : <GptIntro />}
           {isChatsVisible &&      <Chats 
   fetchDocumentContent={fetchDocumentContent} 
   showDocument={showDocument} 
@@ -232,7 +244,7 @@ function App() {
   
               <div className="dark:bg-inherit">
                 {/* Search bar will be shown here when search is active */}
-                {searchActive && (
+                {!isLoadingDocument &&searchActive && (
                 <>
                   <SearchBar
                     onSearch={fetchSearchResults}
@@ -240,6 +252,28 @@ function App() {
                     onResultClick={fetchDocumentContent}
                   />
                   {renderSearchResults()}
+                </>
+                )}
+                 {isLoadingDocument &&searchActive && (
+                <>
+   <div style={{
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100vh',  // Adjust the height as needed to center vertically in the available space
+  width: '100%',
+  overflow: 'hidden'
+}}>
+  <div style={{
+    width: '50px',
+    height: '50px',
+    backgroundColor: '#00ff00',  // A bright color for the circle
+    borderRadius: '50%',
+    animation: 'pulsate 1.5s ease-out infinite'
+  }} />
+</div>
+
+
                 </>
                 )}
                 {/* UserQuery is rendered here, you can adjust if it should be hidden/shown based on searchActive */}

@@ -30,9 +30,9 @@ export default function Header() {
         )}
       </div>
       <div className="">
-        <button className=" text-xl">
+        {/* <button className=" text-xl">
           <IonIcon icon={shareOutline} />
-        </button>
+        </button> */}
       </div>
     </header>
   );

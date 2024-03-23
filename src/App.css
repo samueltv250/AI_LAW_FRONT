@@ -1,0 +1,27 @@
+@keyframes slideLeftToRight {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .loading-indicator {
+    display: inline-block;
+    animation: slideLeftToRight 2s linear infinite;
+  }
+  @keyframes pulsate {
+  0% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+}
