@@ -82,6 +82,9 @@ function App() {
         }),
       });
       if (!response.ok) {
+        const errorData = await response.json(); // Assuming the error message is in JSON format
+        window.alert(`Document search failed: ${errorData.message || 'Unknown error'}`); // Show the error message or a default one
+  
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
@@ -126,6 +129,9 @@ function App() {
         }),
       });
       if (!response.ok) {
+        const errorData = await response.json(); // Assuming the error message is in JSON format
+        window.alert(`Document fetch failed: ${errorData.message || 'Unknown error'}`); // Show the error message or a default one
+  
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.text();
@@ -135,6 +141,7 @@ function App() {
 
     } catch (error) {
       console.error('Error fetching document content:', error);
+
       setIsLoadingDocument(false); // Stop loading
     }
   };

@@ -101,7 +101,9 @@ export default function GptIntro(this: any) {
 <div className="h-96 flex flex-col items-center justify-center text-white">
 
 <div id="itemSelection" className="flex flex-col items-center">
-  <h3>Selecciona el tipo de documento que quieres que escriba</h3>
+<p className="text-xl mt-5">Este feature sigue en beta temprano</p>
+<p className="text-xl mt-5">Selecciona el tipo de documento que quieres que escriba</p>
+
   <select id="itemList" className="bg-gray-700 text-white mt-2" onChange={handleSelectChange}>
     <option value="Demanda">Demanda</option>
     <option value="Querella">Querella</option>
