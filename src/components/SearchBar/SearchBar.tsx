@@ -11,7 +11,7 @@ function SearchBar({ onSearch, results, onResultClick }: { onSearch: Function, r
   const [modeDropdownOpen, setModeDropdownOpen] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-
+  // results = results || [];
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true); // Start loading
@@ -73,6 +73,7 @@ function SearchBar({ onSearch, results, onResultClick }: { onSearch: Function, r
             className="px-3 border-l dark:border-gray-600 border-gray-200"
             onClick={toggleDropdown}
             disabled={isLoading}
+            style={{ color: 'white' }}
           >
             Filter <IonIcon icon={chevronUpOutline} />
           </button>
@@ -138,6 +139,7 @@ function SearchBar({ onSearch, results, onResultClick }: { onSearch: Function, r
             className="px-3 border-l dark:border-gray-600 border-gray-200"
             onClick={toggleModeDropdown}
             disabled={isLoading}
+            style={{ color: 'white' }}
           >
             Mode <IonIcon icon={chevronUpOutline} />
           </button>
@@ -164,6 +166,7 @@ function SearchBar({ onSearch, results, onResultClick }: { onSearch: Function, r
           className="p-2 border-l dark:border-gray-600 border-gray-200 rounded-r-md flex items-center"
           onClick={handleSearch}
           disabled={isLoading}
+          style={{ color: 'white' }}
         >
           {isLoading ? <IonIcon icon={hourglassOutline} /> : <IonIcon icon={searchOutline} />}
         </button>

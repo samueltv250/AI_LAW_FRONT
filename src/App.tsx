@@ -10,6 +10,7 @@ import GptIntro from "./components/Ui/GptIntro";
 import { IonIcon, IonSpinner, setupIonicReact } from "@ionic/react";
 import { menuOutline, addOutline } from "ionicons/icons";
 import Header from "./components/Header/Header";
+import HeaderSearch from "./components/Header/HeaderSearch";
 import useChat, { chatsLength, useAuth, useTheme } from "./store/store";
 import classNames from "classnames";
 import Chats from "./components/Chat/Chats";
@@ -224,8 +225,10 @@ function App() {
           </div>
 
 
-          
-          {searchActive || isChatsVisible ? <Header /> : <GptIntro />}
+          {searchActive && <HeaderSearch /> }
+          {!searchActive && isChatsVisible && <Header />}
+          {!searchActive && !isChatsVisible &&  <GptIntro />}
+    
           {isChatsVisible &&      <Chats 
   fetchDocumentContent={fetchDocumentContent} 
   showDocument={showDocument} 

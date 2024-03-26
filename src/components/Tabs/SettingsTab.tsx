@@ -105,7 +105,11 @@ export default function SettingsTab({ visible }: { visible: boolean }) {
             Clear
           </button>
         </div>
-
+        <div className="flex items-center mb-4 justify-between border border-gray-200 rounded dark:border-gray-700 p-2">
+          <span className="ml-2  font-bold  dark:text-gray-300">
+            For help setting up an account contact us at: support@panamaaiq.com
+          </span>
+        </div>
   
       </div>
 

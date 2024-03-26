@@ -42,13 +42,25 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
   };
   const serviceInfoES = (
     <div>
-      <p>Acceda a las bases de datos más completas de leyes de Panamá, organizadas por un agente de IA especialmente diseñado. Nuestro servicio ofrece un motor de búsqueda avanzado que permite buscar por palabra clave o significado en cada ley, decreto, fallo o documento legal publicado en Panamá. Será dirigido a una versión curada y actualizada diariamente por el agente de IA PanamaAIQ. Pregunte sobre leyes y reciba respuestas con fuentes para total transparencia, ideal para empresas que requieren numerosas consultas legales diarias o desean comprender mejor el panorama legal panameño.</p>
+      <p>Acceda a las <strong>bases de datos más completas de leyes de Panamá</strong>, organizadas por un agente de IA especialmente diseñado. Nuestro servicio ofrece un <strong>motor de búsqueda avanzado</strong> que permite buscar por palabra clave o significado en cada ley, decreto, fallo o documento legal publicado en Panamá. Será dirigido a una versión curada y actualizada diariamente por el agente de IA PanamaAIQ.</p>
+      <p>Pregunte sobre leyes y reciba respuestas con fuentes para total transparencia, ideal para empresas que requieren numerosas consultas legales diarias o desean comprender mejor el panorama legal panameño.</p>
+      <div className="price-details">
+        <h3>Detalles de Precios</h3>
+        <p><strong>Membresía para empresas:</strong> $750 al mes por <strong>1000 tokens</strong>. Los tokens se reponen a 1000 con cada pago exitoso.</p>
+        <p>Para ayuda con la configuración de una cuenta, contáctenos en: <a href="mailto:support@panamaaiq.com">support@panamaaiq.com</a></p>
+      </div>
     </div>
   );
-
+  
   const serviceInfoEN = (
     <div>
-      <p>Gain access to the most complete databases of Panama's laws, organized by a specially designed AI agent. Our service provides an advanced search engine that allows you to conduct keyword or meaning-based searches on every law, decree, ruling, or legal document published in Panama. You'll be directed to a curated version that is updated daily by the PanamaAIQ AI agent. Ask questions about laws and get answers with sources for full transparency, ideal for companies requiring numerous daily legal consultations or wanting to better understand Panama's legal landscape.</p>
+      <p>Gain access to the <strong>most complete databases of Panama's laws</strong>, organized by a specially designed AI agent. Our service provides an <strong>advanced search engine</strong> that allows you to conduct keyword or meaning-based searches on every law, decree, ruling, or legal document published in Panama.</p>
+      <p>Ask questions about laws and get answers with sources for full transparency, ideal for companies requiring numerous daily legal consultations or wanting to better understand Panama's legal landscape.</p>
+      <div className="price-details">
+        <h3>Pricing Details</h3>
+        <p><strong>Membership for companies:</strong> $750 per month for <strong>1000 tokens</strong>. Tokens are refilled back to 1000 upon each successful payment.</p>
+        <p>For help setting up an account, contact us at: <a href="mailto:support@panamaaiq.com">support@panamaaiq.com</a></p>
+      </div>
     </div>
   );
   return (
