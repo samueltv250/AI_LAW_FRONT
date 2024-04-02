@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IonIcon } from "@ionic/react";
 import { searchOutline, chevronUpOutline, hourglassOutline } from "ionicons/icons";
 
-function SearchBar({ onSearch, results, onResultClick }: { onSearch: Function, results: any[], onResultClick: Function }) {
+function SearchBar({ onSearch, results, onResultClick, setResults}: { onSearch: Function, results: any[], onResultClick: Function, setResults: Function }) {
   const [query, setQuery] = useState('');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -11,10 +11,12 @@ function SearchBar({ onSearch, results, onResultClick }: { onSearch: Function, r
   const [modeDropdownOpen, setModeDropdownOpen] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
-  // results = results || [];
+
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true); // Start loading
+    setResults([]); // Clear results before searching
+
     try {
       await onSearch(query, selectedFilters, selectedMode);
     } catch (error) {
@@ -89,37 +91,38 @@ function SearchBar({ onSearch, results, onResultClick }: { onSearch: Function, r
     "RESOLICUCION",
     "CIRCULAR",
     "RESUELTO",
-    "CONTRATO DE COMPRAVENTA",
+    // "CONTRATO DE COMPRAVENTA",
     "FALLO",
-    "ADENDA",
-    "ACTA",
-    "NOTA",
-    "REQUISITOS",
-    "CONTRATO",
-    "REGLAMENTO",
-    "REUNION",
-    "SENTENCIAS",
-    "ESTATUTO",
-    "TEXTO",
-    "CONVOCATORIA",
-    "AVISO",
-    "CONVENIO",
-    "ORDEN",
-    "EDICTO",
-    "PROTOCOLO",
-    "PACTO",
-    "CODIGO",
-    "ANEXO",
-    "COMUNICADO",
-    "LICITACION",
-    "MANUAL",
-    "MEMORANDUM",
-    "GLOSARIO",
-    "SENTENCIA",
-    "MEMORANDO",
-    "CRITERIO",
-    "DISCURSO",
-    "INFORME",].map((filter) => (
+    // "ADENDA",
+    // "ACTA",
+    // "NOTA",
+    // "REQUISITOS",
+    // "CONTRATO",
+    // "REGLAMENTO",
+    // "REUNION",
+    // "SENTENCIAS",
+    // "ESTATUTO",
+    // "TEXTO",
+    // "CONVOCATORIA",
+    // "AVISO",
+    // "CONVENIO",
+    // "ORDEN",
+    // "EDICTO",
+    // "PROTOCOLO",
+    // "PACTO",
+    // "CODIGO",
+    // "ANEXO",
+    // "COMUNICADO",
+    // "LICITACION",
+    // "MANUAL",
+    // "MEMORANDUM",
+    // "GLOSARIO",
+    // "SENTENCIA",
+    // "MEMORANDO",
+    // "CRITERIO",
+    // "DISCURSO",
+    // "INFORME",
+  ].map((filter) => (
                 <li
                   key={filter}
                   onClick={() => handleFilterChange(filter)}

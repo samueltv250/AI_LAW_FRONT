@@ -89,7 +89,12 @@ function App() {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      setSearchResults(data);
+
+      setSearchResults([]); 
+      // Set new results
+      const newSearchResults = [...data]; // Use the spread operator to create a new array
+
+      setSearchResults(newSearchResults as never[]); 
     } catch (error) {
       console.error('Error fetching search results:', error);
     }
@@ -99,6 +104,12 @@ function App() {
   const handleSearchIconClick = () => {
     setSearchActive(!searchActive);
   };
+  useEffect(() => {
+    if (searchResults.length > 0) { // Only render if there are results
+      renderSearchResults();
+    }
+  }, [searchResults]); // Re-render when searchResults changes
+
   const renderSearchResults = () => {
     return (
       <ul className="absolute top-full left-0 right-0 z-10 mt-1 p-2 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto">
@@ -260,6 +271,7 @@ function App() {
                     onSearch={fetchSearchResults}
                     results={searchResults}
                     onResultClick={fetchDocumentContent}
+                    setResults = {setSearchResults}
                   />
                   {renderSearchResults()}
                 </>
