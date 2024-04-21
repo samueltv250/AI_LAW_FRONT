@@ -41,7 +41,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
             <h2 className="text-lg font-bold mb-2">Initial subscription setup fee is 1500$</h2>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-            <p className="mb-4">$750/month for 1000 tokens with the option to buy more tokens by contacting us through support</p>
+            <p className="mb-4">$1000/month for 1000 tokens with the option to buy more tokens by contacting us through support</p>
             </div>
             <div className="paypal-button-container">
               <PayPalButtons
@@ -49,7 +49,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                 createSubscription={(data, actions) => {
                   const userEmail = localStorage.getItem('email');
                   return actions.subscription.create({
-                    plan_id: 'P-7YS67160HK5193834MYAKLZQ',
+                    plan_id: 'P-70J79084WG007374FMYOEFBY',
                     custom_id: userEmail || undefined,
                     subscriber: {
                       email_address: userEmail,

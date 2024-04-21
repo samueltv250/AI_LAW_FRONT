@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { IonIcon } from "@ionic/react";
 import { searchOutline, chevronUpOutline, hourglassOutline } from "ionicons/icons";
+import Switch from "react-switch";
 
 function SearchBar({ onSearch, results, onResultClick, setResults}: { onSearch: Function, results: any[], onResultClick: Function, setResults: Function }) {
   const [query, setQuery] = useState('');
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedMode, setSelectedMode] = useState<string>('');
+  const [selectedMode, setSelectedMode] = useState("Meaning");
 
   const [modeDropdownOpen, setModeDropdownOpen] = useState(false);
+  const [isFilterPressed, setFilterPressed] = useState(false);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -38,8 +40,10 @@ function SearchBar({ onSearch, results, onResultClick, setResults}: { onSearch: 
   const handleModeChange = (mode: string) => {
     setSelectedMode(mode);
   };
+
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
+    setFilterPressed(!isFilterPressed);
   };
 
   return (
@@ -69,16 +73,44 @@ function SearchBar({ onSearch, results, onResultClick, setResults}: { onSearch: 
             disabled={isLoading}
           />
         </div>
-        <div className="relative">
-          <button
-            type="button"
-            className="px-3 border-l dark:border-gray-600 border-gray-200"
-            onClick={toggleDropdown}
-            disabled={isLoading}
-            style={{ color: 'white' }}
-          >
-            Filter <IonIcon icon={chevronUpOutline} />
-          </button>
+      
+        <div className="relative p-4">
+  <label className="flex items-center">
+    <span className="mr-2 text-gray-700 dark:text-white">{selectedMode}</span>
+    <Switch
+      onChange={() => setSelectedMode(prevMode => prevMode === 'Meaning' ? 'Word' : 'Meaning')}
+      checked={selectedMode === 'Meaning'}
+      offColor="#767577"
+      onColor="#81b0ff"
+      offHandleColor="#f4f3f4"
+      onHandleColor="#2693e6"
+      handleDiameter={30}
+      uncheckedIcon={false}
+      checkedIcon={false}
+      boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+      activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+      height={20}
+      width={48}
+      className="react-switch"
+    />
+  </label>
+</div>
+        <div className="md:block hidden"></div>
+        <div className="relative"
+        // onMouseEnter={() => setModeDropdownOpen(true)}
+        // onMouseLeave={() => setDropdownOpen(false)}
+        >
+            <div className="p-4">
+            <button
+  type="button"
+  className={`px-3 border-l dark:border-gray-600 border-gray-200 ${isFilterPressed ? 'opacity-50' : ''}`}
+  onClick={toggleDropdown}
+  disabled={isLoading}
+  style={{ color: 'white' }}
+>
+  Filter <IonIcon icon={chevronUpOutline} />
+</button>
+          </div>
           {dropdownOpen && (
             <ul className="absolute right-0 z-20 w-40 bottom-full mb-1 bg-white border border-gray-700 rounded-md shadow-lg max-h-40 overflow-y-auto">
             {[
@@ -131,33 +163,6 @@ function SearchBar({ onSearch, results, onResultClick, setResults}: { onSearch: 
                   }`}
                 >
                   {filter}
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <div className="relative">
-          <button
-            type="button"
-            className="px-3 border-l dark:border-gray-600 border-gray-200"
-            onClick={toggleModeDropdown}
-            disabled={isLoading}
-            style={{ color: 'white' }}
-          >
-            Mode <IonIcon icon={chevronUpOutline} />
-          </button>
-          {modeDropdownOpen && (
-            <ul className="absolute right-0 z-20 w-40 bottom-full mb-1 bg-white border border-gray-700 rounded-md shadow-lg">
-              {/* Mode Options */}
-              {["Word", "Meaning"].map((mode) => (
-                <li
-                  key={mode}
-                  onClick={() => handleModeChange(mode)}
-                  className={`cursor-pointer p-2 hover:bg-gray-100 ${
-                    selectedMode === mode ? 'bg-gray-700 text-white' : 'text-gray-700'
-                  }`}
-                >
-                  {mode}
                 </li>
               ))}
             </ul>

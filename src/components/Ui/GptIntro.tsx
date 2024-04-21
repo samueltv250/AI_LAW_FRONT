@@ -45,7 +45,7 @@ export default function GptIntro(this: any) {
         </button> */}
 
         <button
-          title="GPT - 4"
+          title="Q/A Mode"
           className={classNames(
             "gptd uppercase rounded p-2 transition  dark:text-white flex-1 flex  items-center justify-center",
             {
@@ -63,10 +63,10 @@ export default function GptIntro(this: any) {
           >
             <IonIcon icon={sparkles} />
           </span>
-          <span className="mr-2">GPT - 4</span>
+          <span className="mr-2">Q/A Mode</span>
         </button>
 
-        <button
+        {/* <button
           title="Drafter"
           className={classNames(
             "gpt4 uppercase rounded p-2 transition  dark:text-white flex-1 flex  items-center justify-center",
@@ -86,12 +86,12 @@ export default function GptIntro(this: any) {
             <i className="fa-light fa-bolt "></i>
           </span>
           <span className="mr-2">drafter</span>
-        </button>
+        </button> */}
       </div>
       <div className=" h-96 flex items-start justify-center">
-        <h1 className=" text-4xl font-bold mt-5 text-center text-gray-300">
+        {/* <h1 className=" text-4xl font-bold mt-5 text-center text-gray-300">
           LawGPT
-        </h1>
+        </h1> */}
 
       </div>
 

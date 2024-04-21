@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { searchOutline, closeOutline } from "ionicons/icons";
+import { searchOutline, closeOutline, returnUpBackOutline} from "ionicons/icons";
 import SearchBar from './components/SearchBar/SearchBar';
 import DocumentViewer from './components/DocumentViewer/DocumentViewer';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -204,7 +204,8 @@ function App() {
     if (showDocument) {
       return <DocumentViewer content={documentContent} onClose={() => setShowDocument(false)} />;
     }
-    if (!isLoggedIn) {
+    
+    if (isLoggedIn) {
       if (currentScreen === "login") {
         return <Login onLogin={() => setIsLoggedIn(true)} onRegister={() => setCurrentScreen("register")} />;
       } else if (currentScreen === "register") {
@@ -310,14 +311,20 @@ function App() {
 
   return (
     <div className="App font-montserrat md:flex">
-              {!isChatsVisible && isLoggedIn && (
+              {!isChatsVisible && !isLoggedIn && (
     <IonIcon
-    icon={searchActive ? closeOutline : searchOutline}
+    icon={searchActive ? returnUpBackOutline : searchOutline}
     onClick={() =>{
       setSearchActive(!searchActive);
       setActive(false);
     }}
-    className="fixed top-4 right-4 z-10 text-lg cursor-pointer text-gray-700 dark:text-white"
+    className={classNames(
+      "fixed top-4 right-4 z-10 cursor-pointer",
+      {
+        "text-3xl dark:text-white ": searchActive,
+        "text-3xl text-gray-700 dark:text-white": !searchActive
+      }
+    )}
   />
                 )}
     
