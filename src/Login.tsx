@@ -30,8 +30,8 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
       const user = data.user;
       const first_name =  user.first_name;
       const last_name = user.last_name;
-      const tokens = user.tokens;
-   
+      const tokens = JSON.stringify(data.tokens);
+      
 
       localStorage.setItem('token', token);
       localStorage.setItem('first_name', first_name);
@@ -87,7 +87,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
         </div>
         <button onClick={handleLogin} className="submit-btn">Login</button>
       </div>
-      <button onClick={onRegister} className="register-btn">Go to Register</button>
+      <button onClick={onRegister} className="register-btn">Ir a Registrarse</button>
     </div>
   );
 };

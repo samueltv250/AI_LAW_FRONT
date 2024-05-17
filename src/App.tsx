@@ -19,6 +19,7 @@ import Apikey from "./components/modals/Apikey";
 import Login from "./Login"; // Import Login
 import Register from "./Register"; // Import Register
 import { useSettings } from "./store/store";
+import LandingPage from './LandingPage'; // Import the LandingPage component
 
 import './App.css'; // Adjust the path based on your file structure
 
@@ -50,7 +51,7 @@ function App() {
   const addNewChat = useChat((state) => state.addNewChat);
   const userHasApiKey = useAuth((state) => state.apikey);
   const [theme] = useTheme((state) => [state.theme]);
-  const [currentScreen, setCurrentScreen] = useState("login"); // Add this state
+  const [currentScreen, setCurrentScreen] = useState("landingPage"); // Add this state
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const [searchResults, setSearchResults] = useState([]);
@@ -112,17 +113,19 @@ function App() {
 
   const renderSearchResults = () => {
     return (
-      <ul className="absolute top-full left-0 right-0 z-10 mt-1 p-2 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto">
-        {searchResults.map((result: { doc_id: React.Key; doc_title: string; }) => (
-          <li
-            key={result.doc_id}
-            onClick={() => fetchDocumentContent(result.doc_id)}
-            className="p-2 cursor-pointer hover:bg-gray-100"
-          >
-            {result.doc_title}
-          </li>
-        ))}
-      </ul>
+<ul
+  className="absolute top-full left-0 right-0 z-10 mt-1 p-2 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto text-black">
+  {searchResults.map((result: { doc_id: React.Key; doc_title: string; }) => (
+    <li 
+      key={result.doc_id}
+      onClick={() => fetchDocumentContent(result.doc_id)}
+      className="p-2 cursor-pointer hover:bg-gray-100"
+    >
+      {result.doc_title}
+    </li>
+  ))}
+</ul>
+
     );
   };
   const fetchDocumentContent = async (docId: any) => {
@@ -205,13 +208,17 @@ function App() {
       return <DocumentViewer content={documentContent} onClose={() => setShowDocument(false)} />;
     }
     
-    if (isLoggedIn) {
-      if (currentScreen === "login") {
-        return <Login onLogin={() => setIsLoggedIn(true)} onRegister={() => setCurrentScreen("register")} />;
-      } else if (currentScreen === "register") {
-        return <Register onLogin={() => setCurrentScreen("login")} onRegister={function (): void {
-          throw new Error("Function not implemented.");
-        } } />;
+    if (!isLoggedIn) {
+      switch(currentScreen) {
+        case "login":
+          return <Login onLogin={() => setIsLoggedIn(true)} onRegister={() => setCurrentScreen("register")} />;
+        case "register":
+          return <Register onLogin={() => setCurrentScreen("login")} onRegister={function (): void {
+            throw new Error('Function not implemented.');
+          } } />;
+        case "landingPage":
+        default:
+          return <LandingPage onLoginClick={() => setCurrentScreen("login")} onRegisterClick={() => setCurrentScreen("register")} />;
       }
 
     }
@@ -311,7 +318,7 @@ function App() {
 
   return (
     <div className="App font-montserrat md:flex">
-              {!isChatsVisible && !isLoggedIn && (
+              {!isChatsVisible && isLoggedIn && (
     <IonIcon
     icon={searchActive ? returnUpBackOutline : searchOutline}
     onClick={() =>{
@@ -319,7 +326,7 @@ function App() {
       setActive(false);
     }}
     className={classNames(
-      "fixed top-4 right-4 z-10 cursor-pointer",
+      "shadow fixed p-2 h-8 w-8 text-sm top-4 right-4 border-2 hidden md:inline-flex dark:text-white text-gray-700 dark:border border-gray-400 rounded-md items-center justify-center",
       {
         "text-3xl dark:text-white ": searchActive,
         "text-3xl text-gray-700 dark:text-white": !searchActive

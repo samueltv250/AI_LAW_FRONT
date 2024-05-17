@@ -39,27 +39,30 @@ function DocumentViewer({ content, onClose}: DocumentViewerProps) {
         width: '80%',
         maxHeight: '90vh',
         overflowY: 'auto',
-        backgroundColor: 'white',
+        backgroundColor: '#353641', // Dark background for the content area
         padding: '20px',
         borderRadius: '8px',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
         fontFamily: 'Arial, sans-serif',
         lineHeight: '1.6',
-        color: '#333',
+        color: '#eee', // Light text color for readability in dark mode
       }}>
-        <button onClick={onClose} style={{
-          position: 'absolute',
+        <div style={{
+          position: 'sticky',
           top: '10px',
-          right: '10px',
-          fontSize: '24px',
-          lineHeight: '24px',
-          color: '#ff0000',
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
+          display: 'flex',
+          justifyContent: 'flex-end',
         }}>
-          &times;
-        </button>
+          <button onClick={onClose} style={{
+            fontSize: '24px',
+            lineHeight: '24px',
+            color: '#ff0000', // Adjusted button color for better visibility
+            border: 'none',
+            background: 'transparent',
+            cursor: 'pointer',
+          }}>
+            &times;
+          </button>
+        </div>
         <div dangerouslySetInnerHTML={{ __html: cleanedContent }} />
       </div>
     </div>

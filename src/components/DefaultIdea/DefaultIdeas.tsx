@@ -17,6 +17,34 @@ const defaultIdeas = [
   },
 ];
 
+// const defaultIdeas = [
+//   {
+//     idea: "Regulaciones de fusiones y adquisiciones?",
+//     moreContext: "Cuáles son las regulaciones actuales para fusiones y adquisiciones en Panamá?"
+//   },
+//   {
+//     idea: "Compliance de leyes laborales?",
+//     moreContext: "Cómo puede asegurarse una corporación de cumplir con todas las leyes laborales panameñas?"
+//   },
+ 
+//   {
+//     idea: "Regulaciones sobre la importación y exportación?",
+//     moreContext: "Cuáles son las regulaciones vigentes para importar y exportar mercancías en Panamá?"
+//   },
+//   {
+//     idea: "Litigios corporativos?",
+//     moreContext: "Cuáles son los procesos comunes para manejar litigios corporativos en Panamá?"
+//   },
+//  {
+//     idea: "Protección de propiedad intelectual?",
+//     moreContext: "Cuál es el proceso para registrar y proteger la propiedad intelectual en Panamá?"
+//   },
+//   {
+//     idea: "Incentivos fiscales para inversionistas extranjeros?",
+//     moreContext: "Qué incentivos fiscales ofrece Panamá para atraer a inversionistas extranjeros?"
+//   },
+// ];
+
 export default function DefaultIdeas({ visible = true }) {
   return (
 

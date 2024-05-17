@@ -12,6 +12,7 @@ import { SourcesModal } from './SourcesModal';
 import ReactMarkdown from "react-markdown";
 
 import DocumentViewer from "../DocumentViewer/DocumentViewer";
+
 const variants = {
   hidden: { y: 20, opacity: 0 },
   visible: { y: 0, opacity: 1 },
@@ -41,78 +42,76 @@ export default function BotMessage({ index, chat, fetchDocumentContent, setShowD
         variants={variants}
         initial="hidden"
         animate="visible"
-        className=" max-w-2xl mx-auto md:flex md:items-center group"
+        className="max-w-2xl mx-auto md:flex md:items-center group"
       >
         <div className="flex items-start w-full">
-          <div className="mr-4  rounded-md flex items-center flex-shrink-0">
-            <Avatar className=" h-11 w-11" src="/imgs/bot.webp" />
+          <div className="mr-4 rounded-md flex items-center flex-shrink-0">
+            <Avatar className="h-11 w-11" src="/imgs/bot.webp" />
           </div>
-
           {!result && !error ? (
-            <div className=" self-center">
+            <div className="self-center">
               <SyncLoader color="gray" size={8} speedMultiplier={0.5} />
             </div>
           ) : (
-            
             <pre
               className={classNames(
-                "  animate-preulse overflow-x-hidden whitespace-pre-wrap",
-                { "text-red-500": error, "dark:text-gray-300": !error }
+                "text-gray-300 animate-preulse overflow-x-hidden whitespace-pre-wrap",
+                { "text-red-500": error }
               )}
             >
-              
-            <ReactMarkdown
-              className={classNames(
-                "  animate-preulse overflow-x-hidden whitespace-pre-wrap",
-                { "text-red-500": error, "dark:text-gray-300": !error }
-              )}
-              children={result}
-            />
-          
-
-
+              <ReactMarkdown
+                className="text-gray-300 animate-preulse overflow-x-hidden whitespace-pre-wrap"
+                children={result}
+              />
               {!isStreamCompleted && !chat.content && (
                 <div
-                  className="ml-1 blink bg-gray-500 dark:bg-gray-200 h-4 w-1 inline-block"
+                  className="ml-1 blink bg-gray-500 bg-gray-200 h-4 w-1 inline-block"
                   ref={cursorRef}
                 ></div>
               )}
             </pre>
           )}
         </div>
-
-          <div className="mt-2 md:mt-0  text-right self-start">
-    {!copied ? (
-      <button
-        className="edit md:ml-8 text-gray-500 dark:text-gray-200 text-xl"
-        onClick={() => copy(result)}
-      >
-        <IonIcon icon={clipboardOutline} />
-      </button>
-    ) : (
-      <span className="dark:text-gray-200 text-gray-500 text-xl">
-        <IonIcon icon={checkmarkOutline} />
-      </span>
-    )}
-
-
-    { result  && sources &&sources.length > 0 && (
-      <button onClick={() => setShowSources(true)}>Show Sources</button>
-    )}
-
-{showSources && (
-  <SourcesModal
-    sources={sources}
-    onClose={() => setShowSources(false)}
-    fetchDocumentContent={fetchDocumentContent as (docId: any) => void}
-    setShowDocument={setShowDocument as (show: boolean) => void} // Specify the correct type for setShowDocument prop
-  />
-)}
-{showDocument && (
-  <DocumentViewer content={documentContent} onClose={() => setShowDocument(false)} />
-)}
-
-  </div>
+        <div className="mt-2 md:mt-0 text-right self-start">
+          {!copied ? (
+            <button
+              className="edit md:ml-8 text-gray-500 text-gray-200 text-xl"
+              onClick={() => copy(result)}
+            >
+              <IonIcon icon={clipboardOutline} />
+            </button>
+          ) : (
+            <span className="text-gray-200 text-gray-500 text-xl">
+              <IonIcon icon={checkmarkOutline} />
+            </span>
+          )}
+          {result && sources && sources.length > 0 && (
+            <button
+              style={{
+                backgroundColor: "rgba(50, 50, 50)",
+                color: "lightgray",
+                borderRadius: "8px",
+                border: "none",
+                padding: "10px 20px",
+                cursor: "pointer"
+              }}
+              onClick={() => setShowSources(true)}
+            >
+              Sources
+            </button>
+          )}
+          {showSources && (
+            <SourcesModal
+              sources={sources}
+              onClose={() => setShowSources(false)}
+              fetchDocumentContent={fetchDocumentContent as (docId: any) => void}
+              setShowDocument={setShowDocument as (show: boolean) => void}
+            />
+          )}
+          {showDocument && (
+            <DocumentViewer content={documentContent} onClose={() => setShowDocument(false)} />
+          )}
+        </div>
       </motion.div>
     </div>
   );

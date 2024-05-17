@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import classNames from 'classnames';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
+
 export default function MembershipTab({ visible }: { visible: boolean }) {
   const cancelSubscription = async () => {
     const userEmail = localStorage.getItem('email');
@@ -38,18 +39,68 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
         <div className="p-2">
           <div className="subscription-details mb-4">
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-            <h2 className="text-lg font-bold mb-2">Initial subscription setup fee is 1500$</h2>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-            <p className="mb-4">$1000/month for 1000 tokens with the option to buy more tokens by contacting us through support</p>
-            </div>
+            
+</div>
+<div style={{
+        backgroundColor: '#333', // Dark background color
+        boxShadow: '0 4px 20px rgba(0,0,0,0.5)', // More prominent shadow for dark theme
+        width: '95%', 
+        margin: '40px auto', 
+        padding: '20px', 
+        textAlign: 'center', // Centered text
+
+        borderRadius: '8px', 
+        fontFamily: 'Arial, sans-serif',
+        color: '#ccc' // Light text color for readability on dark background
+    }}>
+        <h1 style={{ fontSize: '22px', color: '#fff' }}>$1000/month Subscription</h1>
+        <h2 style={{
+            fontSize: '18px', 
+            fontWeight: 'bold', 
+            marginBottom: '10px', 
+            color: '#4caf50' // Bright red color to highlight the setup fee
+        }}>
+            Initial subscription setup fee is $1500
+        </h2>
+        <p style={{ fontSize: '16px', lineHeight: '1.5' }}>
+            1000 tokens per month with the option to purchase additional tokens by contacting support.
+        </p>
+        <p style={{ fontSize: '16px', lineHeight: '1.5' }}>
+            Each consultation consumes approximately 1 token.
+        </p>
+        <p style={{ fontSize: '16px', lineHeight: '1.5' }}>
+            Contact us at: <a href="mailto:support@panamaaiq.com" style={{
+                color: '#4caf50', // Green color for links for better visibility
+                textDecoration: 'none'
+            }}>
+            support@panamaaiq.com</a> to activate an account via <span style={{ color: '#0077cc' }}>Yappy</span> or <span style={{ color: '#0077cc' }}>Wire Transfer</span>
+        </p>
+        <a href="mailto:support@panamaaiq.com" style={{
+            display: 'block',
+            width: '100%',
+            padding: '10px',
+            marginTop: '20px',
+            backgroundColor: '#4caf50', // Green button to stand out
+            color: '#fff', // White text for contrast
+            border: 'none',
+            borderRadius: '4px',
+            textAlign: 'center',
+            textDecoration: 'none',
+            fontSize: '16px',
+            cursor: 'pointer'
+        }}>Contact Support</a>
+    </div>
+
+
+
             <div className="paypal-button-container">
               <PayPalButtons
+              
                 style={{ layout: "vertical" }}
                 createSubscription={(data, actions) => {
                   const userEmail = localStorage.getItem('email');
                   return actions.subscription.create({
-                    plan_id: 'P-70J79084WG007374FMYOEFBY',
+                    plan_id: 'P-14841027AX447721SMY3PZZY',
                     custom_id: userEmail || undefined,
                     subscriber: {
                       email_address: userEmail,
@@ -57,15 +108,20 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                   });
                 }}
                 onApprove={(data, actions) => {
-                  localStorage.setItem('tokens', '100');
+                  
                   if (!actions.subscription) {
                       console.error('Subscription actions are undefined');
                       alert('An error occurred during the subscription process. Please contact support.');
                       return Promise.reject(new Error('Subscription actions are undefined'));
                   }
+         
               
                   return actions.subscription.get().then(async (details) => {
                       const userEmail = localStorage.getItem('email');
+                      const subscriptionId = data.subscriptionID;
+
+
+                      
                       if (!userEmail) {
                           alert('User email is not available. Cannot activate subscription.');
                           return Promise.reject(new Error('User email is not available'));
@@ -76,14 +132,14 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                           headers: {
                               'Content-Type': 'application/json',
                           },
-                          body: JSON.stringify({ username: userEmail, subscriptionId: data.subscriptionID }),
+                          body: JSON.stringify({ username: userEmail, subscriptionId:  subscriptionId}),
                       });
               
                       if (!response.ok) {
                           alert('Failed to activate subscription. Please contact support.');
                           return Promise.reject(new Error('Failed to activate subscription' + response.statusText));
                       }
-              
+                      localStorage.setItem('tokens', '1000');
                       alert('Subscription activated successfully!');
                       return Promise.resolve();
                   }).catch((error) => {

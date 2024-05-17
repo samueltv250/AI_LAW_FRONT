@@ -117,8 +117,8 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
             required 
           />
         </div>
-        <button onClick={handleRegister} className="submit-btn">Register</button>
-        <button onClick={onLogin} className="login-btn">Go to Login</button>
+        <button onClick={handleRegister} className="submit-btn">Registrarse</button>
+        <button onClick={onLogin} className="login-btn">Ir a Login</button>
 
         
       </div>

@@ -18,7 +18,7 @@ export default function Chats({
   const chats = useChat((state) => state.chats);
 
   return (
-    <div className="md:mt-10 w-full">
+    <div className="text-gray-300 md:mt-10 w-full">
       {chats.map((chat, index) =>
         chat.role === "assistant" ? (
           <BotMessage 

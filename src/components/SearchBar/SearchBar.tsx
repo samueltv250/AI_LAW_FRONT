@@ -11,7 +11,10 @@ function SearchBar({ onSearch, results, onResultClick, setResults}: { onSearch: 
 
   const [modeDropdownOpen, setModeDropdownOpen] = useState(false);
   const [isFilterPressed, setFilterPressed] = useState(false);
-
+  const modeMapping: { [key: string]: string } = {
+    'Meaning': 'Contenido',
+    'Word': 'Titulo'
+  };
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = async (e: React.FormEvent) => {
@@ -49,7 +52,7 @@ function SearchBar({ onSearch, results, onResultClick, setResults}: { onSearch: 
   return (
     <div className="relative">
       {results.length > 0 && (
-  <ul className="absolute w-full left-0 top-0 transform translate-y-[-100%] bg-white border border-gray-700 rounded-md shadow-md z-20 max-h-[50vh] overflow-y-auto">
+  <ul className="absolute w-full text-black left-0 top-0 transform translate-y-[-100%] bg-white border border-gray-700 rounded-md shadow-md z-20 max-h-[50vh] overflow-y-auto">
   {results.map(result => (
             <li 
               key={result.doc_id} 
@@ -68,6 +71,7 @@ function SearchBar({ onSearch, results, onResultClick, setResults}: { onSearch: 
             type="text"
             className="w-full px-2 py-1 outline-none dark:bg-transparent dark:text-white"
             placeholder="Enter your search query"
+            color='81b0ff'
             onChange={(e) => setQuery(e.target.value)}
             value={query}
             disabled={isLoading}
@@ -76,7 +80,8 @@ function SearchBar({ onSearch, results, onResultClick, setResults}: { onSearch: 
       
         <div className="relative p-4">
   <label className="flex items-center">
-    <span className="mr-2 text-gray-700 dark:text-white">{selectedMode}</span>
+
+    <span className="mr-2 text-black dark:text-white">{modeMapping[selectedMode]}</span>
     <Switch
       onChange={() => setSelectedMode(prevMode => prevMode === 'Meaning' ? 'Word' : 'Meaning')}
       checked={selectedMode === 'Meaning'}
@@ -124,7 +129,7 @@ function SearchBar({ onSearch, results, onResultClick, setResults}: { onSearch: 
     "CIRCULAR",
     "RESUELTO",
     // "CONTRATO DE COMPRAVENTA",
-    "FALLO",
+    
     // "ADENDA",
     // "ACTA",
     // "NOTA",
@@ -132,14 +137,14 @@ function SearchBar({ onSearch, results, onResultClick, setResults}: { onSearch: 
     // "CONTRATO",
     // "REGLAMENTO",
     // "REUNION",
-    // "SENTENCIAS",
+    "SENTENCIAS",
     // "ESTATUTO",
     // "TEXTO",
     // "CONVOCATORIA",
     // "AVISO",
     // "CONVENIO",
-    // "ORDEN",
-    // "EDICTO",
+    "ORDEN",
+    "EDICTO",
     // "PROTOCOLO",
     // "PACTO",
     // "CODIGO",
@@ -149,7 +154,8 @@ function SearchBar({ onSearch, results, onResultClick, setResults}: { onSearch: 
     // "MANUAL",
     // "MEMORANDUM",
     // "GLOSARIO",
-    // "SENTENCIA",
+    "SENTENCIA",
+    "FALLO",
     // "MEMORANDO",
     // "CRITERIO",
     // "DISCURSO",
