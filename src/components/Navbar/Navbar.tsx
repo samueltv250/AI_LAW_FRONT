@@ -59,7 +59,7 @@ export default function Navbar({
               <span className="mr-2 text-xl">
                 <IonIcon icon={addOutline} />
               </span>
-              <span>New chat</span>
+              <span>Nuevo chat</span>
             </button>
             <button
               type="button"

@@ -25,7 +25,7 @@ import './App.css'; // Adjust the path based on your file structure
 
 const validateToken = async (token: string) => {
   try {
-    const response = await fetch('/validate', {
+    const response = await fetch('http://127.0.0.1:5090/validate', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -63,7 +63,7 @@ function App() {
     state.settings.selectedModal,
     state.setModal,
   ]);
-  const isGptDraftSelected = selectedModel.startsWith("gpt-d");
+  const isGptDraftSelected = selectedModel.startsWith("AI Redactor");
 
 
 
@@ -71,7 +71,7 @@ function App() {
 
   const fetchSearchResults = async (query: any, filters: any, mode: string) => {
     try {
-      const response = await fetch('/get_hits', {
+      const response = await fetch('http://127.0.0.1:5090/get_hits', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -133,7 +133,7 @@ function App() {
 
     try {
 
-      const response = await fetch('/get_document', {
+      const response = await fetch('http://127.0.0.1:5090/get_document', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

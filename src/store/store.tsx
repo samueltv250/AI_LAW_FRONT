@@ -281,7 +281,7 @@ const useSettings = createWithEqualityFn<SettingsType>()(
         sendChatHistory: false,
         systemMessage: "",
         useSystemMessageForAllChats: false,
-        selectedModal: "gpt-4",
+        selectedModal: "AI Pregunta/Respuesta",
       },
       modalsList: modalsList,
       isSystemMessageModalVisible: false,
@@ -359,24 +359,25 @@ const useTheme = create<ThemeType>()(
 );
 
 export const months = [
-  "Januray",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "Enero",
+  "Febrero",
+  "Marzo",
+  "Abril",
+  "Mayo",
+  "Junio",
+  "Julio",
+  "Agosto",
+  "Septiembre",
+  "Octubre",
+  "Noviembre",
+  "Diciembre",
 ];
+
 export const priority = [
-  "Today",
-  "Previous 7 Days",
-  "Previous 30 Days",
-  "This month",
+  "Hoy",
+  "Ultimos 7 Dias",
+  "Ultimos 30 Dias",
+  "Este mes",
 ].concat(months);
 
 export const selectChatsHistory = (state: ChatType) => {

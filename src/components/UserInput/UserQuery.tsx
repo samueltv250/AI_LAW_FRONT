@@ -50,7 +50,7 @@ export default function UserQuery() {
           name="query"
           ref={textareaRef}
           className="h-6 px-2  w-full outline-none resize-none dark:bg-transparent dark:text-white placeholder:font-bold"
-          placeholder="Ask a question..."
+          placeholder="Haz una pregunta sobre leyes, politicas, o noticias de panama..."
           onKeyDown={handleOnKeyDown}
           onChange={handleOnInputChange}
           value={query}

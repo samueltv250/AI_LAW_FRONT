@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import classNames from 'classnames';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { OrderResponseBody } from '@paypal/paypal-js';
 
 
 export default function MembershipTab({ visible }: { visible: boolean }) {
+  const [tokenAmount, setTokenAmount] = useState("50"); // Default amount is set to 1
+
   const cancelSubscription = async () => {
     const userEmail = localStorage.getItem('email');
-    
+
     if (userEmail) {
-      const response = await fetch('/cancel_subscription', {
+      const response = await fetch('http://127.0.0.1:5090/cancel_subscription', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,154 +40,146 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
         className={classNames("membership", { hidden: !visible })}
       >
         <div className="p-2">
-          <div className="subscription-details mb-4">
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+
+
+          
+          <div className="subscription-details mb-4 flex flex-row">
+
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' , marginLeft: '20px' }}>
             
 </div>
 <div style={{
-        backgroundColor: '#333', // Dark background color
-        boxShadow: '0 4px 20px rgba(0,0,0,0.5)', // More prominent shadow for dark theme
+        backgroundColor: '#333', // Color de fondo oscuro
+        boxShadow: '0 4px 20px rgba(0,0,0,0.5)', // Sombra más prominente para tema oscuro
         width: '95%', 
         margin: '40px auto', 
-        padding: '20px', 
-        textAlign: 'center', // Centered text
+        maxWidth: '50vw', // Cap the width at 50% of the viewport width
 
+        padding: '20px', 
+        textAlign: 'center', // Texto centrado
         borderRadius: '8px', 
         fontFamily: 'Arial, sans-serif',
-        color: '#ccc' // Light text color for readability on dark background
+        color: '#ccc' // Color de texto claro para legibilidad en fondo oscuro
     }}>
-        <h1 style={{ fontSize: '22px', color: '#fff' }}>$1000/month Subscription</h1>
+        <h1 style={{ fontSize: '22px', color: '#fff' }}>Subscripción Regular</h1>
         <h2 style={{
             fontSize: '18px', 
             fontWeight: 'bold', 
             marginBottom: '10px', 
-            color: '#4caf50' // Bright red color to highlight the setup fee
+            color: '#4caf50' // Color verde brillante para resaltar la compra mínima
         }}>
-            Initial subscription setup fee is $1500
+            Compra mínima de $50 en tokens
         </h2>
         <p style={{ fontSize: '16px', lineHeight: '1.5' }}>
-            1000 tokens per month with the option to purchase additional tokens by contacting support.
+            Cada token corresponde a aproximadamente una consulta al bot de QA. Las consultas y respuestas serán utilizadas para mejorar el sistema cuando se usen cuentas no empresariales.
         </p>
         <p style={{ fontSize: '16px', lineHeight: '1.5' }}>
-            Each consultation consumes approximately 1 token.
+            Cada búsqueda utilizando el motor de búsqueda legal avanzado cuesta 0.1 token.
         </p>
+
         <p style={{ fontSize: '16px', lineHeight: '1.5' }}>
-            Contact us at: <a href="mailto:support@panamaaiq.com" style={{
-                color: '#4caf50', // Green color for links for better visibility
+            Contáctenos en: <a href="mailto:support@panamaaiq.com" style={{
+                color: '#4caf50', // Color verde para enlaces para mejor visibilidad
                 textDecoration: 'none'
             }}>
-            support@panamaaiq.com</a> to activate an account via <span style={{ color: '#0077cc' }}>Yappy</span> or <span style={{ color: '#0077cc' }}>Wire Transfer</span>
+            support@panamaaiq.com</a> para activar una cuenta a través de <span style={{ color: '#0077cc' }}>Yappy</span> o <span style={{ color: '#0077cc' }}>Transferencia Bancaria</span>
         </p>
         <a href="mailto:support@panamaaiq.com" style={{
             display: 'block',
             width: '100%',
             padding: '10px',
             marginTop: '20px',
-            backgroundColor: '#4caf50', // Green button to stand out
-            color: '#fff', // White text for contrast
+            backgroundColor: '#4caf50', // Botón verde para destacar
+            color: '#fff', // Texto blanco para contraste
             border: 'none',
             borderRadius: '4px',
             textAlign: 'center',
             textDecoration: 'none',
             fontSize: '16px',
             cursor: 'pointer'
-        }}>Contact Support</a>
+        }}>Contactar Soporte</a>
     </div>
 
+            <div className="paypal-button-container ml-5 mr-4 flex flex-col items-center justify-center">
 
 
-            <div className="paypal-button-container">
-              <PayPalButtons
-              
-                style={{ layout: "vertical" }}
-                createSubscription={(data, actions) => {
-                  const userEmail = localStorage.getItem('email');
-                  return actions.subscription.create({
-                    plan_id: 'P-14841027AX447721SMY3PZZY',
-                    custom_id: userEmail || undefined,
-                    subscriber: {
-                      email_address: userEmail,
-                    },
-                  });
-                }}
-                onApprove={(data, actions) => {
-                  
-                  if (!actions.subscription) {
-                      console.error('Subscription actions are undefined');
-                      alert('An error occurred during the subscription process. Please contact support.');
-                      return Promise.reject(new Error('Subscription actions are undefined'));
-                  }
-         
-              
-                  return actions.subscription.get().then(async (details) => {
-                      const userEmail = localStorage.getItem('email');
-                      const subscriptionId = data.subscriptionID;
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' , marginBottom: '20px'}}>
+  <span className="text-white ml-2">Tokens: </span>
+  <input
+    type="number"
+    min="50"
+    value={tokenAmount}
+    onChange={(e) => {
+      const newAmount = Number(e.target.value);
+      setTokenAmount(newAmount >= 50 ? newAmount.toString() : "50");
 
-
+    }}
+    className="text-white bg-blue-900 mx-auto block w-1/2 text-center"
+  />
+</div>
+                <PayPalButtons
+                key={tokenAmount}
+                  style={{ layout: "vertical" }}
+                  createOrder={(data, actions) => {
+                    return actions.order.create({
+                      purchase_units: [{
+                        amount: { value: tokenAmount} // Assuming each token costs $10
+                      }],
+                    });
+                  }}
+                  onApprove={(data, actions) => {
+                    if (actions.order) {
+                      const handleTokenPurchase = async (details: OrderResponseBody) => {
+                        const userEmail = localStorage.getItem('email');
+                        if (!userEmail) {
+                          alert('User email is not available. Cannot process token purchase.');
+                          return;
+                        }
                       
-                      if (!userEmail) {
-                          alert('User email is not available. Cannot activate subscription.');
-                          return Promise.reject(new Error('User email is not available'));
-                      }
-              
-                      const response = await fetch('/activate_subscription_api', {
+                        // Prepare the data to be sent to the backend
+                        const purchaseDetails = {
+                          email: userEmail,
+                          amountPaid: details.purchase_units[0].amount.value, // Assuming details structure from PayPal
+                          transactionId: details.id, // Assuming details has an id field
+                          tokensPurchased: tokenAmount
+                        };
+                      
+                        // Send data to the backend
+                        const response = await fetch('http://127.0.0.1:5090/handle_buy_tokens', {
                           method: 'POST',
-                          headers: {
-                              'Content-Type': 'application/json',
-                          },
-                          body: JSON.stringify({ username: userEmail, subscriptionId:  subscriptionId}),
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify(purchaseDetails),
+                        });
+                      
+                        if (response.ok) {
+                          const responseData = await response.json();
+                          if (responseData.success) {
+                            alert(`Successfully purchased ${tokenAmount} tokens!`);
+                          } else {
+                            alert('Transaction verified but failed to update tokens. Please contact support.');
+                          }
+                        } else {
+                          alert('Failed to communicate with the server. Please check your network connection and try again.');
+                        }
+                      };
+
+                      return actions.order.capture().then(details => {
+                        console.log('Order successfully captured:', details);
+                        handleTokenPurchase(details);
                       });
-              
-                      if (!response.ok) {
-                          alert('Failed to activate subscription. Please contact support.');
-                          return Promise.reject(new Error('Failed to activate subscription' + response.statusText));
-                      }
-                      localStorage.setItem('tokens', '1000');
-                      alert('Subscription activated successfully!');
-                      return Promise.resolve();
-                  }).catch((error) => {
-                      console.error('Error during subscription get:', error);
-                      alert('An error occurred during the subscription process. Please contact support. ' + error.message);
-                      return Promise.reject(error);
-                  });
-              }}
-              
-                
-              
-              onError={(err) => {
-                // Log the error details for debugging
-                console.error('PayPal Button Error:', err);
-            
-                // Provide a more detailed error message
-                let errorMessage = 'An error occurred with the PayPal button.';
-                if (err.message) {
-                  errorMessage += ' Error message: ' + err.message;
-                }
-                if (err.name) {
-                  errorMessage += ' Error name: ' + err.name;
-                }
-                if (err.stack) {
-                  errorMessage += ' Stack trace: ' + err.stack;
-                }
-            
-                alert(errorMessage);
-              }}
-              />
-              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-                <button onClick={cancelSubscription} style={{
-                  backgroundColor: 'red',
-                  color: 'white',
-                  padding: '10px 20px',
-                  border: 'none',
-                  borderRadius: '5px',
-                  cursor: 'pointer',
-                  fontSize: '16px',
-                  fontWeight: 'bold',
-                }}>
-                  Cancel Subscription
-                </button>
+                    }
+                    return Promise.resolve(); // Add this line to return a Promise<void>
+                  }}
+                  onError={(err) => {
+                    console.error('PayPal Button Error:', err);
+                    alert('An error occurred with the PayPal button. ' + err.message);
+                  }}
+                />
+
+<div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
               </div>
-            </div>
+              </div>
+              
           </div>
         </div>
       </motion.div>

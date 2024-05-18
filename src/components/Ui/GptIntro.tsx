@@ -14,8 +14,8 @@ export default function GptIntro(this: any) {
   }
   localStorage.setItem("selectedModal", selectedModel);
   // const isGptThreeSelected = selectedModel.startsWith("claude-opus");
-  const isGptFourSelected = selectedModel.startsWith("gpt-4");
-  const isGptDraftSelected = selectedModel.startsWith("gpt-d");
+  const isGptFourSelected = selectedModel.startsWith("AI Pregunta/Respuesta");
+  const isGptDraftSelected = selectedModel.startsWith("AI Redactor");
   
 
   return (
@@ -45,7 +45,7 @@ export default function GptIntro(this: any) {
         </button> */}
 
         <button
-          title="Q/A Mode"
+          title="Modo Pregunta/Respuesta"
           className={classNames(
             "gptd uppercase rounded p-2 transition  dark:text-white flex-1 flex  items-center justify-center",
             {
@@ -54,7 +54,7 @@ export default function GptIntro(this: any) {
               "opacity-50": !isGptFourSelected,
             }
           )}
-          onClick={() => setModel("gpt-4")}
+          onClick={() => setModel("AI Pregunta/Respuesta")}
         >
           <span
             className={classNames("mr-2 transition", {
@@ -63,11 +63,11 @@ export default function GptIntro(this: any) {
           >
             <IonIcon icon={sparkles} />
           </span>
-          <span className="mr-2">Q/A Mode</span>
+          <span className="mr-2">Modo Pregunta/Respuesta</span>
         </button>
-
-        {/* <button
-          title="Drafter"
+{/* 
+        <button
+          title="Modo Redactor"
           className={classNames(
             "gpt4 uppercase rounded p-2 transition  dark:text-white flex-1 flex  items-center justify-center",
             {
@@ -76,7 +76,7 @@ export default function GptIntro(this: any) {
               "opacity-50": !isGptDraftSelected,
             }
           )}
-          onClick={() => setModel("gpt-drafter")}
+          onClick={() => setModel("AI Redactor")}
         >
           <span
             className={classNames("mr-2 transition", {

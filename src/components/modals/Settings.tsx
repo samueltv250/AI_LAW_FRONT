@@ -7,26 +7,25 @@ import { closeOutline } from "ionicons/icons";
 import { useSettings } from "../../store/store";
 import ProfileTab from "../Tabs/ProfileTab";
 import MembershipTab from "../Tabs/MembershipTab";
-
-const varinats = {
+import EmpresaMembershipTab from "../Tabs/EmpresaMember";
+const variants = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: { opacity: 1, scale: 1 },
   exit: { opacity: 0, scale: 0.8, transition: { duration: 0.15 } },
 };
-const tabs = ["settings", "profile", "membership"];
+const tabs = ["profile" , "settings", "membresia individual", "membresia empresarial"];
+
 export default function Settings() {
-  const [selectedTab, setSelectedTab] = useState(
-    "settings"
-  );
+  const [selectedTab, setSelectedTab] = useState("profile");
   const setModalVisible = useSettings((state) => state.setModalVisible);
 
   return (
     <motion.div
-      variants={varinats}
+      variants={variants}
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="tabs font-bold rounded-md bg-white dark:bg-gray-800 mx-2 md:mx-0 text-gray-500 dark:text-gray-300 w-full max-w-xl py-4 transition-all"
+      className="tabs font-bold rounded-md bg-white dark:bg-gray-800 mx-auto text-gray-500 dark:text-gray-300 max-w-80vw max-h-80vh py-4 transition-all"
     >
       <div className="flex items-center justify-between px-2">
         <div className="">
@@ -56,7 +55,8 @@ export default function Settings() {
       <div className="w-full h-[1px] bg-gray-500"></div>
       <SettingsTab visible={selectedTab === "settings"} />
       <ProfileTab visible={selectedTab === "profile"} />
-      <MembershipTab visible={selectedTab === "membership"} />
+      <MembershipTab visible={selectedTab === "membresia individual"} />
+      <EmpresaMembershipTab visible={selectedTab === "membresia empresarial"} />
     </motion.div>
   );
 }

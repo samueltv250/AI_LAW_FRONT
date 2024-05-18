@@ -97,7 +97,7 @@ export default function BotMessage({ index, chat, fetchDocumentContent, setShowD
               }}
               onClick={() => setShowSources(true)}
             >
-              Sources
+              Referencias
             </button>
           )}
           {showSources && (

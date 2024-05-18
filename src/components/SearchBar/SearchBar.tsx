@@ -70,7 +70,7 @@ function SearchBar({ onSearch, results, onResultClick, setResults}: { onSearch: 
           <input
             type="text"
             className="w-full px-2 py-1 outline-none dark:bg-transparent dark:text-white"
-            placeholder="Enter your search query"
+            placeholder="Inguesa tu busqueda legal aqui..."
             color='81b0ff'
             onChange={(e) => setQuery(e.target.value)}
             value={query}

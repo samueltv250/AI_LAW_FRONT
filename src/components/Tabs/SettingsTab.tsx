@@ -107,6 +107,22 @@ export default function SettingsTab({ visible }: { visible: boolean }) {
         </div>
         <div className="flex items-center mb-4 justify-between border border-gray-200 rounded dark:border-gray-700 p-2">
           <span className="ml-2  font-bold  dark:text-gray-300">
+            Logout
+          </span>
+          <button
+  type="button"
+  className="bg-red-700 text-white p-1 px-2 rounded"
+  onClick={() => {
+    localStorage.removeItem('token');
+    location.reload();
+  }}
+>
+  Logout
+</button>
+        </div>
+
+        <div className="flex items-center mb-4 justify-between border border-gray-200 rounded dark:border-gray-700 p-2">
+          <span className="ml-2  font-bold  dark:text-gray-300">
           
           Contact us at: <a href="mailto:support@panamaaiq.com" style={{
                 color: '#4caf50', // Green color for links for better visibility

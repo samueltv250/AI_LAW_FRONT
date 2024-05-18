@@ -64,6 +64,12 @@ export default function useBot({ index, chat }: Props) {
       let errorMessage = typeof error === "string" ? error : error.message;
       alert(errorMessage); // This will show the error message in an error window.
       setError(errorMessage);
+
+      window.alert(`System failed: ${errorMessage || 'Unknown error'}`); // Show the error message or a default one
+
+
+
+
       resultRef.current = "Sorry, looks like I'm having a bad day.";
       setResult("Sorry, looks like I'm having a bad day.");
       addMessage();
