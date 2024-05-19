@@ -13,10 +13,10 @@ const variants = {
   visible: { opacity: 1, scale: 1 },
   exit: { opacity: 0, scale: 0.8, transition: { duration: 0.15 } },
 };
-const tabs = ["profile" , "settings", "membresia individual", "membresia empresarial"];
+const tabs = ["perfil" , "opciones", "membresia individual", "membresia empresarial"];
 
 export default function Settings() {
-  const [selectedTab, setSelectedTab] = useState("profile");
+  const [selectedTab, setSelectedTab] = useState("perfil");
   const setModalVisible = useSettings((state) => state.setModalVisible);
 
   return (
@@ -53,8 +53,8 @@ export default function Settings() {
         </div>
       </div>
       <div className="w-full h-[1px] bg-gray-500"></div>
-      <SettingsTab visible={selectedTab === "settings"} />
-      <ProfileTab visible={selectedTab === "profile"} />
+      <SettingsTab visible={selectedTab === "opciones"} />
+      <ProfileTab visible={selectedTab === "perfil"} />
       <MembershipTab visible={selectedTab === "membresia individual"} />
       <EmpresaMembershipTab visible={selectedTab === "membresia empresarial"} />
     </motion.div>

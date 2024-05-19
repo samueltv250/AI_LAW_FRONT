@@ -113,21 +113,25 @@ function App() {
 
   const renderSearchResults = () => {
     return (
-<ul
-  className="absolute top-full left-0 right-0 z-10 mt-1 p-2 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-auto text-black">
-  {searchResults.map((result: { doc_id: React.Key; doc_title: string; }) => (
-    <li 
-      key={result.doc_id}
-      onClick={() => fetchDocumentContent(result.doc_id)}
-      className="p-2 cursor-pointer hover:bg-gray-100"
-    >
-      {result.doc_title}
-    </li>
-  ))}
-</ul>
-
+      <ul
+        className="absolute top-full left-0 right-0 z-60 mt-1 p-2 bg-gray-900 border border-gray-700 rounded-md shadow-lg max-h-60 overflow-y-auto text-white"
+        style={{ overflowX: 'hidden' }}
+      >
+        {searchResults.map((result: { doc_id: React.Key; doc_title: string; }) => (
+          <li 
+            key={result.doc_id}
+            onClick={() => fetchDocumentContent(result.doc_id)}
+            className="p-2 cursor-pointer hover:bg-gray-700 whitespace-nowrap"
+          >
+            {result.doc_title}
+          </li>
+        ))}
+      </ul>
     );
   };
+  
+  
+  
   const fetchDocumentContent = async (docId: any) => {
     setIsLoadingDocument(true); // Start loading
 

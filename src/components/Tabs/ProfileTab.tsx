@@ -70,33 +70,13 @@ export default function ProfileTab({ visible }: { visible: boolean }) {
       exit="exit"
       className={classNames("p-2", { hidden: !visible })}
     >
-      <div className="profile-pic group flex items-center justify-center relative">
-        <input
-          type="file"
-          name="pic"
-          accept="image/*"
-          className=" hidden"
-          id="pic-file"
-          onChange={handlePicChange}
-        />
-        <Avatar
-          className="avatar  h-20 w-20 ring-2 rounded-full object-cover ring-gray-300 p-1 dark:ring-gray-500"
-          src={avatar}
-        >
-          <button
-            type="button"
-            onClick={() => {
-              const fileInput = document.getElementById(
-                "pic-file"
-              ) as HTMLInputElement;
-              fileInput.click();
-            }}
-            className="invisible absolute z-10 top-0 left-0 right-0 bottom-0 group-hover:visible  transition rounded-full  bg-gray-700 bg-opacity-50  flex items-center justify-center"
-          >
-            <IonIcon icon={pencilOutline} className="text-xl text-gray-100" />
-          </button>
-        </Avatar>
-      </div>
+<div className="profile-pic group flex items-center justify-center relative">
+  <Avatar
+    className="avatar h-20 w-20 ring-2 rounded-full object-cover ring-gray-300 p-1 dark:ring-gray-500"
+    src={avatar}
+  />
+</div>
+
       <div className="my-4 ">
        
           <div className="flex items-center justify-center text-xl">

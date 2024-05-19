@@ -59,10 +59,10 @@ export default function BotMessage({ index, chat, fetchDocumentContent, setShowD
                 { "text-red-500": error }
               )}
             >
-              <ReactMarkdown
-                className="text-gray-300 animate-preulse overflow-x-hidden whitespace-pre-wrap"
-                children={result}
-              />
+<ReactMarkdown
+  className="text-gray-300 animate-preulse overflow-x-hidden whitespace-pre-wrap"
+  children={result.replace(/(\n\s*){3,}/g, '\n\n')}
+/>
               {!isStreamCompleted && !chat.content && (
                 <div
                   className="ml-1 blink bg-gray-500 bg-gray-200 h-4 w-1 inline-block"
@@ -86,19 +86,22 @@ export default function BotMessage({ index, chat, fetchDocumentContent, setShowD
             </span>
           )}
           {result && sources && sources.length > 0 && (
-            <button
-              style={{
-                backgroundColor: "rgba(50, 50, 50)",
-                color: "lightgray",
-                borderRadius: "8px",
-                border: "none",
-                padding: "10px 20px",
-                cursor: "pointer"
-              }}
-              onClick={() => setShowSources(true)}
-            >
-              Referencias
-            </button>
+<button
+  style={{
+    backgroundColor: "#4DB6AC", // Same background color as "Ver Documento"
+    color: "#fff", // Same text color as "Ver Documento"
+    borderRadius: "5px", // Matching border radius
+    border: "none", // No border
+    padding: "10px 20px", // Same padding
+    cursor: "pointer", // Pointer cursor
+    textDecoration: "none", // Remove text decoration
+    transition: "background-color 0.3s ease", // Smooth transition
+  }}
+  onClick={() => setShowSources(true)}
+>
+  Referencias
+</button>
+
           )}
           {showSources && (
             <SourcesModal

@@ -43,7 +43,7 @@ export default function UserMessage({ chat, chatIndex }: Props) {
           {!edit ? (
             <p className="overflow-x-auto text-gray-300">
               <ReactMarkdown className="text-gray-300">
-                {chat.content}
+                  {chat.content.replace(/(\n\s*){3,}/g, '\n\n')}
               </ReactMarkdown>
             </p>
           ) : (

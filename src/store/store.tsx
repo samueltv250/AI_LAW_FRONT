@@ -401,10 +401,10 @@ export const selectChatsHistory = (state: ChatType) => {
     };
 
     if (myDate.isSame(currentDate.format("YYYY-MM-DD"))) {
-      if (!sortedData.hasOwnProperty("Today")) {
-        sortedData["Today"] = [];
+      if (!sortedData.hasOwnProperty("Hoy")) {
+        sortedData["Hoy"] = [];
       }
-      sortedData["Today"].push(data);
+      sortedData["Hoy"].push(data);
       return;
     } else if (currentDate.subtract(7, "days").isBefore(myDate)) {
       if (!sortedData.hasOwnProperty("Previous 7 Days")) {

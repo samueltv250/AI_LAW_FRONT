@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, CSSProperties } from 'react';
 import { Card } from 'semantic-ui-react'; // Assuming you're using Semantic UI
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-export function SourcesModal({ sources, onClose, fetchDocumentContent, setShowDocument }: { sources: any[], onClose: () => void, fetchDocumentContent: (docId: any) => void, setShowDocument: (show: boolean) => void }) {
+export function SourcesModal({ sources, onClose, fetchDocumentContent, setShowDocument }: { sources: any, onClose: any, fetchDocumentContent: any, setShowDocument: any }) {
   // Log the sources to the console for debugging
   console.log('Sources:', sources);
 
@@ -11,96 +13,162 @@ export function SourcesModal({ sources, onClose, fetchDocumentContent, setShowDo
     setShowDocument(true);
   };
 
-  const headerStyle: React.CSSProperties = {
-    position: 'fixed',
-    // top: 0,
-    left: '10%', // Adjusted for centering
-    // padding: '10px 0',
+  // State to manage hover effect for close button
+  const [isHovered, setIsHovered] = useState(false);
+
+  const headerStyle: CSSProperties = {
     textAlign: 'center',
     fontWeight: 'bold',
-    // background
-    backgroundColor: '#353641', // Dark background for the header
+    backgroundColor: '#353641',
     color: 'white',
     fontSize: '24px',
-    width: '80%',
-    boxSizing: 'border-box',
-    boxShadow: '0 2px 4px rgba(255,255,255,0.1)' // Lighter shadow for dark theme
+    padding: '10px 20px',
+    boxShadow: '0 2px 4px rgba(255,255,255,0.1)',
+    width: 'fit-content',
+    margin: '20px auto', // Center horizontally
+    borderRadius: '8px',
   };
 
   // Check if sources is an array and has at least one item
   if (!Array.isArray(sources) || sources.length === 0) {
-    return <p style={{ color: 'white' }}>No sources available.</p>; // Text color adjusted for dark theme
+    return (
+      <div style={overlayStyle}>
+        <div style={modalStyle}>
+          <button
+            onClick={onClose}
+            style={closeButtonStyle(isHovered)}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            aria-label="Close"
+          >
+            <FontAwesomeIcon icon={faTimes} />
+          </button>
+          <div style={headerStyle}>Referencias</div>
+          <p style={{ color: 'white', padding: '20px' }}>No hay referencias disponibles.</p>
+        </div>
+      </div>
+    );
   }
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      overflow: 'auto',
-      backgroundColor: 'rgba(0,0,0,0.5)',
-      zIndex: 9999
-    }}>
-      <div style={{
-        margin: 'auto',
-        width: '80%',
-        border: '1px solid #555', // Darker border color
-        backgroundColor: '#222', // Dark background for the card
-        padding: '20px',
-        textAlign: 'left',
-        boxShadow: '0px 4px 8px 0px rgba(255,255,255,0.2)', // Lighter shadow for dark theme
-      }}>
-        <button onClick={onClose} style={{
-          position: 'fixed',
-          right: '20px',
-          top: '20px',
-          fontSize: '24px',
-          fontWeight: 'bold',
-          color: '#ff0000',
-          border: 'none',
-          background: 'transparent',
-          cursor: 'pointer',
-          zIndex: 10000
-        }}>X</button>
-
-        <div style={headerStyle}>Sources</div>
-
-        <div style={{ paddingTop: '60px', display: 'flex', flexDirection: 'column', gap: '20px' }}> {/* Added gap between cards */}
-        {sources.map((source, index) => (
-          <Card key={index} style={{ backgroundColor: '#353641', color: 'white', width: '100%' }}> {/* Card styles for dark theme, text centered and width adjusted */}
-<Card.Content>
-  <Card.Header>
-    <div style={{ color: 'white' }}>
-      <strong>{source.final_title}</strong>
-    </div>
-  </Card.Header>
-  <Card.Description>
-    <p style={{ color: 'white' }}>
-      {source.content}
-    </p>
-  </Card.Description>
-  <Card.Meta>
-    {source.id_text !== "google" ? (
-      <button onClick={() => handleFetchDocument(source.doc_id)} style={{
-        color: '#4DB6AC', // Teal text color for buttons
-        cursor: 'pointer',
-      }}>View Document</button>
-    ) : (
-      <a href={source.url} target="_blank" rel="noopener noreferrer" style={{
-        color: '#4DB6AC', // Teal text color for links
-        cursor: 'pointer',
-      }}>Go to source</a>
-    )}
-  </Card.Meta>
-</Card.Content> 
-
-
-         </Card>
-        ))}
-      </div>
+    <div style={overlayStyle}>
+      <div style={modalStyle}>
+        <button
+          onClick={onClose}
+          style={closeButtonStyle(isHovered)}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          aria-label="Close"
+        >
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
+        <div style={headerStyle}>Referencias</div>
+        <div style={{ paddingTop: '20px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {sources.map((source, index) => (
+            <Card key={index} style={cardStyle}>
+              <Card.Content>
+                <Card.Header>
+                  <div style={{ color: 'white' }}>
+                    <strong>{source.final_title}</strong>
+                  </div>
+                </Card.Header>
+                <Card.Description>
+                  <p style={{ color: 'white', textAlign: 'left', padding: '10px 0' }}>
+                    {source.content}
+                  </p>
+                </Card.Description>
+                <Card.Meta style={{ textAlign: 'center' }}>
+                  {source.id_text !== "google" ? (
+                    <button onClick={() => handleFetchDocument(source.doc_id)} style={buttonStyle}>
+                      Ver Documento
+                    </button>
+                  ) : (
+                    <button onClick={() => window.open(source.url, '_blank')} style={buttonStyle}>
+                      Ir a la fuente
+                    </button>
+                  )}
+                </Card.Meta>
+              </Card.Content>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
+
+const overlayStyle: CSSProperties = {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  backgroundColor: 'rgba(0,0,0,0.5)',
+  zIndex: 9999,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+};
+
+const modalStyle: CSSProperties = {
+  backgroundColor: '#222',
+  padding: '20px',
+  borderRadius: '8px',
+  boxShadow: '0px 4px 8px 0px rgba(255,255,255,0.2)',
+  width: '80%',
+  maxWidth: '800px',
+  maxHeight: '90vh',
+  overflowY: 'auto',
+  position: 'relative',
+  animation: 'fadeIn 0.3s ease-in-out'
+};
+
+const closeButtonStyle = (isHovered: boolean): CSSProperties => ({
+  position: 'absolute',
+  right: '20px',
+  top: '20px',
+  fontSize: '24px',
+  fontWeight: 'bold',
+  color: '#fff',
+  border: 'none',
+  background: isHovered ? '#ff4d4d' : '#ff0000',
+  cursor: 'pointer',
+  borderRadius: '50%',
+  width: '40px',
+  height: '40px',
+  lineHeight: '40px',
+  textAlign: 'center',
+  transition: 'background 0.2s ease-in-out, transform 0.2s ease-in-out',
+  transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
+
+const cardStyle: CSSProperties = {
+  backgroundColor: '#353641',
+  color: 'white',
+  width: '100%',
+  textAlign: 'left',
+  padding: '15px', // Adding padding inside the card for better spacing
+  borderRadius: '5px',
+};
+
+const buttonStyle: CSSProperties = {
+  color: '#fff',
+  backgroundColor: '#4DB6AC',
+  cursor: 'pointer',
+  border: 'none',
+  borderRadius: '5px',
+  padding: '10px 20px',
+  textDecoration: 'none',
+  transition: 'background-color 0.3s ease',
+  marginTop: '10px',
+  display: 'inline-block'
+};
+
+const linkStyle: CSSProperties = {
+  color: '#4DB6AC',
+  cursor: 'pointer',
+  textDecoration: 'underline',
+};

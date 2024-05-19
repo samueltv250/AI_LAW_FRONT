@@ -23,7 +23,7 @@ export default function HeaderSearch() {
 
 
       <span
-  title="Search Mode"
+  title="Modo Busqueda"
   className={classNames(
     "gptd uppercase rounded p-2 transition  dark:text-white flex-1 flex  items-center justify-center",
     {
@@ -39,7 +39,7 @@ export default function HeaderSearch() {
   >
 <IonIcon icon={search} />
   </span>
-  <span className="mr-2">Search Mode</span>
+  <span className="mr-2">Modo Busqueda</span>
 </span>
 
 
