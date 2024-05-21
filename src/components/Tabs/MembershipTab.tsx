@@ -11,7 +11,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
     const userEmail = localStorage.getItem('email');
 
     if (userEmail) {
-      const response = await fetch('http://127.0.0.1:5090/cancel_subscription', {
+      const response = await fetch('/cancel_subscription', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -55,10 +55,10 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                 Compra mínima de $50 en tokens
               </h2>
               <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#bbb' }}>
-                Cada token corresponde a aproximadamente una consulta al bot de QA. Las consultas y respuestas serán utilizadas para mejorar el sistema cuando se usen cuentas no empresariales.
+                Cada token corresponde a aproximadamente dos consultas al bot de QA. Las consultas y respuestas serán utilizadas para mejorar el sistema cuando se usen cuentas no empresariales.
               </p>
               <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#bbb' }}>
-                Cada búsqueda utilizando el motor de búsqueda legal avanzado cuesta 0.1 token.
+                Cada búsqueda utilizando el motor de búsqueda legal avanzado consume 0.1 token.
               </p>
               <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#bbb' }}>
                 Contáctenos en: <a href="mailto:support@panamaaiq.com" style={{ color: '#4caf50', textDecoration: 'none' }}>support@panamaaiq.com</a> para activar una cuenta a través de <span style={{ color: '#0077cc' }}>Yappy</span> o <span style={{ color: '#0077cc' }}>Transferencia Bancaria</span>.
@@ -127,7 +127,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                       transactionId: details.id,
                       tokensPurchased: tokenAmount
                     };
-                    const response = await fetch('http://127.0.0.1:5090/handle_buy_tokens', {
+                    const response = await fetch('/handle_buy_tokens', {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify(purchaseDetails),

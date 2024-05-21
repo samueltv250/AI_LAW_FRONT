@@ -1,5 +1,46 @@
 import React, { CSSProperties } from 'react';
 
+const BetaAnnouncement = () => {
+  const styles: { [key: string]: CSSProperties } = {
+    section: {
+      marginBottom: '40px',
+      padding: '20px',
+      border: '1px solid #007bff',
+      borderRadius: '5px',
+      backgroundColor: '#f9f9f9',
+    },
+    sectionTitle: {
+      fontSize: '24px',
+      fontWeight: 'bold',
+      marginBottom: '10px',
+      color: '#007bff',
+    },
+    paragraph: {
+      fontSize: '16px',
+      lineHeight: '1.6',
+      color: '#333',
+    },
+    emailLink: {
+      color: '#007bff',
+      textDecoration: 'none',
+    },
+  };
+
+  return (
+<section style={styles.section}>
+  <h3 style={styles.sectionTitle}>Anuncio Beta</h3>
+  <p style={styles.paragraph}>
+    La aplicación está actualmente en beta y estoy trabajando continuamente en mejoras. ¡Estoy emocionado de anunciar que pronto lanzaré un redactor de documentos con IA!
+  </p>
+  <p style={styles.paragraph}>
+    Agradezco cualquier comentario o solicitud de características que puedan tener. Por favor, envíenlos a mi equipo de soporte a{' '}
+    <a style={styles.emailLink} href="mailto:support@panamaaiq.com">support@panamaaiq.com</a>.
+  </p>
+</section>
+
+  );
+};
+
 const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => void, onRegisterClick: () => void }) => {
   const styles: { [key: string]: CSSProperties } = {
     body: {
@@ -219,37 +260,34 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
               Solo tienes que hacer una pregunta sobre leyes panameñas o cualquier tema especializado en Panamá, y nuestro <strong style={styles.strong}>Agente de consultas AI</strong> se encargará de buscar la información en nuestra base de datos o la deep web, proporcionándote un resumen con referencias y documentos completos.
             </p>
           </div>
-          <div style={styles.subsection}>
-  {/* <h4 style={styles.subsectionTitle}>
-    Generación de Documentos Legales
-    <span style={{ ...styles.subsectionTitleUnderline, width: 'calc(100% - 20px)' }}></span>
-  </h4>
-  <p>
-    Estamos probando en fase beta una nueva funcionalidad para la <strong style={styles.strong}>generación de documentos legales completos</strong>.
-  </p>
-  <p>
-    Esta herramienta permitirá a los usuarios crear documentos legales completos a partir de plantillas personalizables y adaptadas a sus necesidades específicas.
-  </p>
-  <p>
-    Solo podrás probar el generador de documentos después de un mes de la activación de tu cuenta y la primera compra de tokens.
-  </p>
-  <p>
-    Si deseas participar en la beta, contáctanos en: <a style={styles.emailLink} href="mailto:support@panamaaiq.com">support@panamaaiq.com</a>
-  </p> */}
-</div>
-
         </section>
 
+        <section style={styles.section}>
+          <h3 style={isSmallScreen ? { ...styles.sectionTitle, ...styles.sectionTitleSmall, textAlign: 'left' } : { ...styles.sectionTitle, textAlign: 'left' }}>
+            Demo del Sistema
+          </h3>
+          <div style={isSmallScreen ? { ...styles.responsiveVideoWrapper, ...styles.responsiveVideoWrapperSmall } : styles.responsiveVideoWrapper}>
+            <iframe
+              style={styles.responsiveVideo}
+              src="https://www.youtube.com/embed/Y8wV-2XkB70"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </section>
+        <BetaAnnouncement />
         <section style={styles.section}>
           <h3 style={isSmallScreen ? { ...styles.sectionTitle, ...styles.sectionTitleSmall, textAlign: 'left' } : { ...styles.sectionTitle, textAlign: 'left' }}>
             Detalles de Precios para Cuentas Individuales
           </h3>
           <div style={styles.subsection}>
             <p>
-              <strong style={styles.strong}>Membresía Individual:</strong> Compra mínima de $50 en tokens. Cada token corresponde a aproximadamente una consulta al bot de QA. Las consultas y respuestas serán utilizadas para mejorar el sistema cuando se usen cuentas no empresariales.
+              <strong style={styles.strong}>Membresía Individual:</strong> Compra mínima de $50 en tokens. Cada token corresponde a aproximadamente dos consultas al bot de QA. Las consultas y respuestas serán utilizadas para mejorar el sistema cuando se usen cuentas no empresariales.
             </p>
             <p>
-              Cada consulta legal consume aproximadamente 1 token y proporciona una respuesta completa con enlaces a todas las fuentes. Puede consumir mucho menos de un token si la pregunta no requiere mucha investigacion.
+              Cada consulta legal consume entr 0.5-1 tokens y proporciona una respuesta completa con enlaces a todas las fuentes. Puede consumir mucho menos si la pregunta no requiere mucha investigación.
             </p>
           </div>
         </section>
@@ -260,7 +298,7 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
           </h3>
           <div style={styles.subsection}>
             <p>
-              <strong style={styles.strong}>Membresía Empresarial:</strong> $1000 por mes. Incluye 2000 tokens cada mes. 
+              <strong style={styles.strong}>Membresía Empresarial:</strong> $1000 por mes. Incluye 1500 tokens cada mes. 
             </p>
             <p>
               Las cuentas empresariales garantizan que sus datos solo serán vistos por usted y se almacenarán únicamente en su dispositivo, sin utilizarse para mejorar o entrenar el sistema.
@@ -290,22 +328,6 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
           </h3>
           <div style={styles.subsection}>
             <p>Por razones de seguridad, todos los datos se almacenan localmente en tu navegador.</p>
-          </div>
-        </section>
-
-        <section style={styles.section}>
-          <h3 style={isSmallScreen ? { ...styles.sectionTitle, ...styles.sectionTitleSmall, textAlign: 'left' } : { ...styles.sectionTitle, textAlign: 'left' }}>
-            Demo del Sistema
-          </h3>
-          <div style={isSmallScreen ? { ...styles.responsiveVideoWrapper, ...styles.responsiveVideoWrapperSmall } : styles.responsiveVideoWrapper}>
-            <iframe
-              style={styles.responsiveVideo}
-              src="https://www.youtube.com/embed/Y8wV-2XkB70"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
           </div>
         </section>
       </main>

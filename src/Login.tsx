@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './Login.css'; // Import a CSS file
-import  {  useAuth } from "./store/store";
+import { useAuth } from "./store/store";
 import Avatar from "./components/Avatar/Avatar";
+
 interface LoginProps {
   onLogin: () => void;
   onRegister: () => void;
@@ -15,8 +16,9 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
     state.user.name,
     state.setUser,
   ]);
+
   const handleLogin = async () => {
-    const response = await fetch('http://127.0.0.1:5090/login', {
+    const response = await fetch('/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -28,10 +30,9 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
       const data = await response.json();
       const token = data.access_token;
       const user = data.user;
-      const first_name =  user.first_name;
+      const first_name = user.first_name;
       const last_name = user.last_name;
       const tokens = JSON.stringify(data.tokens);
-      
 
       localStorage.setItem('token', token);
       localStorage.setItem('first_name', first_name);
@@ -45,26 +46,28 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
         name: localStorage.getItem('full_name') || '',
         email: localStorage.getItem('email') || '',
         tokens: localStorage.getItem('tokens') || '',
-
       });
       onLogin();
     } else {
       const errorData = await response.json(); // Assuming the error message is in JSON format
       window.alert(`Login failed: ${errorData.message || 'Unknown error'}`); // Show the error message or a default one
-  
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      handleLogin();
     }
   };
 
   return (
     <div className="login-container">
       <div className="avatar-container">
-
-              <Avatar
-          className="avatar  h-20 w-20 ring-2 rounded-full object-cover ring-gray-300 p-1 dark:ring-gray-500"
+        <Avatar
+          className="avatar h-20 w-20 ring-2 rounded-full object-cover ring-gray-300 p-1 dark:ring-gray-500"
           src={avatar}
-        >
-        </Avatar>
-        </div>
+        />
+      </div>
       <h2 className="centered-title">Login</h2>
       <div>
         <div className="input-group">
@@ -73,6 +76,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
             type="email" 
             value={email} 
             onChange={(e) => setEmail(e.target.value)} 
+            onKeyDown={handleKeyDown}
             required 
           />
         </div>
@@ -82,6 +86,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
             type="password" 
             value={password} 
             onChange={(e) => setPassword(e.target.value)} 
+            onKeyDown={handleKeyDown}
             required 
           />
         </div>

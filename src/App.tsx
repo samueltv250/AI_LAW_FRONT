@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { searchOutline, closeOutline, returnUpBackOutline} from "ionicons/icons";
+import { searchOutline, closeOutline, returnUpBackOutline } from "ionicons/icons";
 import SearchBar from './components/SearchBar/SearchBar';
 import DocumentViewer from './components/DocumentViewer/DocumentViewer';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -25,17 +25,15 @@ import './App.css'; // Adjust the path based on your file structure
 
 const validateToken = async (token: string) => {
   try {
-    const response = await fetch('http://127.0.0.1:5090/validate', {
+    const response = await fetch('/validate', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
     if (!response.ok) {
-
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-
 
     return response;
   } catch (error) {
@@ -65,13 +63,9 @@ function App() {
   ]);
   const isGptDraftSelected = selectedModel.startsWith("AI Redactor");
 
-
-
-
-
   const fetchSearchResults = async (query: any, filters: any, mode: string) => {
     try {
-      const response = await fetch('http://127.0.0.1:5090/get_hits', {
+      const response = await fetch('/get_hits', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -130,14 +124,11 @@ function App() {
     );
   };
   
-  
-  
   const fetchDocumentContent = async (docId: any) => {
     setIsLoadingDocument(true); // Start loading
 
     try {
-
-      const response = await fetch('http://127.0.0.1:5090/get_document', {
+      const response = await fetch('/get_document', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -160,7 +151,6 @@ function App() {
 
     } catch (error) {
       console.error('Error fetching document content:', error);
-
       setIsLoadingDocument(false); // Stop loading
     }
   };
@@ -170,33 +160,30 @@ function App() {
     state.user.name,
     state.setUser,
   ]);
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      // Send a request to the server to validate the token
       validateToken(token) // Assuming this function returns a promise with the response
-      .then(response => {
-        // Ensure that this block can handle the 'await' operator
-        return response.json(); // Parse JSON response
-      })
-      .then(data => {
-        // Assuming 'data' contains the tokens and other user information
-        localStorage.setItem('tokens', JSON.stringify(data.tokens));
-        setIsLoggedIn(true);
+        .then(response => response.json()) // Parse JSON response
+        .then(data => {
+          // Assuming 'data' contains the tokens and other user information
+          localStorage.setItem('tokens', JSON.stringify(data.tokens));
+          setIsLoggedIn(true);
   
-        // Update user state with the new information
-        setUser({
-          avatar,
-          name: localStorage.getItem('full_name') || '',
-          email: localStorage.getItem('email') || '',
-          tokens: localStorage.getItem('tokens') || '',
+          // Update user state with the new information
+          setUser({
+            avatar,
+            name: localStorage.getItem('full_name') || '',
+            email: localStorage.getItem('email') || '',
+            tokens: localStorage.getItem('tokens') || '',
+          });
+        })
+        .catch(error => {
+          // If the server responds with an error, the token is not valid
+          setIsLoggedIn(false);
+          console.error('Token validation error:', error);
         });
-      })
-      .catch(error => {
-        // If the server responds with an error, the token is not valid
-        setIsLoggedIn(false);
-        console.error('Token validation error:', error);
-      });
     }
   
     if (theme === "dark") {
@@ -205,9 +192,41 @@ function App() {
       document.documentElement.classList.remove("dark");
     }
   }, [theme]);
+
+  const handleLogin = () => {
+    const version = localStorage.getItem('V1');
+    if (!version) {
+      localStorage.clear();
+      localStorage.setItem('V1', 'true');
+
+    }
+
+    const token = localStorage.getItem('token');
+    if (token) {
+      validateToken(token) // Assuming this function returns a promise with the response
+        .then(response => response.json()) // Parse JSON response
+        .then(data => {
+          // Assuming 'data' contains the tokens and other user information
+          localStorage.setItem('tokens', JSON.stringify(data.tokens));
+          setIsLoggedIn(true);
+  
+          // Update user state with the new information
+          setUser({
+            avatar,
+            name: localStorage.getItem('full_name') || '',
+            email: localStorage.getItem('email') || '',
+            tokens: localStorage.getItem('tokens') || '',
+          });
+        })
+        .catch(error => {
+          // If the server responds with an error, the token is not valid
+          setIsLoggedIn(false);
+          console.error('Token validation error:', error);
+        });
+    }
+  };
+
   const renderPage = () => {
-
-
     if (showDocument) {
       return <DocumentViewer content={documentContent} onClose={() => setShowDocument(false)} />;
     }
@@ -215,7 +234,7 @@ function App() {
     if (!isLoggedIn) {
       switch(currentScreen) {
         case "login":
-          return <Login onLogin={() => setIsLoggedIn(true)} onRegister={() => setCurrentScreen("register")} />;
+          return <Login onLogin={handleLogin} onRegister={() => setCurrentScreen("register")} />;
         case "register":
           return <Register onLogin={() => setCurrentScreen("login")} onRegister={function (): void {
             throw new Error('Function not implemented.');
@@ -224,41 +243,31 @@ function App() {
         default:
           return <LandingPage onLoginClick={() => setCurrentScreen("login")} onRegisterClick={() => setCurrentScreen("register")} />;
       }
-
-    }
-    else {
-      
-
+    } else {
       return (
         <main className={classNames("w-full transition-all duration-500", {"md:ml-[260px]": active})}>
           <div className="">
-
-          {!searchActive && (
-
-            <button
-              type="button"
-              className="shadow fixed p-2 h-8 w-8 text-sm top-4 left-4 border-2 hidden md:inline-flex dark:text-white text-gray-700 dark:border border-gray-400 rounded-md items-center justify-center"
-              onClick={() => setActive(!active)}
-            >
-              <i className="fa-regular fa-window-maximize rotate-90"></i>
-            </button>)}
-
-
-
+            {!searchActive && (
+              <button
+                type="button"
+                className="shadow fixed p-2 h-8 w-8 text-sm top-4 left-4 border-2 hidden md:inline-flex dark:text-white text-gray-700 dark:border border-gray-400 rounded-md items-center justify-center"
+                onClick={() => setActive(!active)}
+              >
+                <i className="fa-regular fa-window-maximize rotate-90"></i>
+              </button>
+            )}
           </div>
 
-
-          {searchActive && <HeaderSearch /> }
+          {searchActive && <HeaderSearch />}
           {!searchActive && isChatsVisible && <Header />}
-          {!searchActive && !isChatsVisible &&  <GptIntro />}
+          {!searchActive && !isChatsVisible && <GptIntro />}
     
-          {isChatsVisible &&      <Chats 
-  fetchDocumentContent={fetchDocumentContent} 
-  showDocument={showDocument} 
-  setShowDocument={setShowDocument}
-  documentContent={documentContent} 
-/>
-}
+          {isChatsVisible && <Chats 
+            fetchDocumentContent={fetchDocumentContent} 
+            showDocument={showDocument} 
+            setShowDocument={setShowDocument}
+            documentContent={documentContent} 
+          />}
           <div
             className={classNames(
               "fixed left-0 px-2 right-0 transition-all duration-500 bottom-0 dark:shadow-lg py-1 shadow-md backdrop-blur-sm bg-white/10 dark:bg-dark-primary/10",
@@ -269,7 +278,7 @@ function App() {
             )}
           >
             <div className="max-w-2xl md:max-w-[calc(100% - 260px)] mx-auto">
-              {!isChatsVisible && !isGptDraftSelected && !searchActive&&(
+              {!isChatsVisible && !isGptDraftSelected && !searchActive && (
                 <>
                   <DefaultIdeas />
                 </>
@@ -277,37 +286,35 @@ function App() {
   
               <div className="dark:bg-inherit">
                 {/* Search bar will be shown here when search is active */}
-                {!isLoadingDocument &&searchActive && (
+                {!isLoadingDocument && searchActive && (
                 <>
                   <SearchBar
                     onSearch={fetchSearchResults}
                     results={searchResults}
                     onResultClick={fetchDocumentContent}
-                    setResults = {setSearchResults}
+                    setResults={setSearchResults}
                   />
                   {renderSearchResults()}
                 </>
                 )}
-                 {isLoadingDocument &&searchActive && (
+                {isLoadingDocument && searchActive && (
                 <>
-   <div style={{
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  height: '100vh',  // Adjust the height as needed to center vertically in the available space
-  width: '100%',
-  overflow: 'hidden'
-}}>
-  <div style={{
-    width: '50px',
-    height: '50px',
-    backgroundColor: '#00ff00',  // A bright color for the circle
-    borderRadius: '50%',
-    animation: 'pulsate 1.5s ease-out infinite'
-  }} />
-</div>
-
-
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: '100vh',  // Adjust the height as needed to center vertically in the available space
+                    width: '100%',
+                    overflow: 'hidden'
+                  }}>
+                    <div style={{
+                      width: '50px',
+                      height: '50px',
+                      backgroundColor: '#00ff00',  // A bright color for the circle
+                      borderRadius: '50%',
+                      animation: 'pulsate 1.5s ease-out infinite'
+                    }} />
+                  </div>
                 </>
                 )}
                 {/* UserQuery is rendered here, you can adjust if it should be hidden/shown based on searchActive */}
@@ -316,32 +323,29 @@ function App() {
             </div>
           </div>
         </main>
-      ) }
-    
+      )
+    }
   };
 
   return (
     <div className="App font-montserrat md:flex">
-              {!isChatsVisible && isLoggedIn && (
-    <IonIcon
-    icon={searchActive ? returnUpBackOutline : searchOutline}
-    onClick={() =>{
-      setSearchActive(!searchActive);
-      setActive(false);
-    }}
-    className={classNames(
-      "shadow fixed p-2 h-8 w-8 text-sm top-4 right-4 border-2 hidden md:inline-flex dark:text-white text-gray-700 dark:border border-gray-400 rounded-md items-center justify-center",
-      {
-        "text-3xl dark:text-white ": searchActive,
-        "text-3xl text-gray-700 dark:text-white": !searchActive
-      }
-    )}
-  />
-                )}
-    
-
-    {!searchActive && (
-      <Navbar active={active} setActive={setActive} />)}
+      {!isChatsVisible && isLoggedIn && (
+        <IonIcon
+          icon={searchActive ? returnUpBackOutline : searchOutline}
+          onClick={() => {
+            setSearchActive(!searchActive);
+            setActive(false);
+          }}
+          className={classNames(
+            "shadow fixed p-2 h-8 w-8 text-sm top-4 right-4 border-2 hidden md:inline-flex dark:text-white text-gray-700 dark:border border-gray-400 rounded-md items-center justify-center",
+            {
+              "text-3xl dark:text-white ": searchActive,
+              "text-3xl text-gray-700 dark:text-white": !searchActive
+            }
+          )}
+        />
+      )}
+      {!searchActive && <Navbar active={active} setActive={setActive} />}
       {renderPage()}
     </div>
   );

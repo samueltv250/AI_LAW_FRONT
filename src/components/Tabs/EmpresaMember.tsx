@@ -11,7 +11,7 @@ export default function EmpresaMembershipTab({ visible }: { visible: boolean }) 
     const userEmail = localStorage.getItem('email');
 
     if (userEmail) {
-      const response = await fetch('http://127.0.0.1:5090/cancel_subscription', {
+      const response = await fetch('/cancel_subscription', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ export default function EmpresaMembershipTab({ visible }: { visible: boolean }) 
                 Tarifa inicial de configuración de $1500 y $1000/mes después
               </h2>
               <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#bbb' }}>
-                Incluye 2000 tokens por mes. Las cuentas empresariales garantizan que sus datos solo serán vistos por usted y se almacenarán únicamente en su dispositivo, sin utilizarse para mejorar el sistema.
+                Incluye 1500 tokens por mes. Las cuentas empresariales garantizan que sus datos solo serán vistos por usted y se almacenarán únicamente en su dispositivo, sin utilizarse para mejorar el sistema.
               </p>
               <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#bbb' }}>
                 Contáctenos en: <a href="mailto:support@panamaaiq.com" style={{ color: '#4caf50', textDecoration: 'none' }}>support@panamaaiq.com</a> para activar una cuenta a través de <span style={{ color: '#0077cc' }}>Yappy</span> o <span style={{ color: '#0077cc' }}>Transferencia Bancaria</span>.
@@ -82,6 +82,10 @@ export default function EmpresaMembershipTab({ visible }: { visible: boolean }) 
               createSubscription={(data, actions) => {
                 const userEmail = localStorage.getItem('email');
                 return actions.subscription.create({
+                  application_context: {
+                    shipping_preference: "NO_SHIPPING"
+                  },
+
                   plan_id: 'P-14841027AX447721SMY3PZZY',
                   custom_id: userEmail || undefined,
                   subscriber: {
@@ -105,7 +109,7 @@ export default function EmpresaMembershipTab({ visible }: { visible: boolean }) 
                     return Promise.reject(new Error('User email is not available'));
                   }
 
-                  const response = await fetch('http://127.0.0.1:5090/activate_subscription_api', {
+                  const response = await fetch('/activate_subscription_api', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
