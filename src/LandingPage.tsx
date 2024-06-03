@@ -275,7 +275,7 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
               <span style={{ ...styles.subsectionTitleUnderline, width: 'calc(100% - 20px)' }}></span>
             </h4>
             <p>
-              Solo tienes que hacer una pregunta sobre leyes panameñas o cualquier tema especializado en Panamá, y nuestro <strong style={styles.strong}>Agente de consultas AI</strong> se encargará de buscar la información en nuestra base de datos o la deep web, proporcionándote un resumen con referencias y documentos completos.
+              Solo tienes que hacer una consulta sobre leyes panameñas o cualquier tema especializado en Panamá, y nuestro <strong style={styles.strong}>Agente de consultas AI</strong> se encargará de buscar la información en nuestra base de datos o la deep web, proporcionándote un resumen con referencias y documentos completos.
             </p>
           </div>
         </section>
@@ -302,10 +302,10 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
         <div style={{ textAlign: 'center' }}>
   <div className="token-info-box" style={{ display: 'inline-block', border: '2px solid #c69354', padding: '15px', borderRadius: '12px', margin: '20px 0', backgroundColor: '#191919' }}>
     <p style={{ fontSize: '18px', color: '#c69354', margin: '5px 0' }}>
-      1 Token = $1
+      1 Crédito = $1
     </p>
     <p style={{ fontSize: '18px', color: '#c69354', margin: '5px 0' }}>
-      1 Token ≈ 2 Preguntas o 10 Búsquedas Avanzadas
+      1 Crédito ≈ 2 Preguntas o 10 Búsquedas Avanzadas
     </p>
   </div>
 </div>
@@ -318,7 +318,7 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
           </h3>
           <div style={styles.subsection}>
             <p>
-              <strong style={styles.strong}>Membresía Individual:</strong> Compra mínima de $50 en creditos. Cada token cuesta 1$ y corresponde a aproximadamente dos consultas al bot de QA. Las consultas y respuestas serán utilizadas anonimamente para mejorar el sistema cuando se usen cuentas no empresariales.
+              <strong style={styles.strong}>Membresía Individual:</strong> Compra mínima de $50 en créditos. Cada crédito cuesta 1$ y corresponde a aproximadamente dos consultas al bot de QA. Las consultas y respuestas serán utilizadas anonimamente para mejorar el sistema cuando se usen cuentas no empresariales.
             </p>
           </div>
         </section>
@@ -329,7 +329,7 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
           </h3>
           <div style={styles.subsection}>
             <p>
-              <strong style={styles.strong}>Membresía Empresarial:</strong> $1000 por mes. Incluye 1000 creditos cada mes. 
+              <strong style={styles.strong}>Membresía Empresarial:</strong> $1000 por mes. Incluye 1000 créditos cada mes. 
             </p>
             <p>
               Las cuentas empresariales garantizan que sus datos solo serán vistos por usted y se almacenarán únicamente en su dispositivo, sin utilizarse para mejorar o entrenar el sistema.

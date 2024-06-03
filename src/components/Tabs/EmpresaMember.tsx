@@ -55,7 +55,7 @@ export default function EmpresaMembershipTab({ visible }: { visible: boolean }) 
                 $1500 Configuración + $1000/mes
               </h2>
               <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#bbb' }}>
-                Incluye 1000 creditos/mes. Datos almacenados solo en su dispositivo.
+                Incluye 1000 créditos/mes. Datos almacenados solo en su dispositivo.
               </p>
               <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#bbb' }}>
                 Contáctenos para activar una cuenta a través de <span style={{ color: '#0077cc' }}>Yappy</span> o <span style={{ color: '#0077cc' }}>Transferencia Bancaria</span>.
@@ -79,10 +79,10 @@ export default function EmpresaMembershipTab({ visible }: { visible: boolean }) 
           <div style={{ textAlign: 'center' }}>
   <div className="token-info-box" style={{ display: 'inline-block', border: '2px solid #c69354', padding: '15px', borderRadius: '12px', margin: '20px 0' }}>
     <p style={{ fontSize: '18px', color: '#c69354', margin: '5px 0' }}>
-      1 Token = $1
+      1 Crédito = $1
     </p>
     <p style={{ fontSize: '18px', color: '#c69354', margin: '5px 0' }}>
-      1 Token ≈ 2 Preguntas o 10 Búsquedas Avanzadas
+      1 Crédito ≈ 2 Preguntas o 10 Búsquedas Avanzadas
     </p>
   </div>
 </div>

@@ -52,7 +52,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
             <div style={{ width: '100%', textAlign: 'center' }}>
               <h1 style={{ fontSize: '22px', color: '#fff' }}>Subscripción Regular</h1>
               <h2 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px', color: '#4caf50' }}>
-                Compra mínima de $50 en creditos
+                Compra mínima de $50 en créditos
               </h2>
               <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#bbb' }}>
                 Las consultas y respuestas serán utilizadas anonimamente para mejorar el sistema cuando se usen cuentas no empresariales.
@@ -78,17 +78,17 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
           <div style={{ textAlign: 'center' }}>
   <div className="token-info-box" style={{ display: 'inline-block', border: '2px solid #c69354', padding: '15px', borderRadius: '12px', margin: '20px 0' }}>
     <p style={{ fontSize: '18px', color: '#c69354', margin: '5px 0' }}>
-      1 Token = $1
+      1 Crédito = $1
     </p>
     <p style={{ fontSize: '18px', color: '#c69354', margin: '5px 0' }}>
-      1 Token ≈ 2 Preguntas o 10 Búsquedas Avanzadas
+      1 Crédito ≈ 2 Preguntas o 10 Búsquedas Avanzadas
     </p>
   </div>
 </div>
 
           <div className="paypal-button-container flex flex-col items-center justify-center" style={{ marginTop: '20px' }}>
             <div style={{ width: '100%', marginBottom: '20px', textAlign: 'center' }}>
-              <label className="text-white" style={{ display: 'block', marginBottom: '10px' }}>Creditos:</label>
+              <label className="text-white" style={{ display: 'block', marginBottom: '10px' }}>Créditos:</label>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <button onClick={() => setTokenAmount((prev) => (Number(prev) > 50 ? (Number(prev) - 1).toString() : "50"))} style={{ marginRight: '10px', backgroundColor: '#333', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>-</button>
                 <input
@@ -125,7 +125,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                   const handleTokenPurchase = async (details: OrderResponseBody) => {
                     const userEmail = localStorage.getItem('email');
                     if (!userEmail) {
-                      alert('El correo electrónico del usuario no está disponible. No se puede procesar la compra de creditos.');
+                      alert('El correo electrónico del usuario no está disponible. No se puede procesar la compra de créditos.');
                       return;
                     }
                     const purchaseDetails = {
@@ -142,9 +142,9 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                     if (response.ok) {
                       const responseData = await response.json();
                       if (responseData.success) {
-                        alert(`¡Compra de ${tokenAmount} creditos realizada con éxito!`);
+                        alert(`¡Compra de ${tokenAmount} créditos realizada con éxito!`);
                       } else {
-                        alert('Transacción verificada pero fallo al actualizar los creditos. Por favor, contacte al soporte.');
+                        alert('Transacción verificada pero fallo al actualizar los créditos. Por favor, contacte al soporte.');
                       }
                     } else {
                       alert('Error al comunicar con el servidor. Por favor, revise su conexión a la red e intente nuevamente.');

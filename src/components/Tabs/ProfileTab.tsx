@@ -86,7 +86,7 @@ export default function ProfileTab({ visible }: { visible: boolean }) {
             <span className="mr-2 ">{email}</span>
           </div>
           <div className="flex items-center justify-center text-xl">
-          <span className="mr-2 ">Creditos: {parseFloat(JSON.parse(tokens))}</span>          </div>
+          <span className="mr-2 ">Créditos: {parseFloat(JSON.parse(tokens))}</span>          </div>
     
       </div>
     </motion.div>
