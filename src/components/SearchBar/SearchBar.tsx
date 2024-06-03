@@ -197,12 +197,9 @@ import { searchOutline, chevronUpOutline, chevronDownOutline, hourglassOutline }
 
 function SearchBar({ onSearch, results, onResultClick, setResults }: { onSearch: Function, results: any[], onResultClick: Function, setResults: Function }) {
   const [query, setQuery] = useState('');
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([
-    "DECRETO LEY", "DECRETO", "LEY", "RESOLUCION", "ACUERDO", "OPINION", "RESOLICUCION", "CIRCULAR", "RESUELTO",
-    "SENTENCIAS", "ORDEN", "EDICTO", "SENTENCIA", "FALLO",
-  ]);
+  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedMode, setSelectedMode] = useState("Meaning");
+  const [selectedMode, setSelectedMode] = useState("Word");
   const [isLoading, setIsLoading] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -275,7 +272,7 @@ function SearchBar({ onSearch, results, onResultClick, setResults }: { onSearch:
           ))}
         </ul>
       )}
-      <div className="flex items-center justify-between dark:bg-[#40414f] bg-white dark:border-white border-gray-700 border-2 rounded-md shadow-md">
+      <div className="flex items-center justify-between dark:bg-[#303334] bg-white dark:border-white border-gray-700 border-2 rounded-md shadow-md">
         <div className="flex-grow p-2">
           <input
             type="text"

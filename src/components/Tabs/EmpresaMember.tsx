@@ -31,7 +31,7 @@ export default function EmpresaMembershipTab({ visible }: { visible: boolean }) 
   };
 
   return (
-    <PayPalScriptProvider options={{ clientId: "ATwlVltFMnElAXuqgfTae4TQ3vQcH7CEsGwgPog86d4xVFNqWH2tzm5s-TeIsoscATLGw3MjRDOlH11T", currency: "USD", "vault": true }}>
+    <PayPalScriptProvider options={{ clientId: "AZFzTtISGoHZ9105A4fr8rRRKvzx9HTZll9VexXFYH33gwCxj_iqKc6lc2FtC1DX7s6fCu6-0be6pdnX", currency: "USD", "vault": true }}>
       <motion.div
         initial="hidden"
         animate={visible ? "visible" : "hidden"}
@@ -52,29 +52,40 @@ export default function EmpresaMembershipTab({ visible }: { visible: boolean }) 
             <div style={{ width: '100%', textAlign: 'center' }}>
               <h1 style={{ fontSize: '22px', color: '#fff', marginTop: '20px' }}>Subscripción Empresariales</h1>
               <h2 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px', color: '#4caf50' }}>
-                Tarifa inicial de configuración de $1500 y $1000/mes después
+                $1500 Configuración + $1000/mes
               </h2>
               <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#bbb' }}>
-                Incluye 1500 tokens por mes. Las cuentas empresariales garantizan que sus datos solo serán vistos por usted y se almacenarán únicamente en su dispositivo, sin utilizarse para mejorar el sistema.
+                Incluye 1000 creditos/mes. Datos almacenados solo en su dispositivo.
               </p>
               <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#bbb' }}>
-                Contáctenos en: <a href="mailto:support@panamaaiq.com" style={{ color: '#4caf50', textDecoration: 'none' }}>support@panamaaiq.com</a> para activar una cuenta a través de <span style={{ color: '#0077cc' }}>Yappy</span> o <span style={{ color: '#0077cc' }}>Transferencia Bancaria</span>.
+                Contáctenos para activar una cuenta a través de <span style={{ color: '#0077cc' }}>Yappy</span> o <span style={{ color: '#0077cc' }}>Transferencia Bancaria</span>.
               </p>
               <a href="mailto:support@panamaaiq.com" style={{
-                display: 'inline-block',
-                padding: '10px 20px',
-                marginTop: '20px',
-                backgroundColor: '#4caf50',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '4px',
-                textAlign: 'center',
-                textDecoration: 'none',
-                fontSize: '16px',
-                cursor: 'pointer'
+                color: "#4caf50",
+                borderRadius: "5px",
+                border: "none",
+                padding: "10px 20px",
+                cursor: "pointer",
+                textDecoration: "none",
+                transition: "background-color 0.3s ease",
+                fontWeight: "bold",
+                fontFamily: "Arial, sans-serif"
               }}>Contactar Soporte</a>
             </div>
           </div>
+
+        
+
+          <div style={{ textAlign: 'center' }}>
+  <div className="token-info-box" style={{ display: 'inline-block', border: '2px solid #c69354', padding: '15px', borderRadius: '12px', margin: '20px 0' }}>
+    <p style={{ fontSize: '18px', color: '#c69354', margin: '5px 0' }}>
+      1 Token = $1
+    </p>
+    <p style={{ fontSize: '18px', color: '#c69354', margin: '5px 0' }}>
+      1 Token ≈ 2 Preguntas o 10 Búsquedas Avanzadas
+    </p>
+  </div>
+</div>
 
           <div className="paypal-button-container flex flex-col items-center justify-center" style={{ marginTop: '20px' }}>
             <PayPalButtons
@@ -85,8 +96,7 @@ export default function EmpresaMembershipTab({ visible }: { visible: boolean }) 
                   application_context: {
                     shipping_preference: "NO_SHIPPING"
                   },
-
-                  plan_id: 'P-14841027AX447721SMY3PZZY',
+                  plan_id: 'P-58U5587349815653BMZHHDYQ',
                   custom_id: userEmail || undefined,
                   subscriber: {
                     email_address: userEmail,
@@ -138,8 +148,8 @@ export default function EmpresaMembershipTab({ visible }: { visible: boolean }) 
 
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
               <button onClick={cancelSubscription} style={{
-                backgroundColor: 'red',
-                color: 'white',
+                backgroundColor: '#8B0000',
+                color: '#ffffff',
                 padding: '10px 20px',
                 border: 'none',
                 borderRadius: '5px',

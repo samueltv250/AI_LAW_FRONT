@@ -45,7 +45,7 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
       <p>Acceda a las <strong>bases de datos más completas de leyes de Panamá</strong>, organizadas por un agente de IA especialmente diseñado. Nuestro servicio ofrece un <strong>motor de búsqueda avanzado</strong> que permite buscar por palabra clave o significado en cada ley, decreto, fallo o documento legal publicado en Panamá. Será dirigido a una versión curada y actualizada diariamente por el agente de IA PanamaAIQ.</p>
       <p>Haga preguntas legales a nuestro avanzado agente de consulta IA y obtenga respuestas con informes sobre las fuentes utilizadas para una total transparencia al instante, ideal para empresas que requieren numerosas consultas legales diarias o desean comprender mejor el panorama legal panameño.</p>      <div className="price-details">
         <h3>Detalles de Precios</h3>
-        <p><strong>Membresía para empresas:</strong> $1000 al mes por <strong>1000 tokens</strong>. Los tokens se reponen a 1000 con cada pago exitoso. Cada consulta legal consume entre 1 y 2 tokens y proporciona una respuesta completa con enlaces a todas las fuentes.</p>
+        <p><strong>Membresía para empresas:</strong> $1000 al mes por <strong>1000 creditos</strong>. Los creditos se reponen a 1000 con cada pago exitoso. Cada consulta legal consume entre 1 y 2 creditos y proporciona una respuesta completa con enlaces a todas las fuentes.</p>
         <p>Una vez iniciada la sesión, encontrará un botón para suscribirse mediante PayPal, facilitando la activación de su membresía de manera autónoma.</p>
         <p>Para preguntas contactenos: <a href="mailto:support@panamaaiq.com">support@panamaaiq.com</a></p>
 
@@ -59,7 +59,7 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
       <p>Ask legal questions to our advanced AI Query agent and get answers with reports on sources used for full transparency in an instant, ideal for companies requiring numerous daily legal consultations or wanting to better understand Panama's legal landscape.</p>
       <div className="price-details">
         <h3>Pricing Details</h3>
-        <p><strong>Membership for companies:</strong> $1000 per month for <strong>1000 tokens</strong>. Tokens are refilled back to 1000 upon each successful payment. Each legal consultation consumes between 1 and 2 tokens and provides a comprehensive answer with links to all sources.</p>
+        <p><strong>Membership for companies:</strong> $1000 per month for <strong>1000 creditos</strong>. creditos are refilled back to 1000 upon each successful payment. Each legal consultation consumes between 1 and 2 creditos and provides a comprehensive answer with links to all sources.</p>
         <p>Upon logging in, you will find a button to subscribe via PayPal, enabling you to autonomously activate your membership.</p>
         <p>For question contact us at: <a href="mailto:support@panamaaiq.com">support@panamaaiq.com</a></p>
 
@@ -71,9 +71,9 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
       
     <div className="content-container">
       <div className="register-container">
-        <h2 className="centered-title">Register</h2>
+        <h2 className="centered-title">Registrarse</h2>
         <div className="input-group">
-          <label>First Name:</label>
+          <label>Nombre:</label>
           <input 
             type="text" 
             value={firstName} 
@@ -82,7 +82,7 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
           />
         </div>
         <div className="input-group">
-          <label>Last Name:</label>
+          <label>Apellido:</label>
           <input 
             type="text" 
             value={lastName} 
@@ -100,7 +100,7 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
           />
         </div>
         <div className="input-group">
-          <label>Password:</label>
+          <label>Contraseña:</label>
           <input 
             type="password" 
             value={password} 
@@ -109,7 +109,7 @@ const Register: React.FC<RegisterProps> = ({ onLogin, onRegister }) => {
           />
         </div>
         <div className="input-group">
-          <label>Confirm Password:</label>
+          <label>Confirmar Contraseña:</label>
           <input 
             type="password" 
             value={confirmPassword} 

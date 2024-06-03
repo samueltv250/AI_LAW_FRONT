@@ -36,7 +36,7 @@ export default function BotMessage({ index, chat, fetchDocumentContent, setShowD
 
   return (
     <div
-      className={classNames("py-4 bg-gray-100 dark:bg-[#40414f] px-2 md:px-0")}
+      className={classNames("py-4 bg-gray-100 dark:bg-[#202224] px-2 md:px-0")}
     >
       <motion.div
         variants={variants}
@@ -86,21 +86,25 @@ export default function BotMessage({ index, chat, fetchDocumentContent, setShowD
             </span>
           )}
           {result && sources && sources.length > 0 && (
-<button
+            <button
   style={{
-    backgroundColor: "#4DB6AC", // Same background color as "Ver Documento"
-    color: "#fff", // Same text color as "Ver Documento"
+    backgroundColor: "#c69354", // Same background color as "Ver Documento"
+    color: "#1a1a1a", // Same text color as "Ver Documento"
     borderRadius: "5px", // Matching border radius
     border: "none", // No border
     padding: "10px 20px", // Same padding
     cursor: "pointer", // Pointer cursor
     textDecoration: "none", // Remove text decoration
     transition: "background-color 0.3s ease", // Smooth transition
+    fontWeight: "bold", // Thicker text
+    fontFamily: "Arial, sans-serif" // Font family that supports bold
   }}
   onClick={() => setShowSources(true)}
 >
   Referencias
 </button>
+
+
 
           )}
           {showSources && (

@@ -8,12 +8,14 @@ import { useSettings } from "../../store/store";
 import ProfileTab from "../Tabs/ProfileTab";
 import MembershipTab from "../Tabs/MembershipTab";
 import EmpresaMembershipTab from "../Tabs/EmpresaMember";
+
 const variants = {
   hidden: { opacity: 0, scale: 0.8 },
   visible: { opacity: 1, scale: 1 },
   exit: { opacity: 0, scale: 0.8, transition: { duration: 0.15 } },
 };
-const tabs = ["perfil" , "opciones", "membresia individual", "membresia empresarial"];
+
+const tabs = ["perfil", "opciones", "membresia individual", "membresia empresarial"];
 
 export default function Settings() {
   const [selectedTab, setSelectedTab] = useState("perfil");
@@ -25,7 +27,7 @@ export default function Settings() {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="tabs font-bold rounded-md bg-white dark:bg-gray-800 mx-auto text-gray-500 dark:text-gray-300 max-w-80vw max-h-80vh py-4 transition-all"
+      className="tabs font-bold rounded-md bg-[#202224] text-white mx-auto max-w-80vw max-h-80vh py-4 transition-all"
     >
       <div className="flex items-center justify-between px-2">
         <div className="">
@@ -34,8 +36,9 @@ export default function Settings() {
               type="button"
               key={tab}
               className={classNames("mr-2 p-2 rounded-t-lg capitalize", {
-                "bg-gray-200 dark:bg-gray-700 border-2 border-b-0 border-blue-600":
+                "bg-[#c69354] text-black font-bold border-2 border-b-0 border-[#c69354]":
                   selectedTab === tab,
+                "text-white": selectedTab !== tab,
               })}
               onClick={() => setSelectedTab(tab)}
             >
@@ -52,11 +55,13 @@ export default function Settings() {
           </button>
         </div>
       </div>
-      <div className="w-full h-[1px] bg-gray-500"></div>
-      <SettingsTab visible={selectedTab === "opciones"} />
-      <ProfileTab visible={selectedTab === "perfil"} />
-      <MembershipTab visible={selectedTab === "membresia individual"} />
-      <EmpresaMembershipTab visible={selectedTab === "membresia empresarial"} />
+      <div className="w-full h-[1px] bg-[#c69354]"></div>
+      <div className="text-white">
+        <SettingsTab visible={selectedTab === "opciones"} />
+        <ProfileTab visible={selectedTab === "perfil"} />
+        <MembershipTab visible={selectedTab === "membresia individual"} />
+        <EmpresaMembershipTab visible={selectedTab === "membresia empresarial"} />
+      </div>
     </motion.div>
   );
 }

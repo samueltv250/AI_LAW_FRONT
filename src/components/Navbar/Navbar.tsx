@@ -46,7 +46,7 @@ export default function Navbar({
       >
         <nav
           className={classnames(
-            " absolute left-0 bottom-0 top-0  md:flex-grow-1 w-9/12 md:w-[260px] bg-[#202123] text-white z-10 flex flex-col transition duration-500",
+            " absolute left-0 bottom-0 top-0 md:flex-grow-1 w-9/12 md:w-[260px] bg-[#202224] text-white z-10 flex flex-col transition duration-500",
             { "translate-x-0": active, "-translate-x-[150%]": !active }
           )}
         >
@@ -72,68 +72,39 @@ export default function Navbar({
           <div className="history overflow-y-auto h-[calc(100%-60px)]">
             <ChatHistory />
           </div>
-          <div className="account  font-bold  z-20 bg-[#202123] border-t border-gray-500 shadow  ">
-            {/* <div className="px-2 py-2 flex items-center text-2xl text-yellow-400 border-y border-yellow-400">
-              <span className=" flex items-center text-xl ">
-                <IonIcon icon={cafeOutline} />
-              </span>
-              <a
-                href="https://www.buymeacoffee.com/prasadbro"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-2 text-lg"
-              >
-                Buy me a coffee
-              </a>
-            </div> */}
+          <div className="account font-bold z-20 bg-[#202224] border-t border-gray-500 shadow">
             <div className="[&>.options]:focus-within:visible">
               <button
                 type="button"
-                className="px-2 relative py-2 inline-flex w-full items-center hover:bg-gray-700 transition group "
+                className="px-2 relative py-2 inline-flex w-full items-center hover:bg-[#c69354] transition group"
               >
-                <Avatar className=" h-11 w-11" />
+                <Avatar className="h-11 w-11" />
 
                 <span className="p-2">{name}</span>
-                <span className=" ml-auto  text-gray-400 text-2xl ">
+                <span className="ml-auto text-gray-400 text-2xl">
                   <IonIcon icon={ellipsisHorizontalOutline} />
                 </span>
               </button>
-              <div className="options absolute bottom-12 rounded-md left-0 right-0 bg-gray-800 font-normal invisible transition  m-2 z-30 text-gray-300 ">
-                {/* <button
-                  className=" p-2   hover:bg-gray-700 w-full text-left flex items-center"
-                  onClick={() => setSystemMessageModalVisible(true)}
-                >
-                  <span className="mr-2 p-1 text-xl  flex items-center">
-                    <IonIcon icon={chatboxEllipsesOutline} />
-                  </span>
-                  <span>Custom instructions</span>
-                </button> */}
+              <div className="options absolute bottom-12 rounded-md left-0 right-0 bg-[#202224] font-normal invisible transition m-2 z-30 text-white">
                 <button
-                  className=" p-2   hover:bg-gray-700 w-full text-left flex items-center"
+                  className="p-2 hover:bg-[#c69354] w-full text-left flex items-center"
                   onClick={() => setModalVisible(true)}
                 >
-                  <span className="mr-2 p-1  text-xl flex items-center">
+                  <span className="mr-2 p-1 text-xl flex items-center">
                     <IonIcon icon={settingsOutline} />
                   </span>
                   <span>Settings</span>
                 </button>
                 <div className="h-[1px] bg-gray-300"></div>
-                {/* maybe in future i will add authentication */}
-                {/* <button className=" p-2   hover:bg-gray-700  w-full  text-left flex items-center">
-                  <span className="mr-2 p-1 text-xl flex items-center">
-                    <IonIcon icon={logOutOutline} />
-                  </span>
-                  <span>Log out</span>
-                </button> */}
               </div>
             </div>
           </div>
           <button
             type="button"
             onClick={() => setActive(false)}
-            className="close md:hidden absolute top-2 h-10 w-10 border-2 -right-10  p-2 flex items-center justify-center"
+            className="close md:hidden absolute top-2 h-10 w-10 border-2 -right-10 p-2 flex items-center justify-center"
           >
-            <span className=" text-2xl flex">
+            <span className="text-2xl flex">
               <IonIcon icon={closeOutline} />
             </span>
           </button>

@@ -14,7 +14,7 @@ body {
 
 /* Style the scrollbar thumb (draggable part) */
 ::-webkit-scrollbar-thumb {
-  background-color: #888; /* Change the color as desired */
+  background-color: #3f3f3f; /* Change the color as desired */
   border-radius: 4px; /* Rounded corners for the thumb */
 }
 

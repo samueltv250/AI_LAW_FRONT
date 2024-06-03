@@ -1,54 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .login-container {
   width: 300px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(254, 245, 245, 0.1);
+  box-shadow: 0 0 10px rgba(32, 34, 36, 0.1);
   border-radius: 5px;
-  color: rgba(255, 255, 255, 0.692); /* Add this line */
+  background-color: #202224; /* Secondary background color */
+  color: rgba(255, 255, 255, 0.692); /* Text color */
 
-  /* Add these properties */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .centered-title {
   text-align: center;
 }
+
 .avatar-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-  
-  .input-group {
-    margin-bottom: 10px;
-    
-  }
-  
-  .input-group label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .input-group input {
-    width: 100%;
-    padding: 5px;
-    color: black; /* Modify this line to set input text color to black */
 
-  }
-  
-  .submit-btn, .register-btn {
-    width: 100%;
-    padding: 10px;
-    background-color: #4CAF50; /* Change to a green color */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease; /* Add transition for hover effect */
-  }
-  
-  .submit-btn:hover, .register-btn:hover {
-    background-color: #45a049; /* Darken the background color on hover */
-  }
+.input-group {
+  margin-bottom: 10px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 5px;
+  color: black; /* Input text color */
+  background-color: #e2d5c9; /* Main background color */
+}
+
+.submit-btn, .register-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #c69354; /* Button background color */
+  color: black; /* Button text color */
+  font-weight: bold; /* Button text bold */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease; /* Hover effect transition */
+  font-family: "Arial"
+}
+
+
+.submit-btn:hover, .register-btn:hover {
+  background-color: #a5783f; /* Darken the background color on hover */
+}

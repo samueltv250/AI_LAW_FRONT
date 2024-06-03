@@ -12,7 +12,7 @@ const twConfig = {
         montserrat: ["Montserrat", "sans-serif", "Roboto"],
       },
       colors: {
-        "dark-primary": "#40414f",
+        "dark-primary": "#303334",
       },
     },
   },

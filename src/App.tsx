@@ -194,11 +194,10 @@ function App() {
   }, [theme]);
 
   const handleLogin = () => {
-    const version = localStorage.getItem('V1');
+    const version = localStorage.getItem('V2');
     if (!version) {
       localStorage.clear();
-      localStorage.setItem('V1', 'true');
-
+      localStorage.setItem('V2', 'true');
     }
 
     const token = localStorage.getItem('token');
@@ -337,7 +336,7 @@ function App() {
             setActive(false);
           }}
           className={classNames(
-            "shadow fixed p-2 h-8 w-8 text-sm top-4 right-4 border-2 hidden md:inline-flex dark:text-white text-gray-700 dark:border border-gray-400 rounded-md items-center justify-center",
+            "shadow fixed p-2 h-8 w-8 text-sm top-4 right-4 border-2 hidden md:inline-flex dark:text-white text-gray-700 dark:border border-gray-400 rounded-md items-center justify-center cursor-pointer",
             {
               "text-3xl dark:text-white ": searchActive,
               "text-3xl text-gray-700 dark:text-white": !searchActive

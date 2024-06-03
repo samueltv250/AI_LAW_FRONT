@@ -19,7 +19,7 @@ export function SourcesModal({ sources, onClose, fetchDocumentContent, setShowDo
   const headerStyle: CSSProperties = {
     textAlign: 'center',
     fontWeight: 'bold',
-    backgroundColor: '#353641',
+    backgroundColor: '#191919',
     color: 'white',
     fontSize: '24px',
     padding: '10px 20px',
@@ -111,7 +111,7 @@ const overlayStyle: CSSProperties = {
 };
 
 const modalStyle: CSSProperties = {
-  backgroundColor: '#222',
+  backgroundColor: '#202224',
   padding: '20px',
   borderRadius: '8px',
   boxShadow: '0px 4px 8px 0px rgba(255,255,255,0.2)',
@@ -131,7 +131,7 @@ const closeButtonStyle = (isHovered: boolean): CSSProperties => ({
   fontWeight: 'bold',
   color: '#fff',
   border: 'none',
-  background: isHovered ? '#ff4d4d' : '#ff0000',
+  background: isHovered ? '#ff4d4d' : '#8B0000',
   cursor: 'pointer',
   borderRadius: '50%',
   width: '40px',
@@ -146,25 +146,26 @@ const closeButtonStyle = (isHovered: boolean): CSSProperties => ({
 });
 
 const cardStyle: CSSProperties = {
-  backgroundColor: '#353641',
+  backgroundColor: '#191919',
   color: 'white',
   width: '100%',
   textAlign: 'left',
   padding: '15px', // Adding padding inside the card for better spacing
   borderRadius: '5px',
 };
-
 const buttonStyle: CSSProperties = {
-  color: '#fff',
-  backgroundColor: '#4DB6AC',
-  cursor: 'pointer',
+  backgroundColor: "#c69354", // Same background color as "Ver Documento"
+  color: "#1a1a1a", // Same text color as "Ver Documento"
+cursor: 'pointer',
   border: 'none',
   borderRadius: '5px',
   padding: '10px 20px',
   textDecoration: 'none',
   transition: 'background-color 0.3s ease',
   marginTop: '10px',
-  display: 'inline-block'
+  display: 'inline-block',
+  fontWeight: 'bold', // Thicker text
+  fontFamily: 'Arial, sans-serif' // Font family that supports bold
 };
 
 const linkStyle: CSSProperties = {

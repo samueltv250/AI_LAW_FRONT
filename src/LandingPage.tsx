@@ -5,39 +5,38 @@ const BetaAnnouncement = () => {
     section: {
       marginBottom: '40px',
       padding: '20px',
-      border: '1px solid #007bff',
+      border: '1px solid #c69354',
       borderRadius: '5px',
-      backgroundColor: '#f9f9f9',
+      backgroundColor: '#e2d5c9',
     },
     sectionTitle: {
       fontSize: '24px',
       fontWeight: 'bold',
       marginBottom: '10px',
-      color: '#007bff',
+      color: '#c69354',
     },
     paragraph: {
       fontSize: '16px',
       lineHeight: '1.6',
-      color: '#333',
+      color: '#202224',
     },
     emailLink: {
-      color: '#007bff',
+      color: '#c69354',
       textDecoration: 'none',
     },
   };
 
   return (
-<section style={styles.section}>
-  <h3 style={styles.sectionTitle}>Anuncio Beta</h3>
-  <p style={styles.paragraph}>
-    La aplicación está actualmente en beta y estoy trabajando continuamente en mejoras. ¡Estoy emocionado de anunciar que pronto lanzaré un redactor de documentos con IA!
-  </p>
-  <p style={styles.paragraph}>
-    Agradezco cualquier comentario o solicitud de características que puedan tener. Por favor, envíenlos a mi equipo de soporte a{' '}
-    <a style={styles.emailLink} href="mailto:support@panamaaiq.com">support@panamaaiq.com</a>.
-  </p>
-</section>
-
+    <section style={styles.section}>
+      <h3 style={styles.sectionTitle}>Anuncio Beta</h3>
+      <p style={styles.paragraph}>
+        La aplicación está actualmente en <strong>beta</strong>. Esto significa que todavía estoy trabajando continuamente en mejoras. ¡Estoy emocionado de anunciar que pronto lanzaré un redactor de documentos con IA!
+      </p>
+      <p style={styles.paragraph}>
+        Agradezco cualquier comentario o solicitud de características que puedan tener. Por favor, envíenlos a mi equipo de soporte a{' '}
+        <a style={styles.emailLink} href="mailto:support@panamaaiq.com">support@panamaaiq.com</a>.
+      </p>
+    </section>
   );
 };
 
@@ -46,63 +45,88 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
     body: {
       fontFamily: 'Arial, sans-serif',
       lineHeight: '1.6',
-      backgroundColor: '#f1f1f1',
+      backgroundColor: '#e2d5c9',
       color: '#000',
       margin: 0,
       padding: 0,
     },
     strong: {
       fontWeight: 'bold',
-      color: '#0037ff',
+      color: '#c69354',
     },
     landingPage: {
       display: 'flex',
       flexDirection: 'column',
       minHeight: '100vh',
-      backgroundColor: '#ffffff',
+      backgroundColor: '#e2d5c9',
       color: '#000',
     },
     pageHeader: {
       display: 'flex',
-      flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center',
+      justifyContent: 'space-between',
       padding: '1em',
-      background: '#282c34',
+      background: '#202224',
       color: '#ffffff',
       position: 'relative',
-      minHeight: '150px', // Reduced height
     },
-    pageHeaderH1: {
-      fontSize: '36px',
-      margin: 0,
-      padding: '0.5em 0',
-      textAlign: 'center',
+    logo: {
+      width: '100px',
+      height: 'auto',
+      marginRight: '20px',
     },
-    pageHeaderP: {
+    pageHeaderContent: {
+      display: 'flex',
+      alignItems: 'center',
+    },
+    pageHeaderText: {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    pageHeaderTitle: {
+      fontSize: '32px',
+      fontWeight: 'bold',
+      color: '#f0c674',
+    },
+    pageHeaderSubtitle: {
       fontSize: '18px',
-      margin: 0,
-      textAlign: 'center',
+      color: '#ffffff',
     },
     pageHeaderButtons: {
-      position: 'absolute',
-      top: '50%',
-      right: '10px',
-      transform: 'translateY(-50%)',
       display: 'flex',
       flexDirection: 'column',
       gap: '10px',
+    },
+    button: {
+      backgroundColor: '#c69354',
+      color: '#1a1a1a',
+      borderRadius: '5px',
+      border: 'none',
+      padding: '10px 20px',
+      cursor: 'pointer',
+      textDecoration: 'none',
+      transition: 'background-color 0.3s ease',
+      fontWeight: 'bold',
+      fontFamily: 'Arial, sans-serif',
+    },
+    buttonHover: {
+      backgroundColor: '#a5783f',
+      transform: 'scale(1.02)',
+    },
+    buttonHoverOut: {
+      backgroundColor: '#a5783f',
+      transform: 'scale(0.98039216)',
     },
     content: {
       flex: 1,
       padding: '20px',
       overflowY: 'auto',
-      backgroundColor: '#ffffff',
-      color: '#000000',
+      backgroundColor: '#e2d5c9',
+      color: '#202224',
     },
     sectionTitle: {
       fontSize: '24px',
-      borderBottom: '2px solid #007bff',
+      borderBottom: '2px solid #c69354',
       paddingBottom: '5px',
       marginBottom: '15px',
     },
@@ -120,7 +144,7 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
       content: '""',
       display: 'block',
       height: '2px',
-      backgroundColor: '#007bff',
+      backgroundColor: '#c69354',
       position: 'absolute',
       bottom: 0,
       left: 0,
@@ -145,28 +169,14 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
       textAlign: 'center',
       margin: '40px 0',
     },
-    button: {
-      width: '150px',
-      padding: '10px',
-      backgroundColor: '#007bff',
-      color: 'white',
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      transition: 'background-color 0.3s ease, transform 0.3s ease',
-    },
-    buttonHover: {
-      backgroundColor: '#0056b3',
-      transform: 'scale(1.05)',
-    },
     emailLink: {
-      color: '#007bff',
+      color: '#c69354',
     },
     pageFooter: {
       fontSize: '14px',
       textAlign: 'center',
       padding: '1em',
-      background: '#282c34',
+      background: '#202224',
       color: '#ffffff',
     },
     mediaQuerySmall: {
@@ -192,7 +202,7 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
   };
 
   const handleMouseOut = (e: React.MouseEvent<HTMLButtonElement>) => {
-    Object.assign(e.currentTarget.style, styles.button);
+    Object.assign(e.currentTarget.style, styles.buttonHoverOut);
   };
 
   const isSmallScreen = window.innerWidth <= 768;
@@ -200,12 +210,17 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
   return (
     <div style={styles.landingPage}>
       <header style={isSmallScreen ? { ...styles.pageHeader, ...styles.pageHeaderSmall } : styles.pageHeader}>
-        <h1 style={isSmallScreen ? { ...styles.pageHeaderH1, ...styles.pageHeaderSmall } : styles.pageHeaderH1}>
-          Panamá AI Query
-        </h1>
-        <p style={isSmallScreen ? { ...styles.pageHeaderP, ...styles.pageHeaderPSmall } : styles.pageHeaderP}>
-          Chatea con la base de datos legales más completa de Panamá.
-        </p>
+        <div style={styles.pageHeaderContent}>
+          <img src="https://raw.githubusercontent.com/samueltv250/images/main/bot.webp" alt="Logo" style={styles.logo} />
+          <div style={styles.pageHeaderText}>
+            <h1 style={isSmallScreen ? { ...styles.pageHeaderTitle, ...styles.pageHeaderSmall } : styles.pageHeaderTitle}>
+              Panamá AI Query
+            </h1>
+            <p style={isSmallScreen ? { ...styles.pageHeaderSubtitle, ...styles.pageHeaderPSmall } : styles.pageHeaderSubtitle}>
+              Chatea con la base de datos legales más completa de Panamá.
+            </p>
+          </div>
+        </div>
         <div style={styles.pageHeaderButtons}>
           <button
             onClick={onLoginClick}
@@ -228,7 +243,7 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
       <main style={isSmallScreen ? { ...styles.content, ...styles.mediaQuerySmall } : styles.content}>
         <section style={styles.section}>
           <h3 style={isSmallScreen ? { ...styles.sectionTitle, ...styles.sectionTitleSmall, textAlign: 'left' } : { ...styles.sectionTitle, textAlign: 'left' }}>
-            ¿Qué Ofrecemos? (Demo al final de la página)
+            ¿Qué Ofrecemos?
           </h3>
           <div style={styles.subsection}>
             <h4 style={styles.subsectionTitle}>
@@ -240,6 +255,9 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
             </p>
             <p>
               Esta agente de inteligencia artificial se encarga de mantenider la data <strong style={styles.strong}>constantemente actualizada</strong>. Asegurandose que todos los articulos proporcionads en las consultas sean los más recientes y actualizados (si ha sido modificado o derogado).
+            </p>
+            <p>
+            Este <strong>agente IA</strong> está constantemente actualizando la base de datos con las <strong>leyes más recientes</strong>. Según son publicadas por la <strong>Gaceta Oficial</strong> y otros medios oficiales.
             </p>
           </div>
           <div style={styles.subsection}>
@@ -269,7 +287,7 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
           <div style={isSmallScreen ? { ...styles.responsiveVideoWrapper, ...styles.responsiveVideoWrapperSmall } : styles.responsiveVideoWrapper}>
             <iframe
               style={styles.responsiveVideo}
-              src="https://www.youtube.com/embed/Y8wV-2XkB70"
+              src="https://www.youtube.com/embed/IK1SV0Zf4VI"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -277,17 +295,30 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
             ></iframe>
           </div>
         </section>
+
+        
         <BetaAnnouncement />
+
+        <div style={{ textAlign: 'center' }}>
+  <div className="token-info-box" style={{ display: 'inline-block', border: '2px solid #c69354', padding: '15px', borderRadius: '12px', margin: '20px 0', backgroundColor: '#191919' }}>
+    <p style={{ fontSize: '18px', color: '#c69354', margin: '5px 0' }}>
+      1 Token = $1
+    </p>
+    <p style={{ fontSize: '18px', color: '#c69354', margin: '5px 0' }}>
+      1 Token ≈ 2 Preguntas o 10 Búsquedas Avanzadas
+    </p>
+  </div>
+</div>
+
+
+
         <section style={styles.section}>
           <h3 style={isSmallScreen ? { ...styles.sectionTitle, ...styles.sectionTitleSmall, textAlign: 'left' } : { ...styles.sectionTitle, textAlign: 'left' }}>
             Detalles de Precios para Cuentas Individuales
           </h3>
           <div style={styles.subsection}>
             <p>
-              <strong style={styles.strong}>Membresía Individual:</strong> Compra mínima de $50 en tokens. Cada token corresponde a aproximadamente dos consultas al bot de QA. Las consultas y respuestas serán utilizadas para mejorar el sistema cuando se usen cuentas no empresariales.
-            </p>
-            <p>
-              Cada consulta legal consume entr 0.5-1 tokens y proporciona una respuesta completa con enlaces a todas las fuentes. Puede consumir mucho menos si la pregunta no requiere mucha investigación.
+              <strong style={styles.strong}>Membresía Individual:</strong> Compra mínima de $50 en creditos. Cada token cuesta 1$ y corresponde a aproximadamente dos consultas al bot de QA. Las consultas y respuestas serán utilizadas anonimamente para mejorar el sistema cuando se usen cuentas no empresariales.
             </p>
           </div>
         </section>
@@ -298,12 +329,12 @@ const LandingPage = ({ onLoginClick, onRegisterClick }: { onLoginClick: () => vo
           </h3>
           <div style={styles.subsection}>
             <p>
-              <strong style={styles.strong}>Membresía Empresarial:</strong> $1000 por mes. Incluye 1500 tokens cada mes. 
+              <strong style={styles.strong}>Membresía Empresarial:</strong> $1000 por mes. Incluye 1000 creditos cada mes. 
             </p>
             <p>
               Las cuentas empresariales garantizan que sus datos solo serán vistos por usted y se almacenarán únicamente en su dispositivo, sin utilizarse para mejorar o entrenar el sistema.
             </p>
-            <p>Dependiendo de las necesidades de la empresa también podemos crear planes personalizados.</p>
+            <p>Dependiendo de las necesidades de la empresa también podemos crear planes personalizados con integracion a databases que ya tengan.</p>
           </div>
         </section>
 

@@ -407,10 +407,10 @@ export const selectChatsHistory = (state: ChatType) => {
       sortedData["Hoy"].push(data);
       return;
     } else if (currentDate.subtract(7, "days").isBefore(myDate)) {
-      if (!sortedData.hasOwnProperty("Previous 7 Days")) {
-        sortedData["Previous 7 Days"] = [];
+      if (!sortedData.hasOwnProperty("Ulimos 7 Días")) {
+        sortedData["Ulimos 7 Días"] = [];
       }
-      sortedData["Previous 7 Days"].push(data);
+      sortedData["Ulimos 7 Días"].push(data);
       return;
     } else if (currentDate.subtract(30, "days").isBefore(myDate)) {
       if (!sortedData.hasOwnProperty("Previous 30 Days")) {

@@ -81,7 +81,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onRegister }) => {
           />
         </div>
         <div className="input-group">
-          <label>Password:</label>
+          <label>Contraseña:</label>
           <input 
             type="password" 
             value={password} 

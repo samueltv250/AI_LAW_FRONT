@@ -31,7 +31,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
   };
 
   return (
-    <PayPalScriptProvider options={{ clientId: "ATwlVltFMnElAXuqgfTae4TQ3vQcH7CEsGwgPog86d4xVFNqWH2tzm5s-TeIsoscATLGw3MjRDOlH11T", currency: "USD", "vault": true }}>
+    <PayPalScriptProvider options={{ clientId: "AZFzTtISGoHZ9105A4fr8rRRKvzx9HTZll9VexXFYH33gwCxj_iqKc6lc2FtC1DX7s6fCu6-0be6pdnX", currency: "USD", "vault": true }}>
       <motion.div
         initial="hidden"
         animate={visible ? "visible" : "hidden"}
@@ -52,36 +52,43 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
             <div style={{ width: '100%', textAlign: 'center' }}>
               <h1 style={{ fontSize: '22px', color: '#fff' }}>Subscripción Regular</h1>
               <h2 style={{ fontSize: '18px', fontWeight: 'bold', marginBottom: '10px', color: '#4caf50' }}>
-                Compra mínima de $50 en tokens
+                Compra mínima de $50 en creditos
               </h2>
               <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#bbb' }}>
-                Cada token corresponde a aproximadamente dos consultas al bot de QA. Las consultas y respuestas serán utilizadas para mejorar el sistema cuando se usen cuentas no empresariales.
-              </p>
-              <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#bbb' }}>
-                Cada búsqueda utilizando el motor de búsqueda legal avanzado consume 0.1 token.
+                Las consultas y respuestas serán utilizadas anonimamente para mejorar el sistema cuando se usen cuentas no empresariales.
               </p>
               <p style={{ fontSize: '16px', lineHeight: '1.5', color: '#bbb' }}>
                 Contáctenos en: <a href="mailto:support@panamaaiq.com" style={{ color: '#4caf50', textDecoration: 'none' }}>support@panamaaiq.com</a> para activar una cuenta a través de <span style={{ color: '#0077cc' }}>Yappy</span> o <span style={{ color: '#0077cc' }}>Transferencia Bancaria</span>.
               </p>
               <a href="mailto:support@panamaaiq.com" style={{
-                display: 'inline-block',
-                padding: '10px 20px',
-                marginTop: '20px',
-                backgroundColor: '#4caf50',
-                color: '#fff',
-                border: 'none',
-                borderRadius: '4px',
-                textAlign: 'center',
-                textDecoration: 'none',
-                fontSize: '16px',
-                cursor: 'pointer'
+                  color: "#4caf50", // Same text color as "Ver Documento"
+                  borderRadius: "5px", // Matching border radius
+                  border: "none", // No border
+                  padding: "10px 20px", // Same padding
+                  cursor: "pointer", // Pointer cursor
+                  textDecoration: "none", // Remove text decoration
+                  transition: "background-color 0.3s ease", // Smooth transition
+                  fontWeight: "bold", // Thicker text
+                  fontFamily: "Arial, sans-serif" // Font family that supports bold
+              
               }}>Contactar Soporte</a>
             </div>
           </div>
 
+          <div style={{ textAlign: 'center' }}>
+  <div className="token-info-box" style={{ display: 'inline-block', border: '2px solid #c69354', padding: '15px', borderRadius: '12px', margin: '20px 0' }}>
+    <p style={{ fontSize: '18px', color: '#c69354', margin: '5px 0' }}>
+      1 Token = $1
+    </p>
+    <p style={{ fontSize: '18px', color: '#c69354', margin: '5px 0' }}>
+      1 Token ≈ 2 Preguntas o 10 Búsquedas Avanzadas
+    </p>
+  </div>
+</div>
+
           <div className="paypal-button-container flex flex-col items-center justify-center" style={{ marginTop: '20px' }}>
             <div style={{ width: '100%', marginBottom: '20px', textAlign: 'center' }}>
-              <label className="text-white" style={{ display: 'block', marginBottom: '10px' }}>Tokens:</label>
+              <label className="text-white" style={{ display: 'block', marginBottom: '10px' }}>Creditos:</label>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <button onClick={() => setTokenAmount((prev) => (Number(prev) > 50 ? (Number(prev) - 1).toString() : "50"))} style={{ marginRight: '10px', backgroundColor: '#333', color: '#fff', padding: '10px 20px', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>-</button>
                 <input
@@ -106,7 +113,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                 return actions.order.create({
                   intent: "CAPTURE",
                   purchase_units: [{
-                    amount: { value: tokenAmount } // Assuming each token costs $10
+                    amount: { value: tokenAmount } // Assuming each token costs $1
                   }],
                   application_context: {
                     shipping_preference: "NO_SHIPPING"
@@ -118,7 +125,7 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                   const handleTokenPurchase = async (details: OrderResponseBody) => {
                     const userEmail = localStorage.getItem('email');
                     if (!userEmail) {
-                      alert('El correo electrónico del usuario no está disponible. No se puede procesar la compra de tokens.');
+                      alert('El correo electrónico del usuario no está disponible. No se puede procesar la compra de creditos.');
                       return;
                     }
                     const purchaseDetails = {
@@ -135,9 +142,9 @@ export default function MembershipTab({ visible }: { visible: boolean }) {
                     if (response.ok) {
                       const responseData = await response.json();
                       if (responseData.success) {
-                        alert(`¡Compra de ${tokenAmount} tokens realizada con éxito!`);
+                        alert(`¡Compra de ${tokenAmount} creditos realizada con éxito!`);
                       } else {
-                        alert('Transacción verificada pero fallo al actualizar los tokens. Por favor, contacte al soporte.');
+                        alert('Transacción verificada pero fallo al actualizar los creditos. Por favor, contacte al soporte.');
                       }
                     } else {
                       alert('Error al comunicar con el servidor. Por favor, revise su conexión a la red e intente nuevamente.');

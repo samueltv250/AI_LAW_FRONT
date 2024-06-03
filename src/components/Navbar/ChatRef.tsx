@@ -60,8 +60,8 @@ export default function ChatRef({
   return (
     <div
       className={classNames(
-        "btn-wrap flex items-center w-full p-1 rounded-md text-xl font-bold  hover:bg-[#40414f]",
-        { "bg-[#40414f]": isSelected }
+        "btn-wrap flex items-center w-full p-1 rounded-md text-xl font-bold  hover:bg-[#303334]",
+        { "bg-[#303334]": isSelected }
       )}
     >
       {!isTitleEditeble && (

@@ -1,15 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #202224; /* Ensure the body has the secondary background color */
+  color: rgba(255, 255, 255, 0.692);
+  font-family: Arial, sans-serif;
+}
+
+html, body, .register-page {
+  height: 100%;
+}
+
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #202224; /* Main background color */
+}
+
 .register-container {
   width: 300px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(254, 245, 245, 0.1);
+  box-shadow: 0 0 10px rgba(32, 34, 36, 0.1);
   border-radius: 5px;
+  background-color: #202224; /* Secondary background color */
   color: rgba(255, 255, 255, 0.692);
-  /* Removed position-related properties */
 }
 
 .centered-title {
   text-align: center;
-  color: rgba(255, 255, 255, 0.692);/* Changed text color to black */
+  color: rgba(255, 255, 255, 0.692); /* Text color */
 }
 
 .input-group {
@@ -19,43 +45,38 @@
 .input-group label {
   display: block;
   margin-bottom: 5px;
-  color: rgba(255, 255, 255, 0.692); /* Changed text color to black */
+  color: rgba(255, 255, 255, 0.692); /* Label text color */
 }
 
 .input-group input {
   width: 100%;
   padding: 5px;
+  color: black; /* Input text color */
+  background-color: #e2d5c9; /* Main background color */
 }
 
 .submit-btn, .login-btn {
   width: 100%;
   padding: 10px;
-  background-color: #4CAF50; /* Changed to a green color */
-  color: white;
+  background-color: #c69354; /* Button background color */
+  color: black; /* Button text color */
+  font-weight: bold; /* Button text bold */
   border: none;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease; /* Hover effect transition */
+  font-family: "Arial";
 }
 
 .submit-btn:hover, .login-btn:hover {
-  background-color: #45a049; /* Darkened the background color on hover */
-}
-
-.register-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
+  background-color: #a5783f; /* Darken the background color on hover */
 }
 
 .content-container {
   display: flex;
   justify-content: center;
   align-items: start;
-  /* flex-wrap: wrap; */
   gap: 20px;
   margin: 0 auto;
   position: absolute;
@@ -65,9 +86,7 @@
 }
 
 .info-container {
-
   width: 500px;
-
   padding: 20px;
   background: #0000002e;
   border-radius: 5px;

@@ -1,17 +1,21 @@
 @keyframes slideLeftToRight {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(100%);
-    }
+  0% {
+    transform: translateX(0);
   }
-  
-  .loading-indicator {
-    display: inline-block;
-    animation: slideLeftToRight 2s linear infinite;
+  100% {
+    transform: translateX(100%);
   }
-  @keyframes pulsate {
+}
+
+.loading-indicator {
+  display: inline-block;
+  animation: slideLeftToRight 2s linear infinite;
+  background-color: #c69354; /* Button background color */
+  width: 50px;
+  height: 5px;
+}
+
+@keyframes pulsate {
   0% {
     transform: scale(0.9);
     opacity: 1;
@@ -24,4 +28,13 @@
     transform: scale(0.9);
     opacity: 1;
   }
+}
+
+.pulsate {
+  display: inline-block;
+  animation: pulsate 1s ease-in-out infinite;
+  background-color: #e2d5c9; /* Main background color */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
 }
